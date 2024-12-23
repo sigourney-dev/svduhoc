@@ -24,21 +24,6 @@ export const logoutRequest = () => ({
     type: types.LOGOUT_REQUEST,
 });
 
-export const refreshTokenRequest = (payload: any) => ({
-    type: types.REFRESH_TOKEN_REQUEST,
-    payload: payload,
-});
-
-export const refreshTokenSuccess = (payload: any) => ({
-    type: types.REFRESH_TOKEN_SUCCESS,
-    payload: payload,
-});
-
-export const refreshTokenFailure = (payload: any) => ({
-    type: types.REFRESH_TOKEN_FAILURE,
-    payload: payload,
-});
-
 export const changePasswordRequest = (payload: any) => ({
     type: types.CHANGE_PASSWORD_REQUEST,
     payload: payload,
@@ -66,6 +51,11 @@ export const changeInformationSuccess = (payload: any) => ({
 
 export const changeInformationFailure = (payload: any) => ({
     type: types.CHANGE_INFORMATION_FAILURE,
+    payload: payload,
+});
+
+export const saveProfile = (payload: any) => ({
+    type: types.SAVE_PROFILE,
     payload: payload,
 });
 

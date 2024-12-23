@@ -28,6 +28,7 @@ import {
   IconHome,
   FormApplication,
   ChangePasswordScreen,
+  ChangeInformationScreen,
 } from '../screens';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -56,6 +57,7 @@ export type AppStackParamList = {
   IconHome: undefined;
   FormApplication: undefined;
   ChangePasswordScreen: undefined;
+  ChangeInformationScreen: undefined;
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> =
@@ -108,6 +110,7 @@ function AppStack() {
       <Stack.Screen name='IconHome' component={IconHome} />
       <Stack.Screen name='FormApplication' component={FormApplication} />
       <Stack.Screen name='ChangePasswordScreen' component={ChangePasswordScreen} />
+      <Stack.Screen name='ChangeInformationScreen' component={ChangeInformationScreen} />
     </Stack.Navigator>
   );
 }

@@ -15,7 +15,7 @@ interface IPropsItem {
 export const MenuScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {isLogin} = useSelector((store: any) => store.auth);
+  const {isLogin, profile} = useSelector((store: any) => store.auth);
 
   const ItemMenu = (props: IPropsItem) => {
     const {title, direction} = props;
@@ -41,6 +41,12 @@ export const MenuScreen = () => {
     <View style={styles.container}>
       <TabHeaderCustom title={'Menu'} />
       <View style={styles.wrapper}>
+        {isLogin && (
+          <ItemMenu
+            title="Thông tin tài khoản"
+            direction="ChangeInformationScreen"
+          />
+        )}
         {isLogin && (
           <ItemMenu title="Đổi mật khẩu" direction="ChangePasswordScreen" />
         )}

@@ -18,9 +18,6 @@ export const NewHomeScreen = () => {
   const dispatch = useDispatch();
   const {isLogin} = useSelector((store: any) => store.auth);
 
-
-  console.log('isLogin', isLogin);
-
   const ItemHome = (props: any) => {
     const {image, action, title} = props;
     return (

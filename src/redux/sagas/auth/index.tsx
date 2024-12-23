@@ -1,5 +1,5 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
-import { login, changePassword, refreshToken } from '../../../api-request';
+import { login, changePassword, changeInformation } from '../../../api-request';
 import { types } from '../../types';
 import { Logger } from '../../../utils/logger';
 import { KeyStores } from '../../../enums/key-storage.tsx';
@@ -24,34 +24,11 @@ function* loginSaga(body: any): any {
     }
 }
 
-function* refreshTokenSaga(body: any): any {
-    try {
-        const response = yield call(refreshToken, body.payload);
-        if (response.success) {
-            yield put(authActions.refreshTokenSuccess(response.data));
-            if (response.data.accessToken) {
-                setDataStorage(KeyStores.USER_TOKEN, response.data.accessToken).then();
-                setDataStorage(KeyStores.REFRESH_TOKEN, response.data.refreshToken).then();
-            }
-        } else {
-            yield put(authActions.refreshTokenFailure(response.message));
-        }
-    } catch (error) {
-        Logger.error(error);
-        yield put(authActions.refreshTokenFailure(error));
-    }
-}
-
 function* changePasswordSaga(body: any): any {
     try {
         const response = yield call(changePassword, body.payload);
         if (response.success) {
             yield put(authActions.changePasswordSuccess(response.message));
-        } else if (response.status && response.status === 401) {
-            const refreshToken = getDataStorage(KeyStores.REFRESH_TOKEN);
-            yield put(authActions.refreshTokenRequest({
-                refreshToken: refreshToken,
-            }))
         } else {
             yield put(authActions.changePasswordFailure(response.message));
         }
@@ -61,8 +38,22 @@ function* changePasswordSaga(body: any): any {
     }
 }
 
+function* changeInformationSaga(body: any): any {
+    try {
+        const response = yield call(changeInformation, body.payload);
+        if (response.success) {
+            yield put(authActions.changeInformationSuccess(response.message));
+        } else {
+            yield put(authActions.changeInformationFailure(response.message));
+        }
+    } catch (error) {
+        Logger.error(error);
+        yield put(authActions.changeInformationFailure(error));
+    }
+}
+
 export default function* authSaga() {
     yield takeLatest(types.LOGIN_REQUEST, loginSaga);
     yield takeLatest(types.CHANGE_PASSWORD_REQUEST, changePasswordSaga);
-    yield takeLatest(types.REFRESH_TOKEN_REQUEST, refreshTokenSaga);
+    yield takeLatest(types.CHANGE_INFORMATION_REQUEST, changeInformationSaga);
 }

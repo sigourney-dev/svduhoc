@@ -16,8 +16,8 @@ interface IAuthState {
   changePasswordResult: any;
   changePasswordError: any;
 
-  refreshTokenResult: any;
-  refreshTokenError: any;
+  changeInfoResult: any;
+  changeInfoError: any;
 }
 
 const initialState: IAuthState = {
@@ -35,8 +35,8 @@ const initialState: IAuthState = {
   changePasswordResult: null,
   changePasswordError: null,
 
-  refreshTokenResult: null,
-  refreshTokenError: null,
+  changeInfoResult: null,
+  changeInfoError: null,
 };
 
 const authReducers: Reducer<IAuthState, any> = (
@@ -61,14 +61,8 @@ const authReducers: Reducer<IAuthState, any> = (
         isSaveLogin: action.payload.isSaveLogin,
       };
     }
-    case types.REFRESH_TOKEN_REQUEST: {
-        return {...state, isLoading: true};
-    }
-    case types.REFRESH_TOKEN_SUCCESS: {
-        return {...state, isLoading: false, refreshTokenResult: action.payload};
-    }
-    case types.REFRESH_TOKEN_FAILURE: {
-        return {...state, isLoading: false, refreshTokenError: action.payload};
+    case types.SAVE_PROFILE: {
+      return {...state, profile: action.payload}
     }
     case types.LOGOUT_REQUEST: {
         return {
@@ -87,6 +81,15 @@ const authReducers: Reducer<IAuthState, any> = (
     }
     case types.CHANGE_PASSWORD_FAILURE: {
         return {...state, isLoading: false, changePasswordError: action.payload};
+    }
+    case types.CHANGE_INFORMATION_REQUEST: {
+      return {...state, isLoading: true, changeInfoError: null};
+    }
+    case types.CHANGE_INFORMATION_SUCCESS: {
+      return {...state, isLoading: false, changeInfoResult: action.payload};
+    }
+    case types.CHANGE_INFORMATION_FAILURE: {
+      return {...state, isLoading: false, changeInfoError: action.payload};
     }
     default: {
       return {...state};

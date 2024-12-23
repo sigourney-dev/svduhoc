@@ -5,10 +5,6 @@ export const login = (body: any) => {
     return AppRequest.post(`${API_URL}/auth/sign-in`, body);
 };
 
-export const refreshToken = (body: any) => {
-    return AppRequest.post(`${API_URL}/auth/refresh-token`, body);
-};
-
 export const changePassword = (body: any) => {
     return AppRequest.put(`${API_URL}/auth/change-password`, body);
 };
