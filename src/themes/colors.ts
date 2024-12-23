@@ -25,7 +25,7 @@ const Colors = {
   grey: {
       bold: '#676767',
       mediumLight: '#A6A6A6',
-      light: '#D8D8D8',
+      light: '#D3D3D3',
   },
   purple: {
       bold: '#9F55E8',

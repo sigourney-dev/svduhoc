@@ -2,7 +2,7 @@ import axios, {InternalAxiosRequestConfig} from 'axios';
 import NetInfo from '@react-native-community/netinfo';
 import {DEFAULT_API_CONFIG} from './api-config';
 import {getDataStorage} from '../../utils';
-import {KeyStores} from '../../enums/key-storages.ts';
+import { KeyStores } from '../../enums/key-storage';
 
 // Create a new instance of Axios
 export const api = axios.create({

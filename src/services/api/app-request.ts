@@ -1,8 +1,15 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import {pickBy} from 'lodash';
 import {api, apiUploadFile} from './api-service';
-import {IResponse} from '../../models';
 import {Logger} from '../../utils/logger.ts';
+
+interface IResponse<T> {
+  success: boolean;
+  message: string;
+  data?: T | string;
+  errors: any;
+  status?: any;
+}
 
 export class _AppRequest {
   api: AxiosInstance;

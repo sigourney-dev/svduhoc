@@ -5,7 +5,7 @@ import Toast, {
   ToastConfigParams,
   ToastShowParams,
 } from 'react-native-toast-message';
-import {Notification} from '../../assets/icons';
+import {Notification, Info, Success, Warning, Error} from '../../assets/icons';
 import {color, ms, S, TS} from '../../themes';
 import {Utils} from '../../utils';
 
@@ -34,40 +34,40 @@ interface IToastComponentColor {
 function ToastComponent(props: ToastComponentProps) {
   const mapToastColor: {[key in ToastType]: IToastComponentColor} = {
     [ToastType.INFO]: {
-      backgroundIconColor: color.green.light,
-      iconColor: color.green.bold,
+      backgroundIconColor: color.grey.light,
+      iconColor: color.blue.bold,
     },
     [ToastType.NOTIFICATION]: {
-      backgroundIconColor: color.green.light,
-      iconColor: color.green.bold,
+      backgroundIconColor: color.grey.light,
+      iconColor: color.yellow.main,
     },
     [ToastType.SUCCESS]: {
-      backgroundIconColor: color.green.light,
+      backgroundIconColor: color.grey.light,
       iconColor: color.green.bold,
     },
     [ToastType.WARNING]: {
-      backgroundIconColor: color.orange.light,
+      backgroundIconColor: color.grey.light,
       iconColor: color.orange.bold,
     },
     [ToastType.ERROR]: {
-      backgroundIconColor: color.red.light,
+      backgroundIconColor: color.grey.light,
       iconColor: color.red.bold,
     },
   };
 
   const iconProps: SvgProps = {
-    height: ms(24),
-    width: ms(24),
+    height: ms(32),
+    width: ms(32),
     color: mapToastColor[props.type].iconColor,
   };
 
   const mapToastIcon: {[key in ToastType]: JSX.Element} = {
-    [ToastType.INFO]: <Notification {...iconProps} />,
+    [ToastType.INFO]: <Info {...iconProps} />,
     [ToastType.NOTIFICATION]: <Notification {...iconProps} />,
-    [ToastType.SUCCESS]: <Notification {...iconProps} />,
-    [ToastType.WARNING]: <Notification {...iconProps} />,
+    [ToastType.SUCCESS]: <Success {...iconProps} />,
+    [ToastType.WARNING]: <Warning {...iconProps} />,
     [ToastType.ERROR]: (
-      <Notification {...iconProps} height={ms(16)} width={ms(16)} />
+      <Error {...iconProps}/>
     ),
   };
 
@@ -81,7 +81,7 @@ function ToastComponent(props: ToastComponentProps) {
       padding: ms(16),
       borderRadius: ms(16),
       marginHorizontal: ms(24),
-      backgroundColor: color.white,
+      backgroundColor: color.grey.light,
     },
     iconContainer: {
       ...S.itemsCenter,

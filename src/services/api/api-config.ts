@@ -1,4 +1,4 @@
-export const API_URL = 'https://gateway-sch.solidtech.vn'; // DEV
+export const API_URL = 'https://api.dummy.asia';
 
 export interface ApiConfig {
   /**

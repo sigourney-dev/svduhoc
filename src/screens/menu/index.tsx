@@ -1,9 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {TabHeaderCustom} from '../../components/tab-header-custom';
+import {TabHeaderCustom, ButtonCustom} from '../../components';
 import {ArrowRight} from '../../assets/icons';
 import {color, S, TS} from '../../themes';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import * as authActions from '../../redux/actions';
 
 interface IPropsItem {
   title: string;
@@ -12,6 +14,9 @@ interface IPropsItem {
 
 export const MenuScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {isLogin} = useSelector((store: any) => store.auth);
+
   const ItemMenu = (props: IPropsItem) => {
     const {title, direction} = props;
     return (
@@ -36,11 +41,25 @@ export const MenuScreen = () => {
     <View style={styles.container}>
       <TabHeaderCustom title={'Menu'} />
       <View style={styles.wrapper}>
+        {isLogin && (
+          <ItemMenu title="Đổi mật khẩu" direction="ChangePasswordScreen" />
+        )}
         <ItemMenu title="Hỏi đáp" direction="AskAnswerScreen" />
         <ItemMenu title="Liên hệ" direction="InfoScreen" />
         <ItemMenu title="Đội ngũ đồng hành" direction="MemberScreen" />
-        {/* <ItemMenu title="Về chúng tôi" direction="AboutUsScreen" /> */}
       </View>
+      {isLogin && (
+        <View style={{...S.itemsCenter}}>
+          <ButtonCustom
+            action={() => {
+              dispatch(authActions.logoutRequest());
+            }}
+            title="Đăng xuất"
+            colorButton={color.blue.bold}
+            colorTitle={color.white}
+          />
+        </View>
+      )}
       <View style={{...S.itemsCenter, ...S.justifyCenter}}>
         <Text style={{...TS.textSmBold, color: color.grey.light}}>
           Version 1.0

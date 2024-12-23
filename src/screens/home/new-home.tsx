@@ -11,9 +11,15 @@ import {HeaderHome} from './header';
 import {color, S, TS} from '../../themes';
 import {images} from '../../enums/images';
 import {useNavigation} from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const NewHomeScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {isLogin} = useSelector((store: any) => store.auth);
+
+
+  console.log('isLogin', isLogin);
 
   const ItemHome = (props: any) => {
     const {image, action, title} = props;
@@ -48,15 +54,17 @@ export const NewHomeScreen = () => {
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => {
-              //@ts-ignore
-              navigation.navigate('LoginScreen');
-            }}>
-            <Text style={{...TS.textSmSemiBold, color: color.red.bold}}>
-              Đăng nhập
-            </Text>
-          </TouchableOpacity>
+         {!isLogin && (
+           <TouchableOpacity
+           onPress={() => {
+             //@ts-ignore
+             navigation.navigate('LoginScreen');
+           }}>
+           <Text style={{...TS.textSmSemiBold, color: color.red.bold}}>
+             Đăng nhập
+           </Text>
+         </TouchableOpacity>
+         )}
         </View>
 
         <ScrollView

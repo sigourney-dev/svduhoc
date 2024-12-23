@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -11,19 +11,74 @@ import {color, S, TS} from '../../../themes';
 import {images} from '../../../enums/images';
 import {TextInputCustom} from '../../../components/text-input-custom';
 import {widthScreen} from '../../../utils';
-import { Profile, Lock, Show, Hide} from '../../../assets/icons';
-import { ButtonCustom } from '../../../components/button-custom';
-import { useNavigation } from '@react-navigation/native';
+import {
+  Profile,
+  Lock,
+  Show,
+  Hide,
+  Circle,
+  CircleCheckFill,
+} from '../../../assets/icons';
+import {ButtonCustom} from '../../../components/button-custom';
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import * as authActions from '../../../redux/actions';
+import {ToastService} from '../../../services/toast/toast-service';
 
 export const LoginScreen = () => {
-    const navigation = useNavigation();
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {loginResult, loginError, isLoading, user, pass, isSaveLogin} = useSelector(
+    (store: any) => store.auth,
+  );
+  const [username, setUsername] = useState<string>(user);
+  const [password, setPassword] = useState<string>(pass);
+  const [isShowPassword, setIsShowPassword] = useState<boolean>(true);
+  const [isRemember, setIsRemember] = useState<boolean>(isSaveLogin);
+
+  const onLogin = () => {
+    if (username === '') {
+      ToastService.showError('Bạn chưa nhập tài khoản');
+    } else if (password === '') {
+      ToastService.showError('Bạn chưa nhập mật khẩu');
+    } else {
+      dispatch(
+        authActions.loginRequest({
+          userName: username,
+          password: password,
+        }),
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (loginError) {
+      ToastService.showError(loginError);
+    } else if (loginResult) {
+      //@ts-ignore
+      navigation.navigate('BottomSheetStack');
+    }
+  }, [loginError, loginResult]);
+
+  useEffect(() => {
+    if (isRemember) {
+      dispatch(authActions.saveLogin({
+        user: username,
+        pass: password,
+        isSaveLogin: isRemember,
+      }));
+    } else {
+      dispatch(authActions.saveLogin({
+        user: '',
+        pass: '',
+        isSaveLogin: false,
+      }));
+    }
+  }, [isRemember, username, password])
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={{marginBottom: 12}}>
         <Image
           source={images.logoLogin}
           style={styles.image}
@@ -37,7 +92,7 @@ export const LoginScreen = () => {
           value={username}
           onChangeValue={(text: string) => setUsername(text)}
           keyboardType={'default'}
-          iconRight={<Profile />}
+          iconRight={<Profile color={color.blue.bold} />}
         />
         <TextInputCustom
           placeholder="Mật khẩu"
@@ -45,40 +100,61 @@ export const LoginScreen = () => {
           value={password}
           onChangeValue={(text: string) => setPassword(text)}
           keyboardType={'default'}
-          iconRight={<Lock />}
-          iconLeft={isShowPassword ? <Show /> : <Hide />}
+          iconRight={<Lock color={color.blue.bold} />}
+          iconLeft={
+            isShowPassword ? (
+              <Show color={color.blue.bold} />
+            ) : (
+              <Hide color={color.blue.bold} />
+            )
+          }
           actionIconLeft={(isShow: boolean) => setIsShowPassword(isShow)}
           isShowActionLeft={isShowPassword}
         />
       </KeyboardAvoidingView>
 
+      <View style={{...S.itemsEnd, marginBottom: 12}}>
+        <TouchableOpacity
+          style={{...S.flexRow, ...S.itemsCenter}}
+          onPress={() => {
+            setIsRemember(!isRemember);
+          }}>
+          {isRemember ? (
+            <CircleCheckFill color={color.green.bold} />
+          ) : (
+            <Circle />
+          )}
+          <Text style={{...TS.textXsRegular, marginLeft: 4}}>Nhớ mật khẩu</Text>
+        </TouchableOpacity>
+      </View>
+
       <View style={{...S.flexRow, ...S.justifyBetween}}>
-        <TouchableOpacity onPress={() => {
+        <TouchableOpacity
+          onPress={() => {
             // @ts-ignore
             navigation.navigate('RegisterScreen');
-        }}>
+          }}>
           <Text>
-            Bạn chưa có tài khoản ? <Text style={{color: color.blue.bold}}>Đăng ký</Text>
+            Bạn chưa có tài khoản ?{' '}
+            <Text style={{...TS.textXsRegular, color: color.blue.bold}}>Đăng ký</Text>
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => {
+        <TouchableOpacity
+          onPress={() => {
             // @ts-ignore
             navigation.navigate('ForgotPasswordScreen');
-        }}>
-          <Text>Quên mật khẩu ?</Text>
+          }}>
+          <Text style={{...TS.textXsRegular, color: color.blue.bold}}>Quên mật khẩu ?</Text>
         </TouchableOpacity>
       </View>
 
       <View style={{...S.itemsCenter, marginTop: 24}}>
         <ButtonCustom
-            title='Đăng nhập'
-            action={() => {
-                // @ts-ignore
-                navigation.navigate('BottomSheetStack');
-            }}
-            colorButton={color.blue.bold}
-            colorTitle={color.white}
+          title="Đăng nhập"
+          action={onLogin}
+          colorButton={color.blue.bold}
+          colorTitle={color.white}
         />
       </View>
     </View>

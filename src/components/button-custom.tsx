@@ -32,7 +32,7 @@ export const ButtonCustom = (props: IProps) => {
         {
           width: width || hs(140),
           height: height || vs(50),
-          backgroundColor: colorButton || color.yellow.main,
+          backgroundColor: colorButton || color.blue.bold,
           borderColor: color.blue.light,
           borderWidth: changeBorderColor ? 3 : 0,
         },
@@ -42,7 +42,7 @@ export const ButtonCustom = (props: IProps) => {
         {...props.textStyle}
         style={{
           ...TS.textSmMedium,
-          color: colorTitle || color.blue.bold,
+          color: colorTitle || color.white,
           textAlign: 'center',
         }}>
         {title}

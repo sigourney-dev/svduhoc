@@ -18,3 +18,4 @@ export * from './family';
 export * from './election';
 export * from './icon-home';
 export * from './form-application';
+export * from './auth/change-password';
