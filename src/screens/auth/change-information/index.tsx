@@ -17,7 +17,7 @@ export const ChangeInformationScreen = () => {
   const {profile, changeInfoError, changeInfoResult, isLoading} = useSelector((store: any) => store.auth);
 
   const [data, setData] = useState({
-    fullName: profile.fullName,
+    fullName: profile.fullName || profile.lastName +' '+ profile.firstName,
     email: profile.email,
     phoneNumber: profile.phoneNumber,
     description: '',
@@ -37,6 +37,7 @@ export const ChangeInformationScreen = () => {
         ToastService.showSuccess(changeInfoResult);
         dispatch(authActions.saveProfile(data));
     }
+    dispatch(authActions.removeAuthResult());
   }, [changeInfoError, changeInfoResult]);
 
   return (

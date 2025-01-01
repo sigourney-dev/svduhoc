@@ -32,7 +32,7 @@ export const Calendar = (props: SvgProps) => (
             <Path fill-rule="evenodd" clip-rule="evenodd"
                   d="M7.71533 5.791C7.30133 5.791 6.96533 5.455 6.96533 5.041V1.75C6.96533 1.336 7.30133 1 7.71533 1C8.12933 1 8.46533 1.336 8.46533 1.75V5.041C8.46533 5.455 8.12933 5.791 7.71533 5.791Z"
                   fill={props.color || color.black}/>
-            <Mask id="mask0_147_3430" maskUnits="userSpaceOnUse" x={Utils.isIOS() ? '0' : '2'} y={Utils.isIOS() ? '0' : '2'} width="20"
+            <Mask id="mask0_147_3430" maskUnits="userSpaceOnUse" x={Utils.isIOS() ? '2' : '2'} y={Utils.isIOS() ? '2' : '2'} width="20"
                   height="21">
                     <Path fill-rule="evenodd" clip-rule="evenodd" d="M2 2.5791H21.5V22.5H2V2.5791Z" fill="white"/>
             </Mask>

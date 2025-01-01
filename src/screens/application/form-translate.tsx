@@ -1,18 +1,20 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import {TabHeaderCustom, TextInputCustom, ButtonCustom} from '../../components';
 import {color, S, TS} from '../../themes';
-import {heightScreen, widthScreen} from '../../utils';
+import {widthScreen} from '../../utils';
 import {Circle, CircleCheckFill} from '../../assets/icons';
+import {useDispatch, useSelector} from 'react-redux';
+import * as formActions from '../../redux/actions';
+import {ToastService} from '../../services/toast/toast-service';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export const FormTranslateScreen = () => {
+  const dispatch = useDispatch();
+  const {createTranslateResult, createTranslateError} = useSelector(
+    (store: any) => store.form,
+  );
+
   const dataList = [
     {
       title: 'Dịch thuật (Dịch Anh - Việt, Hàn - Việt, Anh - Hàn)',
@@ -34,13 +36,32 @@ export const FormTranslateScreen = () => {
     content: '',
   });
 
-  const [isSelected, setIsSelected] = useState<any>();
+  const [isSelected, setIsSelected] = useState<any>({});
+
+  const onSubmitTranslate = () => {
+    
+  };
+
+  useEffect(() => {
+    if (createTranslateError) {
+      ToastService.showError(createTranslateError);
+    } else if (createTranslateResult) {
+      ToastService.showSuccess(createTranslateResult);
+      setIsSelected({});
+      setInfo({
+        fullname: '',
+        phone: '',
+        content: '',
+      });
+    }
+    dispatch(formActions.removeForm());
+  }, [createTranslateError, createTranslateResult]);
 
   const renderItem = (item: any, index: number) => {
     return (
       <TouchableOpacity
         onPress={() => {
-            setIsSelected(item);
+          setIsSelected(item);
         }}
         key={index}
         style={{
@@ -61,13 +82,14 @@ export const FormTranslateScreen = () => {
   return (
     <View style={styles.container}>
       <TabHeaderCustom title="Dịch thuật - Công chứng" isBack />
-      <ScrollView style={styles.wrapper}>
+      <KeyboardAwareScrollView style={styles.wrapper}>
         <TextInputCustom
           placeholder="Họ tên"
           title="Họ tên"
           value={info.fullname}
           onChangeValue={(text: string) => setInfo({...info, fullname: text})}
           keyboardType={'default'}
+          redDot
         />
 
         <TextInputCustom
@@ -77,6 +99,7 @@ export const FormTranslateScreen = () => {
           onChangeValue={(text: string) => setInfo({...info, phone: text})}
           keyboardType={'numeric'}
           maxLength={10}
+          redDot
         />
 
         <Text style={{...TS.textSmMedium}}>Bạn cần</Text>
@@ -93,20 +116,21 @@ export const FormTranslateScreen = () => {
           value={info.content}
           onChangeValue={(text: string) => setInfo({...info, content: text})}
           keyboardType={'default'}
-          maxLength={10}
-          //   multiline={true}
+          multiline={true}
+          redDot
+          height={76}
         />
 
         <View style={{...S.itemsCenter}}>
           <ButtonCustom
             title="Gửi đơn đăng ký"
-            action={() => {}}
+            action={onSubmitTranslate}
             width={widthScreen * 0.8}
             colorButton={color.blue.bold}
             colorTitle={color.white}
           />
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </View>
   );
 };

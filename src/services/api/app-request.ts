@@ -92,7 +92,8 @@ export class _AppRequest {
       const {signal} = this.abortController;
       const config: AxiosRequestConfig = {signal};
 
-      return await this.apiUploadFile.post(url, body, config);
+       const {data} = await this.apiUploadFile.post(url, body, config);
+       return data;
     } catch (error: any) {
       this.errorHandle(error);
       throw error;

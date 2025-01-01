@@ -149,13 +149,16 @@ export const LoginScreen = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={{...S.itemsCenter, marginTop: 24}}>
+      <View style={{...S.itemsCenter, marginTop: 24,}}>
         <ButtonCustom
           title="Đăng nhập"
           action={onLogin}
           colorButton={color.blue.bold}
           colorTitle={color.white}
         />
+        <TouchableOpacity style={{marginTop: 12,}} onPress={() => {navigation.goBack()}}>
+          <Text style={{...TS.textXsSemiBold, color: color.blue.bold}}>Quay lại</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

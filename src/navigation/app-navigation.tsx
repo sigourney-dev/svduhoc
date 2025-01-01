@@ -19,16 +19,18 @@ import {
   AskAnswerScreen,
   NotebookScreen,
   ApplicationScreen,
-  StudentScreen,
   FormTranslateScreen,
   CommunityScreen,
-  WorkerScreen,
-  FamilyScreen,
-  ElectionScreen,
   IconHome,
-  FormApplication,
+  FormStudentScreen,
   ChangePasswordScreen,
   ChangeInformationScreen,
+  NewsScreen,
+  ChangeVisaScreen,
+  CommonScreen,
+  DetailNewsScreen,
+  FormVisaD2Screen,
+  FormServiceWorker,
 } from '../screens';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -48,16 +50,18 @@ export type AppStackParamList = {
   AskAnswerScreen: undefined;
   NotebookScreen: undefined;
   ApplicationScreen: undefined;
-  StudentScreen: undefined;
   FormTranslateScreen: undefined;
   CommunityScreen: undefined;
-  WorkerScreen: undefined;
-  FamilyScreen: undefined;
-  ElectionScreen: undefined;
   IconHome: undefined;
-  FormApplication: undefined;
+  FormStudentScreen: undefined;
   ChangePasswordScreen: undefined;
   ChangeInformationScreen: undefined;
+  NewsScreen: undefined;
+  ChangeVisaScreen: undefined;
+  CommonScreen: undefined;
+  DetailNewsScreen: undefined;
+  FormVisaD2Screen: undefined;
+  FormServiceWorker: undefined;
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> =
@@ -101,16 +105,18 @@ function AppStack() {
       <Stack.Screen name="AboutUsScreen" component={AboutUsScreen} />
       <Stack.Screen name='NotebookScreen' component={NotebookScreen} />
       <Stack.Screen name='ApplicationScreen' component={ApplicationScreen} />
-      <Stack.Screen name='StudentScreen' component={StudentScreen} />
       <Stack.Screen name='FormTranslateScreen' component={FormTranslateScreen} />
       <Stack.Screen name='CommunityScreen' component={CommunityScreen} />
-      <Stack.Screen name='WorkerScreen' component={WorkerScreen} />
-      <Stack.Screen name='FamilyScreen' component={FamilyScreen} />
-      <Stack.Screen name='ElectionScreen' component={ElectionScreen} />
       <Stack.Screen name='IconHome' component={IconHome} />
-      <Stack.Screen name='FormApplication' component={FormApplication} />
+      <Stack.Screen name='FormStudentScreen' component={FormStudentScreen} />
       <Stack.Screen name='ChangePasswordScreen' component={ChangePasswordScreen} />
       <Stack.Screen name='ChangeInformationScreen' component={ChangeInformationScreen} />
+      <Stack.Screen name='NewsScreen' component={NewsScreen} />
+      <Stack.Screen name='ChangeVisaScreen' component={ChangeVisaScreen} />
+      <Stack.Screen name='CommonScreen' component={CommonScreen} />
+      <Stack.Screen name='DetailNewsScreen' component={DetailNewsScreen} />
+      <Stack.Screen name='FormVisaD2Screen' component={FormVisaD2Screen} /> 
+      <Stack.Screen name='FormServiceWorker' component={FormServiceWorker} />
     </Stack.Navigator>
   );
 }

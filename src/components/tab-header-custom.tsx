@@ -28,7 +28,7 @@ export const TabHeaderCustom = (props: IProps) => {
       ) : (
         <View />
       )}
-      <Text style={styles.title}>{title}</Text>
+      <Text style={[styles.title, {marginRight: isBack ? 16 : 0}]}>{title}</Text>
       {iconRight ? (
         <TouchableOpacity
           onPress={actionRight}

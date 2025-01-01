@@ -20,3 +20,7 @@ export const forgotPassword = (body: any) => {
 export const confirmForgotPassword = (body: any) => {
     return AppRequest.put(`${API_URL}/auth/confirm-forgot-password`, body);
 };
+
+export const register = (body: any) => {
+    return AppRequest.post(`${API_URL}/auth/register`, body);
+};

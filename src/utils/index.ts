@@ -5,6 +5,7 @@ import 'moment/locale/vi';
 import {Platform, Dimensions} from 'react-native';
 import {KeyStores} from '../enums/key-storage.tsx';
 import {Logger} from './logger.ts';
+import { API_URL } from '../services/api/api-config.ts';
 
 export const Utils = {
   isNumber: (n: any) => _.isNumber(n),
@@ -110,3 +111,25 @@ const mimeTypes = Object.freeze({
 
 export const widthScreen = Dimensions.get('window').width;
 export const heightScreen = Dimensions.get('window').height;
+
+export const showImage = (image: string) => {
+  return `${API_URL}/Resources/${image}`;
+};
+
+export const formatDateMoment = (date: Date) => {
+  return moment(date).format('DD/MM/YYYY');
+};
+
+export const convertDateMoment = (date: string) => {
+  const [day, month, year] = date.split('/').map(Number);
+  const formattedDate = new Date(Date.UTC(year, month - 1, day));
+  return formattedDate;
+};
+
+export const convertProvince = (object: any) => {
+  const provinces: {label: string, value: string}[] = Object.values(object).map((province: any) => ({
+    label: province.name,
+    value: province.code,
+  }));
+  return provinces;
+};

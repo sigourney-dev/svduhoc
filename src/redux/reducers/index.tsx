@@ -3,6 +3,10 @@ import {persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import authReducers from "./auth";
+import categoryReducers from './category';
+import postReducers from './post';
+import formReducers from './form';
+import abroadReducers from './abroad';
 
 const authPersistConfig = {
     key: 'auth',
@@ -19,4 +23,8 @@ const authPersistConfig = {
 
 export const rootReducer = combineReducers({
     auth: persistReducer(authPersistConfig, authReducers),
+    category: categoryReducers,
+    post: postReducers,
+    form: formReducers,
+    abroad: abroadReducers,
 });

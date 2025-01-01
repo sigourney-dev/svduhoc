@@ -111,18 +111,18 @@ export const BottomSheetStack = () => {
           component: NewHomeScreen,
       },
       {
-          id: 1,
+        id: 1,
+        title: 'Du học',
+        icon:  'abroad',
+        name: 'AbroadScreen',
+        component: AbroadScreen,
+    },
+      {
+          id: 2,
           title: 'Vận chuyển',
           icon:  'delivery',
           name: 'DeliveryScreen',
           component: DeliveryScreen,
-      },
-      {
-          id: 2,
-          title: 'Du học',
-          icon:  'abroad',
-          name: 'AbroadScreen',
-          component: AbroadScreen,
       },
       {
           id: 3,

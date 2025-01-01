@@ -16,6 +16,14 @@ export const IconHome = (props: any) => {
           style={styles.webview}
           startInLoadingState={true}
           scalesPageToFit={true}
+          onError={(syntheticEvent) => {
+            const { nativeEvent } = syntheticEvent;
+            console.error('WebView error: ', nativeEvent);
+          }}
+          onHttpError={(syntheticEvent) => {
+            const { nativeEvent } = syntheticEvent;
+            console.error('HTTP error: ', nativeEvent);
+          }}
         />
       </ScrollView>
     </View>

@@ -1,5 +1,5 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
-import { login, changePassword, changeInformation } from '../../../api-request';
+import { login, changePassword, changeInformation, register } from '../../../api-request';
 import { types } from '../../types';
 import { Logger } from '../../../utils/logger';
 import { KeyStores } from '../../../enums/key-storage.tsx';
@@ -52,8 +52,23 @@ function* changeInformationSaga(body: any): any {
     }
 }
 
+function* registerSaga(body: any): any {
+    try {
+        const response = yield call(register, body.payload);
+        if (response.success) {
+            yield put(authActions.registerSuccess(response.message));
+        } else {
+            yield put(authActions.registerFailure(response.message));
+        }
+    } catch (error) {
+        Logger.error(error);
+        yield put(authActions.registerFailure(error));
+    }
+}
+
 export default function* authSaga() {
     yield takeLatest(types.LOGIN_REQUEST, loginSaga);
     yield takeLatest(types.CHANGE_PASSWORD_REQUEST, changePasswordSaga);
     yield takeLatest(types.CHANGE_INFORMATION_REQUEST, changeInformationSaga);
+    yield takeLatest(types.REGISTER_REQUEST, registerSaga);
 }

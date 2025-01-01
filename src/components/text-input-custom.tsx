@@ -19,9 +19,12 @@ interface IProps {
   actionIconLeft?: (b: boolean) => void;
   isShowActionLeft?: boolean;
   width?: number;
+  height?: number;
   keyboardType: any;
   maxLength?: any;
   multiline?: boolean;
+  redDot?: boolean;
+  notEdit?: boolean;
 }
 
 export const TextInputCustom = (props: IProps) => {
@@ -35,9 +38,12 @@ export const TextInputCustom = (props: IProps) => {
     actionIconLeft,
     isShowActionLeft,
     width,
+    height,
     keyboardType,
     maxLength,
     multiline,
+    redDot,
+    notEdit,
   } = props;
 
   return (
@@ -45,15 +51,16 @@ export const TextInputCustom = (props: IProps) => {
       <View style={styles.wrapper}>
         <View style={styles.icon}>{iconRight || null}</View>
         <View>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title}>{title} {redDot && (<Text style={{color: color.red.bold}}>*</Text>)}</Text>
           <TextInput
+            editable={!notEdit}
             value={value}
             onChangeText={onChangeValue}
             placeholder={placeholder}
             placeholderTextColor={color.grey.light}
             secureTextEntry={iconLeft ? !!isShowActionLeft : false}
             keyboardType={keyboardType}
-            style={[styles.input, {width: width ? width : widthScreen / 1.5}]}
+            style={[styles.input, {width: width ? width : widthScreen / 1.3, height: height ? height : 36}]}
             maxLength={maxLength}
             multiline={multiline}
           />
@@ -93,7 +100,6 @@ const styles = StyleSheet.create({
     ...TS.textBaseMedium,
     padding: 4,
     color: color.black,
-    height: 36,
   },
   title: {
     ...TS.textSmSemiBold,

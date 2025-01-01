@@ -12,6 +12,9 @@ interface IProps {
   redDot?: boolean;
   flexRow?: boolean;
   isCenter?: boolean;
+  position?: boolean;
+  isSearch?: boolean;
+  height?: any;
 }
 
 export const DropdownCustom = (props: IProps) => {
@@ -23,6 +26,9 @@ export const DropdownCustom = (props: IProps) => {
     redDot,
     flexRow,
     isCenter,
+    position,
+    isSearch,
+    height,
   } = props;
   return (
     <View
@@ -37,7 +43,8 @@ export const DropdownCustom = (props: IProps) => {
       }>
       
       <Dropdown
-        style={!flexRow ? styles.dropdown : styles.dropdownWith}
+        search={isSearch}
+        style={[!flexRow ? styles.dropdown : styles.dropdownWith, {height: height ? height : 66}]}
         data={listItem}
         labelField={'label'}
         valueField={'value'}
@@ -45,18 +52,22 @@ export const DropdownCustom = (props: IProps) => {
         onChange={(item: any) => onChangeItem(item)}
         placeholder={title}
         placeholderStyle={{
-          ...TS.textSmSemiBold,
+          ...TS.textBaseMedium,
           color: color.grey.light,
         }}
         selectedTextStyle={styles.value}
-        itemTextStyle={{...TS.textBaseSemiBold}}
+        itemTextStyle={{...TS.textBaseMedium}}
+        dropdownPosition={position ? 'top' : 'bottom'}
+        searchPlaceholder='Tìm kiếm'
+        searchPlaceholderTextColor={color.grey.mediumLight}
+        inputSearchStyle={{...TS.textBaseMedium, borderRadius: 12}}
       />
       <View style={!flexRow ? {} : {alignSelf: 'center'}}>
         {title && (
           <Text
-            style={styles.title}>
+            style={[styles.title, { top: height ? height -(height * 2 + 12) : -78,}]}>
             {title}
-            {redDot && <Text style={{color: color.red.bold}}>*</Text>}
+            {redDot && <Text style={{color: color.red.bold}}> *</Text>}
           </Text>
         )}
       </View>
@@ -74,7 +85,6 @@ const styles = StyleSheet.create({
     borderColor: color.blue.bold,
     borderRadius: 12,
     padding: 12,
-    height: 66,
     color: color.black,
   },
   dropdownWith: {
@@ -92,10 +102,10 @@ const styles = StyleSheet.create({
     color: color.blue.bold,
     position: 'absolute',
     left: 12,
-    top: -78,
+   
     
   },
   value: {
-    ...TS.textSmSemiBold,
+    ...TS.textBaseMedium,
   },
 });

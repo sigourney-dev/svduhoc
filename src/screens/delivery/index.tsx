@@ -1,12 +1,19 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet} from 'react-native';
 import {TabHeaderCustom} from '../../components/tab-header-custom';
 import {S, TS, color} from '../../themes';
 import {ButtonCustom, TextInputCustom, DropdownCustom} from '../../components';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-
+import {useDispatch, useSelector} from 'react-redux';
+import * as formActions from '../../redux/actions';
+import {ToastService} from '../../services/toast/toast-service';
 
 export const DeliveryScreen = () => {
+  const dispatch = useDispatch();
+  const {createTransportResult, createTransportError} = useSelector(
+    (store: any) => store.form,
+  );
+
   const [data, setData] = useState<any>({
     name: '',
     phone: '',
@@ -24,6 +31,27 @@ export const DeliveryScreen = () => {
     },
   ];
   const [option, setOption] = useState<any>({});
+
+  const onSubmitDelivery = () => {
+    
+  };
+
+  useEffect(() => {
+    if (createTransportError) {
+      ToastService.showError(createTransportError);
+    } else if (createTransportResult) {
+      ToastService.showSuccess(createTransportResult);
+      setOption({});
+      setData({
+        name: '',
+        phone: '',
+        address: '',
+        postal: '',
+      });
+    }
+    dispatch(formActions.removeForm());
+  }, [createTransportError, createTransportResult]);
+
   return (
     <View style={styles.container}>
       <TabHeaderCustom title={'Dịch vụ vận chuyển'} />
@@ -34,6 +62,7 @@ export const DeliveryScreen = () => {
           value={data.name}
           onChangeValue={(name: string) => setData({...data, name: name})}
           keyboardType="default"
+          redDot
         />
 
         <TextInputCustom
@@ -42,12 +71,15 @@ export const DeliveryScreen = () => {
           value={data.phone}
           onChangeValue={(phone: string) => setData({...data, phone: phone})}
           keyboardType="numeric"
+          redDot
+          maxLength={10}
         />
-        <DropdownCustom 
+        <DropdownCustom
           listItem={listOption}
-          title='Dịch vụ'
+          title="Dịch vụ"
           onChangeItem={(item: any) => setOption(item)}
           selectedItem={option}
+          redDot
         />
         <TextInputCustom
           placeholder="Địa chỉ"
@@ -56,7 +88,8 @@ export const DeliveryScreen = () => {
           onChangeValue={(address: string) =>
             setData({...data, address: address})
           }
-          keyboardType="numeric"
+          keyboardType="default"
+          redDot
         />
 
         <TextInputCustom
@@ -64,13 +97,15 @@ export const DeliveryScreen = () => {
           title="Nội dung hàng cần gừi"
           value={data.postal}
           onChangeValue={(postal: string) => setData({...data, postal: postal})}
-          keyboardType="numeric"
+          keyboardType="default"
+          multiline
+          height={100}
         />
 
         <View style={{...S.itemsCenter, marginTop: 24}}>
           <ButtonCustom
             title="Tư vấn"
-            action={() => {}}
+            action={onSubmitDelivery}
             colorButton={color.blue.bold}
             colorTitle={color.white}
           />

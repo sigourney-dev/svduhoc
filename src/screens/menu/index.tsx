@@ -6,6 +6,8 @@ import {color, S, TS} from '../../themes';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import * as authActions from '../../redux/actions';
+import { setDataStorage } from '../../utils';
+import { KeyStores } from '../../enums/key-storage';
 
 interface IPropsItem {
   title: string;
@@ -59,6 +61,8 @@ export const MenuScreen = () => {
           <ButtonCustom
             action={() => {
               dispatch(authActions.logoutRequest());
+              setDataStorage(KeyStores.USER_TOKEN);
+              setDataStorage(KeyStores.REFRESH_TOKEN);
             }}
             title="Đăng xuất"
             colorButton={color.blue.bold}

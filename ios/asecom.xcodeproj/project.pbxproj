@@ -13,8 +13,8 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		397A0257328503672AE5ED19 /* libPods-asecom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4AAB65FA4BF382C3297FBF0 /* libPods-asecom.a */; };
 		44A874C74EC34375AF903CA6 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77CD2A25C2D543B390A3F0EA /* Montserrat-Regular.ttf */; };
-		593FF033D8B5C31807438849 /* libPods-asecom-asecomTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E4D19396CEF0D17DEAF7A2 /* libPods-asecom-asecomTests.a */; };
 		5A80CA689D384AA4850B4006 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21B5C9028067449EBFA7BDE4 /* Montserrat-Thin.ttf */; };
 		5ADA89B6803742ECAAC0AF62 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDD8E3744B684F87AD6E0A36 /* Montserrat-Italic.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -24,11 +24,11 @@
 		A13DB40631E644F1B980314C /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 442ED19258554FE1A9548DE3 /* Montserrat-Bold.ttf */; };
 		A39CB0467D4A46F1B38FE445 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A1C7F81D5C04EF6AC9882C8 /* Montserrat-LightItalic.ttf */; };
 		A8AA1759A9EC41918C11961C /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB26E75DB77B471AA94EBDB6 /* Montserrat-Medium.ttf */; };
-		B9E0733A36F0D232CF2AB94A /* libPods-asecom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA267641C618DB2F38BDED14 /* libPods-asecom.a */; };
 		BB3470A05202457B99D92453 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32007CF8BFA043E092E461E2 /* Montserrat-ThinItalic.ttf */; };
 		BBF99BD5257B485A99153E36 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D1D93218DC3465CBBB2AAD2 /* Montserrat-MediumItalic.ttf */; };
 		BE3C29B87F0B463CB3E66D9A /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF44B94992C3491EBE3C28CF /* Montserrat-ExtraBold.ttf */; };
 		D3DE182B2A7A40D39099C9F6 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40118CBB4ADA4B64B1CC4A53 /* Montserrat-Light.ttf */; };
+		D65D6CD9D292136C63951B84 /* libPods-asecom-asecomTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE8C31BEC58006A59047A300 /* libPods-asecom-asecomTests.a */; };
 		D8C864B9E1D24E0DB3B322F1 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C53C04AA43A24A90A1022734 /* Montserrat-Black.ttf */; };
 		E1E1E32B7A15B6503BCC199A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		ED3937BC8FDB4D51B8F79044 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40B4D1FFE5604B61ADE21709 /* Montserrat-BlackItalic.ttf */; };
@@ -49,7 +49,6 @@
 		00E356EE1AD99517003FC87E /* asecomTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = asecomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* asecomTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = asecomTests.m; sourceTree = "<group>"; };
-		07FFD8E3DC9A70DBDB32B2B2 /* Pods-asecom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-asecom.release.xcconfig"; path = "Target Support Files/Pods-asecom/Pods-asecom.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* asecom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = asecom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = asecom/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = asecom/AppDelegate.mm; sourceTree = "<group>"; };
@@ -57,28 +56,29 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = asecom/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = asecom/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = asecom/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		21608867AAD1737919BD260E /* Pods-asecom-asecomTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-asecom-asecomTests.release.xcconfig"; path = "Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests.release.xcconfig"; sourceTree = "<group>"; };
 		21B5C9028067449EBFA7BDE4 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Thin.ttf"; path = "../assets/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
-		2D3B873CFC83703A56F7EB7C /* Pods-asecom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-asecom.debug.xcconfig"; path = "Target Support Files/Pods-asecom/Pods-asecom.debug.xcconfig"; sourceTree = "<group>"; };
 		32007CF8BFA043E092E461E2 /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../assets/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
 		3A1C7F81D5C04EF6AC9882C8 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-LightItalic.ttf"; path = "../assets/fonts/Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
 		3BA3ED4588BB4F78BA1D924D /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLightItalic.ttf"; path = "../assets/fonts/Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		40118CBB4ADA4B64B1CC4A53 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		40B4D1FFE5604B61ADE21709 /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BlackItalic.ttf"; path = "../assets/fonts/Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
 		442ED19258554FE1A9548DE3 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		545A20BDF133853CEF1EA949 /* Pods-asecom-asecomTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-asecom-asecomTests.release.xcconfig"; path = "Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests.release.xcconfig"; sourceTree = "<group>"; };
 		726338F6545F4FAA821D8568 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BoldItalic.ttf"; path = "../assets/fonts/Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
 		77CD2A25C2D543B390A3F0EA /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		7D1D93218DC3465CBBB2AAD2 /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-MediumItalic.ttf"; path = "../assets/fonts/Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = asecom/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		95AA0844518C6DD2500A318D /* Pods-asecom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-asecom.release.xcconfig"; path = "Target Support Files/Pods-asecom/Pods-asecom.release.xcconfig"; sourceTree = "<group>"; };
+		A4AAB65FA4BF382C3297FBF0 /* libPods-asecom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-asecom.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A63DB0322263134E0DAC137C /* Pods-asecom-asecomTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-asecom-asecomTests.debug.xcconfig"; path = "Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AB26E75DB77B471AA94EBDB6 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
-		AE591CBAC58311EA778D23BD /* Pods-asecom-asecomTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-asecom-asecomTests.debug.xcconfig"; path = "Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BF44B94992C3491EBE3C28CF /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		C53C04AA43A24A90A1022734 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Black.ttf"; path = "../assets/fonts/Montserrat-Black.ttf"; sourceTree = "<group>"; };
-		CA267641C618DB2F38BDED14 /* libPods-asecom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-asecom.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C74CDD7049469F89FCF43596 /* Pods-asecom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-asecom.debug.xcconfig"; path = "Target Support Files/Pods-asecom/Pods-asecom.debug.xcconfig"; sourceTree = "<group>"; };
 		CDD8E3744B684F87AD6E0A36 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Italic.ttf"; path = "../assets/fonts/Montserrat-Italic.ttf"; sourceTree = "<group>"; };
 		DCCD150E4DC5479A9F6743A7 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../assets/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
+		DE8C31BEC58006A59047A300 /* libPods-asecom-asecomTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-asecom-asecomTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E986625621DB4BF7BE7855DF /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBoldItalic.ttf"; path = "../assets/fonts/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
-		E9E4D19396CEF0D17DEAF7A2 /* libPods-asecom-asecomTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-asecom-asecomTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F0264C635A1240B6AB4B4A1B /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		F09105656D52417884D0BB16 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../assets/fonts/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				593FF033D8B5C31807438849 /* libPods-asecom-asecomTests.a in Frameworks */,
+				D65D6CD9D292136C63951B84 /* libPods-asecom-asecomTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9E0733A36F0D232CF2AB94A /* libPods-asecom.a in Frameworks */,
+				397A0257328503672AE5ED19 /* libPods-asecom.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,8 +139,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				CA267641C618DB2F38BDED14 /* libPods-asecom.a */,
-				E9E4D19396CEF0D17DEAF7A2 /* libPods-asecom-asecomTests.a */,
+				A4AAB65FA4BF382C3297FBF0 /* libPods-asecom.a */,
+				DE8C31BEC58006A59047A300 /* libPods-asecom-asecomTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -206,10 +206,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2D3B873CFC83703A56F7EB7C /* Pods-asecom.debug.xcconfig */,
-				07FFD8E3DC9A70DBDB32B2B2 /* Pods-asecom.release.xcconfig */,
-				AE591CBAC58311EA778D23BD /* Pods-asecom-asecomTests.debug.xcconfig */,
-				21608867AAD1737919BD260E /* Pods-asecom-asecomTests.release.xcconfig */,
+				C74CDD7049469F89FCF43596 /* Pods-asecom.debug.xcconfig */,
+				95AA0844518C6DD2500A318D /* Pods-asecom.release.xcconfig */,
+				A63DB0322263134E0DAC137C /* Pods-asecom-asecomTests.debug.xcconfig */,
+				545A20BDF133853CEF1EA949 /* Pods-asecom-asecomTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -221,12 +221,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "asecomTests" */;
 			buildPhases = (
-				3C98A22396BCDFEC4259B075 /* [CP] Check Pods Manifest.lock */,
+				8052A0B0AF375BF0FE37B740 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				544AEA965F8A9A21C7A15167 /* [CP] Embed Pods Frameworks */,
-				98928884B5671F1B1B7C356A /* [CP] Copy Pods Resources */,
+				41CFEA8284C7A3270FB50AA9 /* [CP] Embed Pods Frameworks */,
+				AB11D73D42C08E33F7E1FA2A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -242,13 +242,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "asecom" */;
 			buildPhases = (
-				EE47B422C86416F93EB4F994 /* [CP] Check Pods Manifest.lock */,
+				8D3B1C512261CA7135F77B0E /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				9EDBC33A1A8E4EA89BC492A1 /* [CP] Embed Pods Frameworks */,
-				5F005F71A5CA03F2788FCE4C /* [CP] Copy Pods Resources */,
+				FA77D9A76B1AB9B9346A5A7E /* [CP] Embed Pods Frameworks */,
+				1BC8ED68EE54983FC9E18CD6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -350,7 +350,41 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		3C98A22396BCDFEC4259B075 /* [CP] Check Pods Manifest.lock */ = {
+		1BC8ED68EE54983FC9E18CD6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-asecom/Pods-asecom-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-asecom/Pods-asecom-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-asecom/Pods-asecom-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41CFEA8284C7A3270FB50AA9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8052A0B0AF375BF0FE37B740 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -372,75 +406,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		544AEA965F8A9A21C7A15167 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5F005F71A5CA03F2788FCE4C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-asecom/Pods-asecom-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-asecom/Pods-asecom-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-asecom/Pods-asecom-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		98928884B5671F1B1B7C356A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9EDBC33A1A8E4EA89BC492A1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-asecom/Pods-asecom-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-asecom/Pods-asecom-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-asecom/Pods-asecom-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EE47B422C86416F93EB4F994 /* [CP] Check Pods Manifest.lock */ = {
+		8D3B1C512261CA7135F77B0E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -460,6 +426,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB11D73D42C08E33F7E1FA2A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-asecom-asecomTests/Pods-asecom-asecomTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA77D9A76B1AB9B9346A5A7E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-asecom/Pods-asecom-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-asecom/Pods-asecom-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-asecom/Pods-asecom-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -495,7 +495,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE591CBAC58311EA778D23BD /* Pods-asecom-asecomTests.debug.xcconfig */;
+			baseConfigurationReference = A63DB0322263134E0DAC137C /* Pods-asecom-asecomTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -522,7 +522,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21608867AAD1737919BD260E /* Pods-asecom-asecomTests.release.xcconfig */;
+			baseConfigurationReference = 545A20BDF133853CEF1EA949 /* Pods-asecom-asecomTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -546,7 +546,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D3B873CFC83703A56F7EB7C /* Pods-asecom.debug.xcconfig */;
+			baseConfigurationReference = C74CDD7049469F89FCF43596 /* Pods-asecom.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -574,7 +574,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07FFD8E3DC9A70DBDB32B2B2 /* Pods-asecom.release.xcconfig */;
+			baseConfigurationReference = 95AA0844518C6DD2500A318D /* Pods-asecom.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

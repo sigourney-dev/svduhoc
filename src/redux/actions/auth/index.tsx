@@ -88,3 +88,22 @@ export const confirmForgotFailure = (payload: any) => ({
     type: types.CONFIRM_FORGOT_FAILURE,
     payload: payload,
 });
+
+export const removeAuthResult = () => ({
+    type: types.REMOVE_AUTH_RESULT,
+});
+
+export const registerRequest = (payload: any) => ({
+    type: types.REGISTER_REQUEST,
+    payload: payload,
+});
+
+export const registerSuccess = (payload: any) => ({
+    type: types.REGISTER_SUCCESS,
+    payload: payload,
+});
+
+export const registerFailure = (payload: any) => ({
+    type: types.REGISTER_FAILURE,
+    payload: payload,
+});

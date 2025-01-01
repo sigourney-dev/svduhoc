@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   View,
@@ -10,11 +10,13 @@ import {
 import {HeaderHome} from './header';
 import {color, S, TS} from '../../themes';
 import {images} from '../../enums/images';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useIsFocused} from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
+import * as categoryActions from '../../redux/actions';
 
 export const NewHomeScreen = () => {
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const {isLogin} = useSelector((store: any) => store.auth);
 
@@ -36,6 +38,10 @@ export const NewHomeScreen = () => {
     );
   };
 
+  useEffect(() => {
+    dispatch(categoryActions.removeCategoryResult());
+  }, [isFocused]);
+
   return (
     <View style={styles.container}>
       <HeaderHome />
@@ -44,7 +50,7 @@ export const NewHomeScreen = () => {
           <TouchableOpacity
             onPress={() => {
               //@ts-ignore
-              navigation.navigate('FormApplication');
+              navigation.navigate('FormStudentScreen', {type: 'SINHVIEN'});
             }}>
             <Text style={{...TS.textSmSemiBold, color: color.red.bold}}>
               Đăng ký tư vấn miễn phí
@@ -76,7 +82,7 @@ export const NewHomeScreen = () => {
                 title={'Sinh viên'}
                 action={() => {
                   // @ts-ignore
-                  navigation.navigate('StudentScreen');
+                  navigation.navigate('CommonScreen', {title: 'Sinh viên', type: 'SINHVIEN'});
                 }}
               />
               <ItemHome
@@ -84,7 +90,7 @@ export const NewHomeScreen = () => {
                 title={'Lao động'}
                 action={() => {
                   // @ts-ignore
-                  navigation.navigate('WorkerScreen');
+                  navigation.navigate('CommonScreen', {title: 'Lao động', type: 'LAODONG'});
                 }}
               />
               <ItemHome
@@ -92,7 +98,7 @@ export const NewHomeScreen = () => {
                 title={'Định cư'}
                 action={() => {
                   // @ts-ignore
-                  navigation.navigate('FamilyScreen');
+                  navigation.navigate('CommonScreen', {title: 'Định cư', type: 'DINHCU'});
                 }}
               />
               <ItemHome
@@ -112,7 +118,7 @@ export const NewHomeScreen = () => {
                 title={'Hành chính'}
                 action={() => {
                   // @ts-ignore
-                  navigation.navigate('ElectionScreen');
+                  navigation.navigate('CommonScreen', {title: 'Hành chính', type: 'HANHCHINH'});
                 }}
               />
               <ItemHome

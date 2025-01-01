@@ -49,6 +49,10 @@ export const ApplicationScreen = () => {
           <ItemContent
             title="Tính điểm đổi visa E-7-4"
             image={images.checkVisa}
+            action={() => {
+              // @ts-ignore
+              navigation.navigate('ChangeVisaScreen');
+            }}
           />
         </View>
 

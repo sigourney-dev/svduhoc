@@ -1,40 +1,68 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   StyleSheet,
   Text,
-  KeyboardAvoidingView,
-  Touchable,
   TouchableOpacity,
 } from 'react-native';
 import {color, S, TS} from '../../../themes';
 import {TextInputCustom} from '../../../components/text-input-custom';
-import {ScrollView} from 'react-native-gesture-handler';
-import {heightScreen, widthScreen} from '../../../utils';
+import {widthScreen} from '../../../utils';
 import {ButtonCustom} from '../../../components/button-custom';
 import {useNavigation} from '@react-navigation/native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { useDispatch, useSelector } from 'react-redux';
+import { ToastService } from '../../../services/toast/toast-service';
+import * as authActions from '../../../redux/actions';
 
 export const RegisterScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {registerResult, registerError} = useSelector((store: any) => store.auth);
+
   const [formRegister, setFormRegister] = useState<any>({
-    username: '',
+    userName: '',
     password: '',
     confirmPassword: '',
     lastName: '',
     firstName: '',
     email: '',
-    phone: '',
+    phoneNumber: '',
     address: '',
   });
+
+  const onSubmitRegister = () => {
+    if (formRegister) {
+      dispatch(authActions.registerRequest(formRegister));
+    }
+  };
+
+  useEffect(() => {
+    if (registerResult) {
+      ToastService.showSuccess(registerResult);
+    } else if (registerError) {
+      ToastService.showError(registerError);
+    }
+    dispatch(authActions.removeAuthResult());
+    setFormRegister({
+      userName: '',
+      password: '',
+      confirmPassword: '',
+      lastName: '',
+      firstName: '',
+      email: '',
+      phoneNumber: '',
+      address: '',
+    })
+  }, [registerError, registerResult]);
+
   return (
     <View style={styles.container}>
-      <KeyboardAvoidingView behavior="height">
         <View style={styles.wrapper}>
           <KeyboardAwareScrollView
             showsVerticalScrollIndicator={false}
             style={{marginTop: 12}}>
-            <View style={{...S.itemsCenter}}>
+            <View style={{...S.itemsCenter, marginBottom: 18,}}>
               <Text
                 style={{
                   ...TS.text2XlBold,
@@ -49,11 +77,12 @@ export const RegisterScreen = () => {
             <TextInputCustom
               placeholder="Tên đăng nhập"
               title="Tên đăng nhập"
-              value={formRegister.username}
+              value={formRegister.userName}
               onChangeValue={(text: string) =>
-                setFormRegister({...formRegister, username: text})
+                setFormRegister({...formRegister, userName: text})
               }
               keyboardType={'default'}
+              redDot
             />
             <TextInputCustom
               placeholder="Mật khẩu"
@@ -63,6 +92,7 @@ export const RegisterScreen = () => {
                 setFormRegister({...formRegister, password: text})
               }
               keyboardType={'default'}
+              redDot
             />
             <TextInputCustom
               placeholder="Nhập lại mật khẩu"
@@ -72,6 +102,7 @@ export const RegisterScreen = () => {
                 setFormRegister({...formRegister, confirmPassword: text})
               }
               keyboardType={'default'}
+              redDot
             />
             <View style={{...S.flexRow, ...S.justifyBetween}}>
               <TextInputCustom
@@ -83,6 +114,7 @@ export const RegisterScreen = () => {
                 }
                 keyboardType={'default'}
                 width={widthScreen / 2.6}
+                redDot
               />
               <View style={{marginRight: -8}}>
                 <TextInputCustom
@@ -94,6 +126,7 @@ export const RegisterScreen = () => {
                   }
                   keyboardType={'default'}
                   width={widthScreen / 2.6}
+                  redDot
                 />
               </View>
             </View>
@@ -105,15 +138,18 @@ export const RegisterScreen = () => {
                 setFormRegister({...formRegister, email: text})
               }
               keyboardType={'default'}
+              redDot
             />
             <TextInputCustom
               placeholder="Số điện thoại"
               title="Số điện thoại"
-              value={formRegister.phone}
+              value={formRegister.phoneNumber}
               onChangeValue={(text: string) =>
-                setFormRegister({...formRegister, phone: text})
+                setFormRegister({...formRegister, phoneNumber: text})
               }
               keyboardType={'numeric'}
+              maxLength={10}
+              redDot
             />
             <TextInputCustom
               placeholder="Địa chỉ"
@@ -123,6 +159,7 @@ export const RegisterScreen = () => {
                 setFormRegister({...formRegister, address: text})
               }
               keyboardType={'default'}
+              redDot
             />
             <View style={{...S.itemsEnd}}>
               <TouchableOpacity
@@ -140,10 +177,7 @@ export const RegisterScreen = () => {
             </View>
             <View style={{...S.itemsCenter, marginTop: 12}}>
               <ButtonCustom
-                action={() => {
-                  //@ts-ignore
-                  navigation.navigate('BottomSheetStack');
-                }}
+                action={onSubmitRegister}
                 title="Đăng ký"
                 colorButton={color.blue.bold}
                 colorTitle={color.white}
@@ -151,7 +185,6 @@ export const RegisterScreen = () => {
             </View>
           </KeyboardAwareScrollView>
         </View>
-      </KeyboardAvoidingView>
     </View>
   );
 };
@@ -162,6 +195,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.white,
   },
   wrapper: {
+    height: '90%',
     marginTop: 50,
     marginHorizontal: 12,
   },
