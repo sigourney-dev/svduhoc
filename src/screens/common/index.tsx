@@ -16,12 +16,17 @@ import {widthScreen, heightScreen} from '../../utils';
 import {useSelector, useDispatch} from 'react-redux';
 import * as categoryActions from '../../redux/actions';
 import {showImage} from '../../utils';
-import {useNavigation} from '@react-navigation/native';
-import { dataHorizontalStudent, dataHorizontalWorker } from '../../enums/data-list';
+import {useNavigation, useIsFocused} from '@react-navigation/native';
+import {
+  dataHorizontalStudent,
+  dataHorizontalWorker,
+  dataHorizontalSettlement,
+} from '../../enums/data-list';
 
 export const CommonScreen = (props: any) => {
   const {title, type} = props.route.params;
   const dispatch = useDispatch();
+  const isFocused = useIsFocused();
   const navigation = useNavigation();
   const {categoryResult} = useSelector((store: any) => store.category);
 
@@ -36,11 +41,33 @@ export const CommonScreen = (props: any) => {
       case 'LAODONG': {
         return dataHorizontalWorker;
       }
+      case 'DINHCU': {
+        return dataHorizontalSettlement;
+      }
       default: {
-        return dataHorizontalStudent;
+        return null;
       }
     }
-  }
+  };
+
+  const renderItem = (item: any) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          // @ts-ignore
+          navigation.navigate('DetailNewsScreen', {idPost: item.item.postId});
+        }}>
+        <Image
+          source={{uri: showImage(item.item.imagePath)}}
+          style={styles.image}
+        />
+      </TouchableOpacity>
+    );
+  };
+
+  useEffect(() => {
+    dispatch(categoryActions.removePostResult());
+  } ,[isFocused]);
 
   useEffect(() => {
     if (!categoryResult) {
@@ -63,20 +90,6 @@ export const CommonScreen = (props: any) => {
     }
   }, [categoryResult]);
 
-  const renderItem = (item: any) => {
-    return (
-      <TouchableOpacity onPress={() => {
-        // @ts-ignore
-        navigation.navigate('DetailNewsScreen', {idPost: item.item.postId});
-      }}>
-        <Image
-        source={{uri: showImage(item.item.imagePath)}}
-        style={styles.image}
-      />
-      </TouchableOpacity>
-    );
-  };
-
   return (
     <View style={styles.container}>
       <TabHeaderCustom title={title} isBack />
@@ -93,41 +106,42 @@ export const CommonScreen = (props: any) => {
           activeAnimationType="decay"
         />
 
-        <FlatList
-          style={{marginTop: 12}}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          data={chooseList()}
-          renderItem={({item, index}) => {
-            return (
-              <TouchableOpacity
-                key={index}
-                style={{
-                  ...S.flexRow,
-                  ...S.itemsCenter,
-                  marginRight: 12,
-                  borderWidth: 1,
-                  padding: 12,
-                  borderRadius: 12,
-                  borderColor: color.white,
-                  backgroundColor: color.white,
-                }}
-                onPress={() => {
-                  // @ts-ignore
-                  navigation.navigate(item.direction, {type: type});
-                }}
-                >
-                <Image
-                  source={item.icon}
-                  style={{width: 30, height: 30, resizeMode: 'contain'}}
-                />
-                <Text style={{...TS.textXsMedium, marginLeft: 8}}>
-                  {item.title}
-                </Text>
-              </TouchableOpacity>
-            );
-          }}
-        />
+        {chooseList() && (
+          <FlatList
+            style={{marginTop: 12}}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            data={chooseList()}
+            renderItem={({item, index}) => {
+              return (
+                <TouchableOpacity
+                  key={index}
+                  style={{
+                    ...S.flexRow,
+                    ...S.itemsCenter,
+                    marginRight: 12,
+                    borderWidth: 1,
+                    padding: 12,
+                    borderRadius: 12,
+                    borderColor: color.white,
+                    backgroundColor: color.white,
+                  }}
+                  onPress={() => {
+                    // @ts-ignore
+                    navigation.navigate(item.direction, {type: type});
+                  }}>
+                  <Image
+                    source={item.icon}
+                    style={{width: 30, height: 30, resizeMode: 'contain'}}
+                  />
+                  <Text style={{...TS.textXsMedium, marginLeft: 8}}>
+                    {item.title}
+                  </Text>
+                </TouchableOpacity>
+              );
+            }}
+          />
+        )}
 
         <FlatList
           scrollEnabled={false}
@@ -164,10 +178,15 @@ export const CommonScreen = (props: any) => {
                   data={item.postCategories}
                   renderItem={({item: it, index: id}) => {
                     return (
-                      <TouchableOpacity onPress={() => {
-                        // @ts-ignore
-                        navigation.navigate('DetailNewsScreen', {idPost: it.postId})
-                      }} key={id} style={styles.wrapperItem}>
+                      <TouchableOpacity
+                        onPress={() => {
+                          // @ts-ignore
+                          navigation.navigate('DetailNewsScreen', {
+                            idPost: it.postId,
+                          });
+                        }}
+                        key={id}
+                        style={styles.wrapperItem}>
                         <Image
                           source={{uri: showImage(it.post.imagePath)}}
                           style={{
@@ -199,9 +218,12 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   image: {
-    width: '95%',
-    height: heightScreen * 0.18,
-    resizeMode: 'contain',
+    width: '94%',
+    height: heightScreen * 0.25,
+    resizeMode: 'cover',
+    borderWidth: 1,
+    borderColor: color.grey.light,
+    borderRadius: 12,
   },
   wrapperBox: {
     marginVertical: 12,

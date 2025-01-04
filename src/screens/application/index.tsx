@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -8,12 +8,82 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {color, S, TS} from '../../themes';
-import {TabHeaderCustom} from '../../components/tab-header-custom';
+import {TabHeaderCustom, ModalCustom, TextInputCustom, ButtonCustom} from '../../components';
 import {images} from '../../enums/images';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector, useDispatch} from 'react-redux';
+import {ToastService} from '../../services/toast/toast-service';
+import * as formActions from '../../redux/actions';
 
 export const ApplicationScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {formBaseResult, formBaseError} = useSelector(
+    (store: any) => store.form,
+  );
+
+  const [isShowModal, setIsShowModal] = useState<boolean>(false);
+  
+  const ModalForm = () => {
+    const [data, setData] = useState<any>({
+      name: '',
+      phone: '',
+    });
+  
+    const onSubmit = () => {
+      if (data.name === '') {
+        ToastService.showError('Vui lòng nhập Họ và tên');
+      } else if (data.phone === '') {
+        ToastService.showError('Vui lòng nhập Số điện thoại');
+      } else {
+        dispatch(
+          formActions.formBaseRequest({
+            fullName: data.name,
+            phoneNumber: data.phone,
+            type: 'HANHCHINH',
+          }),
+        );
+      }
+    };
+    return (
+      <View>
+        <TextInputCustom
+          placeholder="Họ và tên"
+          title="Họ và tên"
+          value={data.name}
+          onChangeValue={(item: any) => setData({...data, name: item})}
+          keyboardType={'default'}
+        />
+
+        <TextInputCustom
+          placeholder="Số điện thoại"
+          title="Số điện thoại"
+          value={data.phone}
+          onChangeValue={(item: any) => setData({...data, phone: item})}
+          keyboardType={'numeric'}
+          maxLength={10}
+        />
+
+        <View style={{...S.itemsCenter, marginTop: 12}}>
+          <ButtonCustom
+            title='Đăng ký'
+            action={onSubmit}
+          />
+        </View>
+      </View>
+    );
+  };
+
+  useEffect(() => {
+    if (formBaseResult) {
+      ToastService.showSuccess(formBaseResult);
+      setIsShowModal(false);
+    } else if (formBaseError) {
+      ToastService.showError(formBaseError);
+    }
+    dispatch(formActions.removeForm());
+  }, [formBaseError, formBaseResult]);
+
   const ItemContent = (props: any) => {
     const {title, image, action} = props;
     return (
@@ -41,7 +111,14 @@ export const ApplicationScreen = () => {
               navigation.navigate('FormTranslateScreen');
             }}
           />
-          <ItemContent title="Dịch vụ hành chính" image={images.election} />
+          <ItemContent 
+          title="Dịch vụ hành chính" 
+          image={images.election} 
+          action={() => {
+            // @ts-ignore
+            navigation.navigate('FormServiceWorker');
+          }}
+          />
         </View>
 
         <View style={styles.wrapperContent}>
@@ -61,10 +138,18 @@ export const ApplicationScreen = () => {
           <ItemContent
             title="Tư vấn du học Hàn Quốc miễn phí"
             image={images.student}
+            action={() => {
+              // @ts-ignore
+              navigation.navigate('FormStudentScreen', {type: 'SINHVIEN'});
+            }}
           />
           <ItemContent
             title="Tư vấn hồ sơ lên chuyên ngành tại Hàn Quốc D2"
             image={images.application}
+            action={() => {
+              // @ts-ignore
+              navigation.navigate('FormVisaD2Screen', {type: 'SINHVIEN'});
+            }}
           />
         </View>
 
@@ -73,6 +158,7 @@ export const ApplicationScreen = () => {
           <ItemContent
             title="Đăng ký tư vấn Tài chính - Bảo hiểm Hàn Quốc"
             image={images.health}
+            action={() => setIsShowModal(true)}
           />
         </View>
 
@@ -84,6 +170,13 @@ export const ApplicationScreen = () => {
           />
         </View>
       </ScrollView>
+      <ModalCustom
+        isVisible={isShowModal}
+        title="Tư vấn Tài chính - Bảo hiểm"
+        isBackground
+        onCloseModal={() => setIsShowModal(false)}
+        children={<ModalForm />}
+      />
     </View>
   );
 };

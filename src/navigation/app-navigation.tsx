@@ -31,6 +31,7 @@ import {
   DetailNewsScreen,
   FormVisaD2Screen,
   FormServiceWorker,
+  ConfirmForgotScreen,
 } from '../screens';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -62,6 +63,7 @@ export type AppStackParamList = {
   DetailNewsScreen: undefined;
   FormVisaD2Screen: undefined;
   FormServiceWorker: undefined;
+  ConfirmForgotScreen: undefined;
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> =
@@ -117,6 +119,7 @@ function AppStack() {
       <Stack.Screen name='DetailNewsScreen' component={DetailNewsScreen} />
       <Stack.Screen name='FormVisaD2Screen' component={FormVisaD2Screen} /> 
       <Stack.Screen name='FormServiceWorker' component={FormServiceWorker} />
+      <Stack.Screen name='ConfirmForgotScreen' component={ConfirmForgotScreen} />
     </Stack.Navigator>
   );
 }

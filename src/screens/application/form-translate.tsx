@@ -11,7 +11,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export const FormTranslateScreen = () => {
   const dispatch = useDispatch();
-  const {createTranslateResult, createTranslateError} = useSelector(
+  const {formBaseError, formBaseResult} = useSelector(
     (store: any) => store.form,
   );
 
@@ -39,14 +39,31 @@ export const FormTranslateScreen = () => {
   const [isSelected, setIsSelected] = useState<any>({});
 
   const onSubmitTranslate = () => {
-    
+    if (info.fullname === '') {
+      ToastService.showError('Vui lòng nhập Họ tên');
+    } else if (info.phone === '') {
+      ToastService.showError('Vui lòng nhập Số điện thoại')
+    } else if (!isSelected.title) {
+      ToastService.showError('Vui lòng chọn một Dịch vụ');
+    } else if (info.content === '') {
+      ToastService.showError('Vui lòng nhập Nội dung bạn muốn yêu cầu');
+    } else {
+      dispatch(formActions.formBaseRequest({
+        fullName: info.fullname,
+        phoneNumber: info.phone,
+        service: isSelected.title,
+        otherOffer: info.content,
+        type: 'HANHCHINH',
+      }));
+    }
   };
+  
 
   useEffect(() => {
-    if (createTranslateError) {
-      ToastService.showError(createTranslateError);
-    } else if (createTranslateResult) {
-      ToastService.showSuccess(createTranslateResult);
+    if (formBaseError) {
+      ToastService.showError(formBaseError);
+    } else if (formBaseResult) {
+      ToastService.showSuccess(formBaseResult);
       setIsSelected({});
       setInfo({
         fullname: '',
@@ -55,7 +72,7 @@ export const FormTranslateScreen = () => {
       });
     }
     dispatch(formActions.removeForm());
-  }, [createTranslateError, createTranslateResult]);
+  }, [formBaseError, formBaseResult]);
 
   const renderItem = (item: any, index: number) => {
     return (

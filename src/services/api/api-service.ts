@@ -72,10 +72,6 @@ apiUploadFile.interceptors.request.use(onRequestSuccess);
 const onResponseSuccess = (response: any) => response;
 
 const onResponseError = async (error: any) => {
-  if (error.response && error.response.status === 401) {
-    ToastService.showError('Hết thời gian đăng nhập. \nVui lòng thử lại...');
-    await setDataStorage(KeyStores.USER_TOKEN);
-  }
   return Promise.reject(error);
 };
 

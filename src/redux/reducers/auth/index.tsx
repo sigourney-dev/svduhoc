@@ -21,6 +21,12 @@ interface IAuthState {
 
   registerResult: any;
   registerError: any;
+
+  forgotPassResult: any;
+  forgotPassError: any;
+
+  confirmForgotResult: any;
+  confirmForgotError: any;
 }
 
 const initialState: IAuthState = {
@@ -43,6 +49,12 @@ const initialState: IAuthState = {
 
   registerResult: null,
   registerError: null,
+
+  forgotPassError: null,
+  forgotPassResult: null,
+
+  confirmForgotError: null,
+  confirmForgotResult: null,
 };
 
 const authReducers: Reducer<IAuthState, any> = (
@@ -51,7 +63,7 @@ const authReducers: Reducer<IAuthState, any> = (
 ) => {
   switch (action.type) {
     case types.LOGIN_REQUEST: {
-      return {...state, isLoading: true};
+      return {...state, isLoading: true, loginError: null};
     }
     case types.LOGIN_SUCCESS: {
       return {
@@ -112,6 +124,24 @@ const authReducers: Reducer<IAuthState, any> = (
     case types.REGISTER_FAILURE: {
       return {...state, isLoading: false, registerError: action.payload};
     }
+    case types.FORGOT_PASSWORD_REQUEST: {
+      return {...state, isLoading: true, forgotPassError: null};
+    }
+    case types.FORGOT_PASSWORD_SUCCESS: {
+      return {...state, isLoading: false, forgotPassResult: action.payload};
+    }
+    case types.FORGOT_PASSWORD_FAILURE: {
+      return {...state, isLoading: false, forgotPassError: action.payload};
+    }
+    case types.CONFIRM_FORGOT_REQUEST: {
+      return {...state, isLoading: true, confirmForgotError: null};
+    }
+    case types.CONFIRM_FORGOT_SUCCESS: {
+      return {...state, isLoading: false, confirmForgotResult: action.payload};
+    }
+    case types.CONFIRM_FORGOT_FAILURE: {
+      return {...state, isLoading: false, confirmForgotError: action.payload};
+    }
     case types.REMOVE_AUTH_RESULT: {
       return {
         ...state,
@@ -121,6 +151,10 @@ const authReducers: Reducer<IAuthState, any> = (
         changePasswordResult: null,
         registerResult: null,
         registerError: null,
+        forgotPassError: null,
+        forgotPassResult: null,
+        confirmForgotError: null,
+        confirmForgotResult: null,
       };
     }
     default: {

@@ -25,3 +25,16 @@ export const dataHorizontalWorker = [
     direction: 'FormServiceWorker',
   },
 ];
+
+export const dataHorizontalSettlement = [
+  {
+    icon: images.thinkKorea,
+    title: 'Dịch vụ dịch thuật, thông dịch, công chứng',
+    direction: 'FormTranslateScreen',
+  },
+  {
+    icon: images.election,
+    title: 'Dịch vụ hành chính',
+    direction: 'FormServiceWorker',
+  },
+];

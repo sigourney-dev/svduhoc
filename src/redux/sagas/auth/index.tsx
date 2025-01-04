@@ -1,5 +1,5 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
-import { login, changePassword, changeInformation, register } from '../../../api-request';
+import { login, changePassword, changeInformation, register, confirmForgotPassword, forgotPassword } from '../../../api-request';
 import { types } from '../../types';
 import { Logger } from '../../../utils/logger';
 import { KeyStores } from '../../../enums/key-storage.tsx';
@@ -66,9 +66,39 @@ function* registerSaga(body: any): any {
     }
 }
 
+function* forgotPasswordSaga(body: any): any {
+    try {
+        const response = yield call(forgotPassword, body.payload);
+        if (response.success) {
+            yield put(authActions.forgotPasswordSuccess(response.message));
+        } else {
+            yield put(authActions.forgotPasswordFailure(response.message));
+        }
+    } catch (error) {
+        Logger.error(error);
+        yield put(authActions.forgotPasswordFailure(error));
+    }
+}
+
+function* confirmForgotSaga(body: any): any {
+    try {
+        const response = yield call(confirmForgotPassword, body.payload);
+        if (response.success) {
+            yield put(authActions.confirmForgotSuccess(response.message));
+        } else {
+            yield put(authActions.confirmForgotFailure(response.message));
+        }
+    } catch (error) {
+        yield put(authActions.confirmForgotFailure(error));
+        Logger.error(error);
+    }
+}
+
 export default function* authSaga() {
     yield takeLatest(types.LOGIN_REQUEST, loginSaga);
     yield takeLatest(types.CHANGE_PASSWORD_REQUEST, changePasswordSaga);
     yield takeLatest(types.CHANGE_INFORMATION_REQUEST, changeInformationSaga);
     yield takeLatest(types.REGISTER_REQUEST, registerSaga);
+    yield takeLatest(types.FORGOT_PASSWORD_REQUEST, forgotPasswordSaga);
+    yield takeLatest(types.CONFIRM_FORGOT_REQUEST, confirmForgotSaga);
 }

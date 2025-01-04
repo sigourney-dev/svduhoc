@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, useMemo} from 'react';
+import React, {useState, useEffect, useCallback, useMemo, useRef} from 'react';
 import {
   View,
   Text,
@@ -10,38 +10,41 @@ import {
 } from 'react-native';
 import {TabHeaderCustom} from '../../components/tab-header-custom';
 import {S, TS, color} from '../../themes';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import * as abroadActions from '../../redux/actions';
-import { useNavigation } from '@react-navigation/native';
-import { ToastService } from '../../services/toast/toast-service';
-import { showImage } from '../../utils';
+import {useNavigation} from '@react-navigation/native';
+import {ToastService} from '../../services/toast/toast-service';
+import {showImage} from '../../utils';
 
 export const AbroadScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const {listAbroadResult, listAbroadError} = useSelector((store: any) => store.abroad);
+  const {listAbroadResult, listAbroadError} = useSelector(
+    (store: any) => store.abroad,
+  );
 
   const [abroadList, setAbroadList] = useState<any>([]);
-  const [lastId, setLastId] = useState<any>();
+  const [lastId, setLastId] = useState<any>('');
+  const existingIds = useRef<Set<string>>(new Set());
 
-  const onLoadMore = () => {
-    if (lastId) {
-      dispatch(abroadActions.getListAbroadRequest({
-        pageSize: 10,
-        after: lastId,
-      }));
+  const onLoadMore = useCallback(() => {
+    if (lastId !== '') {
+      dispatch(
+        abroadActions.getListAbroadRequest({
+          pageSize: 10,
+          after: lastId,
+        }),
+      );
     }
-  };
+  }, [lastId]);
 
   const renderFooter = useMemo(() => {
     if (listAbroadResult) {
       if (listAbroadResult.hasNext) {
-        return (
-          <ActivityIndicator size={'small'} color={color.blue.bold}/>
-        );
+        return <ActivityIndicator size={'small'} color={color.blue.bold} />;
       } else {
         return (
-          <View style={{...S.itemsCenter, marginVertical: 8,}}>
+          <View style={{...S.itemsCenter, marginVertical: 8}}>
             <Text style={{...TS.textXsThin}}>Không còn bài viết</Text>
           </View>
         );
@@ -51,18 +54,25 @@ export const AbroadScreen = () => {
 
   useEffect(() => {
     if (abroadList.length === 0) {
-      dispatch(abroadActions.getListAbroadRequest({
-        pageSize: 10,
-      }));
+      dispatch(
+        abroadActions.getListAbroadRequest({
+          pageSize: 10,
+        }),
+      );
     }
   }, []);
 
   useEffect(() => {
     if (listAbroadResult && listAbroadResult.data.length !== 0) {
-      setAbroadList([...abroadList, ...listAbroadResult.data]);
-      const lastElement = listAbroadResult.data[listAbroadResult.data.length - 1];
-      if (lastElement) {
-        setLastId(lastElement.id);
+      const newAbroadList = listAbroadResult.data.filter(
+        (item: any) => !existingIds.current.has(item.id),
+      );
+      setAbroadList((prevList: any) => [...prevList, ...newAbroadList]);
+      newAbroadList.forEach((item: any) => existingIds.current.add(item.id));
+      if (listAbroadResult.hasNext) {
+        setLastId(listAbroadResult.data[listAbroadResult.data.length - 1].id);
+      } else {
+        setLastId('');
       }
     } else if (listAbroadError) {
       ToastService.showError(listAbroadError);
@@ -71,10 +81,16 @@ export const AbroadScreen = () => {
 
   const renderItem = (item: any, index: any) => {
     return (
-      <TouchableOpacity style={styles.wrapperItem} key={index} onPress={() => {
-        // @ts-ignore
-        navigation.navigate('DetailNewsScreen', {idPost: item.id, type: 'ABROAD'})
-      }}>
+      <TouchableOpacity
+        style={styles.wrapperItem}
+        key={index}
+        onPress={() => {
+          // @ts-ignore
+          navigation.navigate('DetailNewsScreen', {
+            idPost: item.id,
+            type: 'ABROAD',
+          });
+        }}>
         <View style={{padding: 8, flex: 2}}>
           <Text
             style={{

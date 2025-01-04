@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo, useCallback, useRef} from 'react';
 import {
   Text,
   View,
@@ -6,13 +6,15 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
+  ActivityIndicator,
 } from 'react-native';
 import {color, S, TS} from '../../themes';
 import {TabHeaderCustom} from '../../components';
 import {useDispatch, useSelector} from 'react-redux';
 import * as postActions from '../../redux/actions';
 import {showImage} from '../../utils';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import {ToastService} from '../../services/toast/toast-service';
 
 export const NewsScreen = (props: any) => {
   const {title, idTitle} = props.route.params;
@@ -21,13 +23,18 @@ export const NewsScreen = (props: any) => {
   const {postResult, postError} = useSelector((store: any) => store.post);
 
   const [listPost, setListPost] = useState<any>([]);
+  const [lastId, setLastId] = useState<any>('');
+  const existingIds = useRef<Set<string>>(new Set());
 
   const renderItem = (item: any) => {
     return (
-      <TouchableOpacity key={item.id} style={styles.wrapperItem} onPress={() => {
-        // @ts-ignore
-        navigation.navigate('DetailNewsScreen', {idPost: item.id});
-      }}>
+      <TouchableOpacity
+        key={item.id}
+        style={styles.wrapperItem}
+        onPress={() => {
+          // @ts-ignore
+          navigation.navigate('DetailNewsScreen', {idPost: item.id});
+        }}>
         <View style={{padding: 8, flex: 2}}>
           <Text
             style={{
@@ -43,6 +50,33 @@ export const NewsScreen = (props: any) => {
     );
   };
 
+  const onLoadMore = useCallback(() => {
+    if (lastId !== '') {
+      console.log('lastId', lastId);
+      dispatch(
+        postActions.getListPostsRequest({
+          categories: [idTitle],
+          pageSize: 10,
+          after: lastId,
+        }),
+      );
+    }
+  }, [lastId]);
+
+  const renderFooter = useMemo(() => {
+    if (postResult) {
+      if (postResult.hasNext) {
+        return <ActivityIndicator size={'small'} color={color.blue.bold} />;
+      } else {
+        return (
+          <View style={{...S.itemsCenter, marginVertical: 8}}>
+            <Text style={{...TS.textXsThin}}>Không còn bài viết</Text>
+          </View>
+        );
+      }
+    } else return null;
+  }, [postResult]);
+
   useEffect(() => {
     dispatch(
       postActions.getListPostsRequest({
@@ -54,10 +88,20 @@ export const NewsScreen = (props: any) => {
 
   useEffect(() => {
     if (postResult) {
-      setListPost(postResult.data);
+      const newPosts = postResult.data.filter(
+        (item: any) => !existingIds.current.has(item.id),
+      );
+      setListPost((prevList: any) => [...prevList, ...newPosts]);
+      newPosts.forEach((item: any) => existingIds.current.add(item.id));
+      if (postResult.hasNext) {
+        setLastId(postResult.data[postResult.data.length - 1].id);
+      } else {
+        setLastId('');
+      }
+    } else if (postError) {
+      ToastService.showError(postError);
     }
-  }, [postResult]);
-
+  }, [postResult, idTitle]);
   return (
     <View style={styles.container}>
       <TabHeaderCustom title={title} isBack />
@@ -67,6 +111,9 @@ export const NewsScreen = (props: any) => {
           style={styles.flatList}
           data={listPost}
           renderItem={(item: any) => renderItem(item.item)}
+          onEndReached={onLoadMore}
+          onEndReachedThreshold={0.1}
+          ListFooterComponent={renderFooter}
         />
       </View>
     </View>

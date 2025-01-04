@@ -109,7 +109,7 @@ export const FormServiceWorker = () => {
             value={data.phone}
             onChangeValue={(phone: any) => setData({...data, phone: phone})}
             keyboardType={'numeric'}
-            maxLength={20}
+            maxLength={10}
             redDot
           />
 

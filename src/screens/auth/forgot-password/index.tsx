@@ -1,13 +1,40 @@
-import React, { useState } from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {color, S, TS} from '../../../themes';
 import { TextInputCustom } from '../../../components/text-input-custom';
 import { ButtonCustom } from '../../../components/button-custom';
 import { useNavigation } from '@react-navigation/native';
+import { ToastService } from '../../../services/toast/toast-service';
+import { useDispatch, useSelector } from 'react-redux';
+import * as authActions from '../../../redux/actions';
 
 export const ForgotPasswordScreen = () => {
     const navigation = useNavigation();
+    const dispatch = useDispatch();
+    const {forgotPassError, forgotPassResult} = useSelector((store: any) => store.auth);
     const [email, setEmail]  = useState<string>('');
+
+    const onSubmit = () => {
+      if (email === '') {
+        ToastService.showError('Vui lòng nhập Email đã đăng ký tài khoản');
+      } else {
+        dispatch(authActions.forgotPasswordRequest({
+          email: email,
+        }))
+      }
+    };
+
+    useEffect(() => {
+      if (forgotPassError) {
+        ToastService.showError(forgotPassError);
+      } else if (forgotPassResult) {
+        ToastService.showSuccess(forgotPassResult);
+        // @ts-ignore
+        navigation.navigate('ConfirmForgotScreen', {emailRoute: email});
+      }
+      dispatch(authActions.removeAuthResult());
+    }, [forgotPassResult, forgotPassError]);
+
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
@@ -40,15 +67,16 @@ export const ForgotPasswordScreen = () => {
 
       <View style={{...S.itemsCenter, marginTop: 12}}>
         <ButtonCustom
-        action={() => {
-            // @ts-ignore
-            navigation.navigate('LoginScreen')
-        }}
+        action={onSubmit}
         title='Xác nhận'
         colorButton={color.blue.bold}
         colorTitle={color.white}
          />
+          <TouchableOpacity style={{marginTop: 12,}} onPress={() => {navigation.goBack()}}>
+          <Text style={{...TS.textXsSemiBold, color: color.blue.bold}}>Quay lại</Text>
+        </TouchableOpacity>
       </View>
+     
     </View>
   );
 };

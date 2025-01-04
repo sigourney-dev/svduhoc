@@ -42,7 +42,7 @@ const postReducers: Reducer<IPostState, any> = (state = initialState, action) =>
             return {...state, isLoading: false, postDetailError: action.payload};
         }
         case types.REMOVE_POST_RESULT: {
-            return {...state, postResult: null, postError: null};
+            return {...state, postResult: null, postError: null, postDetailError: null, postDetailResult: null};
         }
         default: {
             return {...state};
