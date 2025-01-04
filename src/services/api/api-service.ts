@@ -52,7 +52,6 @@ const onRequestSuccess = async (config: InternalAxiosRequestConfig<any>) => {
   if (!isConnected) {
     throw new Error('No internet connection');
   }
-
   const token = await getDataStorage(KeyStores.USER_TOKEN);
   if (token) {
     if (await isTokenExpired(token)) {
@@ -72,7 +71,31 @@ apiUploadFile.interceptors.request.use(onRequestSuccess);
 const onResponseSuccess = (response: any) => response;
 
 const onResponseError = async (error: any) => {
-  return Promise.reject(error);
+  if (error.response) {
+    const {status} = error.response;
+    if (status === 401 || status === 500) {
+      // Kiểm tra nếu mã lỗi là 401 (Unauthorized)
+      const token = await getDataStorage(KeyStores.USER_TOKEN);
+      if (token && (await isTokenExpired(token))) {
+        try {
+          const newToken = await refreshToken(); // Gọi hàm refreshToken
+          error.config.headers.Authorization = `Bearer ${newToken}`; // Cập nhật header với token mới
+          return axios(error.config); // Thực hiện lại yêu cầu với token mới
+        } catch (refreshError) {
+          Logger.error(refreshError);
+          ToastService.showError(
+            'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.',
+          );
+          await setDataStorage(KeyStores.USER_TOKEN); // Xóa token cũ
+          return Promise.reject(refreshError); // Trả về lỗi
+        }
+      } else {
+        ToastService.showError('Hết thời gian đăng nhập. Vui lòng thử lại...');
+        await setDataStorage(KeyStores.USER_TOKEN); // Xóa token cũ
+      }
+    }
+  }
+  return Promise.reject(error); // Trả về lỗi nếu không phải 401
 };
 
 api.interceptors.response.use(onResponseSuccess, onResponseError);
