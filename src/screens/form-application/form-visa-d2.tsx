@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Text, View, StyleSheet, ScrollView} from 'react-native';
-import {ButtonCustom, TabHeaderCustom} from '../../components';
+import {ButtonCustom, ModalLoading, TabHeaderCustom} from '../../components';
 import {S, TS, color} from '../../themes';
 import {TextInputCustom, DropdownCustom, ChooseDate} from '../../components';
 import {
@@ -22,7 +22,7 @@ import {Calendar} from '../../assets/icons';
 export const FormVisaD2Screen = (props: any) => {
   const {type} = props.route.params;
   const dispatch = useDispatch();
-  const {formBaseResult, formBaseError} = useSelector(
+  const {formBaseResult, formBaseError, isLoading} = useSelector(
     (store: any) => store.form,
   );
 
@@ -252,6 +252,7 @@ export const FormVisaD2Screen = (props: any) => {
         dateSelected={convertDateMoment(data.birthday)}
         title={'Chọn ngày tháng năm sinh'}
       />
+      <ModalLoading isVisible={isLoading}/>
     </View>
   );
 };

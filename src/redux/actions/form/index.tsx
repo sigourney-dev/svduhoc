@@ -15,6 +15,21 @@ export const formBaseFailure = (payload: any) => ({
     payload: payload,
 });
 
+export const createFormTransportRequest = (payload: any) => ({
+    type: types.CREATE_FORM_TRANSPORT_REQUEST,
+    payload: payload,
+});
+
+export const createFormTransportSuccess = (payload: any) => ({
+    type: types.CREATE_FORM_TRANSPORT_SUCCESS,
+    payload: payload,
+});
+
+export const createFormTransportFailure = (payload: any) => ({
+    type: types.CREATE_FORM_TRANSPORT_FAILURE,
+    payload: payload,
+});
+
 export const removeForm = () => ({
     type: types.REMOVE_FORM,
 });

@@ -9,13 +9,14 @@ import {
   TextInputCustom,
   DropdownCustom,
   ButtonCustom,
+  ModalLoading,
 } from '../../components';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {ToastService} from '../../services/toast/toast-service';
 
 export const FormServiceWorker = () => {
   const dispatch = useDispatch();
-  const {formBaseResult, formBaseError} = useSelector(
+  const {formBaseResult, formBaseError, isLoading} = useSelector(
     (store: any) => store.form,
   );
 
@@ -133,6 +134,7 @@ export const FormServiceWorker = () => {
           </View>
         </View>
       </KeyboardAwareScrollView>
+      <ModalLoading isVisible={isLoading} />
     </View>
   );
 };

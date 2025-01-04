@@ -10,8 +10,6 @@ export const CommunityScreen = () => {
     email: '',
   });
 
-  
-
   return (
     <View style={styles.container}>
       <TabHeaderCustom title="Cộng đồng" isBack />
@@ -25,6 +23,7 @@ export const CommunityScreen = () => {
           value={info.question}
           onChangeValue={(text: string) => setInfo({...info, question: text})}
           keyboardType={'default'}
+          redDot
         />
 
         <TextInputCustom
@@ -33,6 +32,7 @@ export const CommunityScreen = () => {
           value={info.fullname}
           onChangeValue={(text: string) => setInfo({...info, fullname: text})}
           keyboardType={'default'}
+          redDot
         />
 
         <TextInputCustom
@@ -41,18 +41,21 @@ export const CommunityScreen = () => {
           value={info.email}
           onChangeValue={(text: string) => setInfo({...info, email: text})}
           keyboardType={'default'}
+          redDot
         />
 
-       <View style={{...S.itemsCenter}}>
-       <ButtonCustom 
-        title='Gửi câu hỏi'
-        action={() => {}}
-        colorButton={color.blue.bold}
-        colorTitle={color.white}
-        />
-       </View>
+        <View style={{...S.itemsCenter}}>
+          <ButtonCustom
+            title="Gửi câu hỏi"
+            action={() => {}}
+            colorButton={color.blue.bold}
+            colorTitle={color.white}
+          />
+        </View>
 
-        <Text style={{...TS.textSmSemiBold, marginTop: 12}}>Đã có 500 câu hỏi gửi đến cho SVDUHOC.VN</Text>
+        <Text style={{...TS.textSmSemiBold, marginTop: 12}}>
+          Đã có 500 câu hỏi gửi đến cho SVDUHOC.VN
+        </Text>
       </ScrollView>
     </View>
   );

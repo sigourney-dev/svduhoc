@@ -14,11 +14,12 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastService } from '../../../services/toast/toast-service';
 import * as authActions from '../../../redux/actions';
+import { ModalLoading } from '../../../components';
 
 export const RegisterScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {registerResult, registerError} = useSelector((store: any) => store.auth);
+  const {registerResult, registerError, isLoading} = useSelector((store: any) => store.auth);
 
   const [formRegister, setFormRegister] = useState<any>({
     userName: '',
@@ -40,20 +41,21 @@ export const RegisterScreen = () => {
   useEffect(() => {
     if (registerResult) {
       ToastService.showSuccess(registerResult);
+      setFormRegister({
+        userName: '',
+        password: '',
+        confirmPassword: '',
+        lastName: '',
+        firstName: '',
+        email: '',
+        phoneNumber: '',
+        address: '',
+      })
     } else if (registerError) {
       ToastService.showError(registerError);
     }
     dispatch(authActions.removeAuthResult());
-    setFormRegister({
-      userName: '',
-      password: '',
-      confirmPassword: '',
-      lastName: '',
-      firstName: '',
-      email: '',
-      phoneNumber: '',
-      address: '',
-    })
+    
   }, [registerError, registerResult]);
 
   return (
@@ -185,6 +187,7 @@ export const RegisterScreen = () => {
             </View>
           </KeyboardAwareScrollView>
         </View>
+        <ModalLoading isVisible={isLoading} />
     </View>
   );
 };

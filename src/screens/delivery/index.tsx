@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {TabHeaderCustom} from '../../components/tab-header-custom';
 import {S, TS, color} from '../../themes';
-import {ButtonCustom, TextInputCustom, DropdownCustom} from '../../components';
+import {ButtonCustom, TextInputCustom, DropdownCustom, ModalLoading} from '../../components';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch, useSelector} from 'react-redux';
 import * as formActions from '../../redux/actions';
@@ -10,7 +10,7 @@ import {ToastService} from '../../services/toast/toast-service';
 
 export const DeliveryScreen = () => {
   const dispatch = useDispatch();
-  const {createTransportResult, createTransportError} = useSelector(
+  const {createTransportResult, createTransportError, isLoading} = useSelector(
     (store: any) => store.form,
   );
 
@@ -33,7 +33,26 @@ export const DeliveryScreen = () => {
   const [option, setOption] = useState<any>({});
 
   const onSubmitDelivery = () => {
-    
+    if (data.name === '') {
+      ToastService.showError('Vui lòng nhập Họ và tên');
+    } else if (data.phone === '') {
+      ToastService.showError('Vui lòng nhập Số điện thoại');
+    } else if (!option.label) {
+      ToastService.showError('Vui lòng chọn Dịch vụ');
+    } else if (data.address === '') {
+      ToastService.showError('Vui lòng nhập Địa chỉ');
+    } else if (data.postal === '') {
+      ToastService.showError('Vui lòng nhập Nội dung hàng cần gửi');
+    } else {
+      const formData = new FormData();
+      formData.append('FullName', data.name);
+      formData.append('PhoneNumber', data.phone);
+      formData.append('Service', option.label);
+      formData.append('Address', data.address);
+      formData.append('Description', data.postal);
+
+      dispatch(formActions.createFormTransportRequest(formData));
+    }
   };
 
   useEffect(() => {
@@ -50,7 +69,7 @@ export const DeliveryScreen = () => {
       });
     }
     dispatch(formActions.removeForm());
-  }, [createTransportError, createTransportResult]);
+  }, [createTransportResult, createTransportError]);
 
   return (
     <View style={styles.container}>
@@ -93,13 +112,14 @@ export const DeliveryScreen = () => {
         />
 
         <TextInputCustom
-          placeholder="Nội dung hàng cần gừi"
-          title="Nội dung hàng cần gừi"
+          placeholder="Nội dung hàng cần gửi"
+          title="Nội dung hàng cần gửi"
           value={data.postal}
           onChangeValue={(postal: string) => setData({...data, postal: postal})}
           keyboardType="default"
           multiline
           height={100}
+          redDot
         />
 
         <View style={{...S.itemsCenter, marginTop: 24}}>
@@ -110,6 +130,8 @@ export const DeliveryScreen = () => {
             colorTitle={color.white}
           />
         </View>
+
+        <ModalLoading isVisible={isLoading}/>
       </KeyboardAwareScrollView>
     </View>
   );

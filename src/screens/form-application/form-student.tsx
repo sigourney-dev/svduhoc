@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Text, View, StyleSheet, ScrollView} from 'react-native';
-import {ButtonCustom, TabHeaderCustom} from '../../components';
+import {ButtonCustom, ModalLoading, TabHeaderCustom} from '../../components';
 import {S, TS, color} from '../../themes';
 import {TextInputCustom, DropdownCustom, ChooseDate} from '../../components';
 import {
@@ -22,7 +22,7 @@ import {Calendar} from '../../assets/icons';
 export const FormStudentScreen = (props: any) => {
   const {type} = props.route.params;
   const dispatch = useDispatch();
-  const {formBaseResult, formBaseError} = useSelector(
+  const {formBaseResult, formBaseError, isLoading} = useSelector(
     (store: any) => store.form,
   );
 
@@ -294,6 +294,8 @@ export const FormStudentScreen = (props: any) => {
         dateSelected={convertDateMoment(data.graduate)}
         title={'Chọn năm tốt nghiệp'}
       />
+
+      <ModalLoading isVisible={isLoading} />
     </View>
   );
 };

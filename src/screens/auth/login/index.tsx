@@ -24,6 +24,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import * as authActions from '../../../redux/actions';
 import {ToastService} from '../../../services/toast/toast-service';
+import { ModalLoading } from '../../../components';
 
 export const LoginScreen = () => {
   const navigation = useNavigation();
@@ -160,6 +161,7 @@ export const LoginScreen = () => {
           <Text style={{...TS.textXsSemiBold, color: color.blue.bold}}>Quay lại</Text>
         </TouchableOpacity>
       </View>
+      {isLoading && <ModalLoading isVisible={isLoading}/>}
     </View>
   );
 };

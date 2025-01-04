@@ -9,6 +9,7 @@ import {
   TabHeaderCustom,
   TextInputCustom,
   ChooseDate,
+  ModalLoading,
 } from '../../components';
 import {ToastService} from '../../services/toast/toast-service';
 import {heightScreen} from '../../utils';
@@ -29,7 +30,7 @@ import {Calendar} from '../../assets/icons';
 
 export const ChangeVisaScreen = () => {
   const dispatch = useDispatch();
-  const {formBaseResult, formBaseError} = useSelector(
+  const {formBaseResult, formBaseError, isLoading} = useSelector(
     (store: any) => store.form,
   );
   const [isShowPoint, setIsShowPoint] = useState<boolean>(false);
@@ -262,6 +263,7 @@ export const ChangeVisaScreen = () => {
         children={<ModalContent />}
         onCloseModal={() => setIsShowPoint(false)}
       />
+      <ModalLoading isVisible={isLoading} />
     </View>
   );
 };

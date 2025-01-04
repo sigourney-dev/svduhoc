@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
-import {TabHeaderCustom, TextInputCustom, ButtonCustom} from '../../components';
+import {TabHeaderCustom, TextInputCustom, ButtonCustom, ModalLoading} from '../../components';
 import {color, S, TS} from '../../themes';
 import {widthScreen} from '../../utils';
 import {Circle, CircleCheckFill} from '../../assets/icons';
@@ -11,7 +11,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export const FormTranslateScreen = () => {
   const dispatch = useDispatch();
-  const {formBaseError, formBaseResult} = useSelector(
+  const {formBaseError, formBaseResult, isLoading} = useSelector(
     (store: any) => store.form,
   );
 
@@ -148,6 +148,7 @@ export const FormTranslateScreen = () => {
           />
         </View>
       </KeyboardAwareScrollView>
+      <ModalLoading isVisible={isLoading} />
     </View>
   );
 };
