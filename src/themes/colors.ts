@@ -7,8 +7,8 @@ const Colors = {
       light: '#FFFF4D',
   },
   blue: {
-      bold: '#002795',
-      light: '#B3E5FC',
+      bold: '#0056E0',
+      light: '#99CCFF',
   },
   green: {
       bold: '#00B300',
