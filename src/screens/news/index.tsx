@@ -25,6 +25,7 @@ export const NewsScreen = (props: any) => {
   const [listPost, setListPost] = useState<any>([]);
   const [lastId, setLastId] = useState<any>('');
   const existingIds = useRef<Set<string>>(new Set());
+  const [refreshing, setRefreshing] = useState(false);
 
   const renderItem = (item: any) => {
     return (
@@ -62,6 +63,20 @@ export const NewsScreen = (props: any) => {
       );
     }
   }, [lastId]);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    setListPost([]);
+    setLastId('');
+    existingIds.current.clear();
+    dispatch(
+      postActions.getListPostsRequest({
+        categories: [idTitle],
+        pageSize: 10,
+      }),
+    );
+    setRefreshing(false);
+  };
 
   const renderFooter = useMemo(() => {
     if (postResult) {
@@ -114,6 +129,8 @@ export const NewsScreen = (props: any) => {
           onEndReached={onLoadMore}
           onEndReachedThreshold={0.1}
           ListFooterComponent={renderFooter}
+          onRefresh={onRefresh}
+          refreshing={refreshing}
         />
       </View>
     </View>

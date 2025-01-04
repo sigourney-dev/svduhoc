@@ -26,6 +26,7 @@ export const AbroadScreen = () => {
   const [abroadList, setAbroadList] = useState<any>([]);
   const [lastId, setLastId] = useState<any>('');
   const existingIds = useRef<Set<string>>(new Set());
+  const [refreshing, setRefreshing] = useState(false);
 
   const onLoadMore = useCallback(() => {
     if (lastId !== '') {
@@ -79,6 +80,19 @@ export const AbroadScreen = () => {
     }
   }, [listAbroadResult]);
 
+  const onRefresh = () => {
+    setRefreshing(true);
+    setAbroadList([]);
+    setLastId('');
+    existingIds.current.clear();
+    dispatch(
+      abroadActions.getListAbroadRequest({
+        pageSize: 10,
+      })
+    );
+    setRefreshing(false);
+  };
+
   const renderItem = (item: any, index: any) => {
     return (
       <TouchableOpacity
@@ -118,6 +132,8 @@ export const AbroadScreen = () => {
           onEndReached={onLoadMore}
           onEndReachedThreshold={0.5}
           ListFooterComponent={renderFooter}
+          onRefresh={onRefresh}
+          refreshing={refreshing}
         />
       </View>
     </View>

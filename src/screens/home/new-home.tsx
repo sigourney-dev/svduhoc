@@ -40,8 +40,6 @@ export const NewHomeScreen = () => {
 
   useEffect(() => {
     dispatch(categoryActions.removeCategoryResult());
-    dispatch(categoryActions.removeAbroadResult());
-    dispatch(categoryActions.removePostResult());
   }, [isFocused]);
 
   return (
