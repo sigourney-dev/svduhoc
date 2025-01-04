@@ -52,7 +52,7 @@ export const MenuScreen = () => {
         {isLogin && (
           <ItemMenu title="Đổi mật khẩu" direction="ChangePasswordScreen" />
         )}
-        <ItemMenu title="Hỏi đáp" direction="AskAnswerScreen" />
+        <ItemMenu title="Hỏi đáp" direction="CommunityScreen" />
         <ItemMenu title="Liên hệ" direction="InfoScreen" />
         <ItemMenu title="Đội ngũ đồng hành" direction="MemberScreen" />
       </View>
