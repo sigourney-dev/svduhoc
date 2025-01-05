@@ -138,49 +138,54 @@ export const CommunityScreen = () => {
 
   const renderItem = (item: any, index: any) => {
     return (
-      <View
-        key={index}
-        style={{
-          marginVertical: 8,
-          borderWidth: 1,
-          backgroundColor: color.white,
-          borderColor: color.white,
-          borderRadius: 12,
-          padding: 8,
-        }}>
-        <View>
-          <Text style={{...TS.textSmSemiBold, color: color.red.bold}}>
-            {item.fullName}:
+      <View key={index}>
+        <View
+          style={{
+            borderWidth: 1,
+            borderColor: color.grey.bold,
+            backgroundColor: color.grey.bold,
+            padding: 8,
+            borderRadius: 12,
+            alignSelf: 'flex-start',
+          }}>
+          <Text style={{...TS.textSmSemiBold, color: color.white}}>
+            {item.fullName}
           </Text>
-          <Text style={{...TS.textSmRegular, marginLeft: 8}}>
+          <Text style={{...TS.textSmRegular, color: color.white}}>
             {item.content}
           </Text>
         </View>
         {item.answers.length !== 0 && (
           <View
             style={{
-              // ...S.itemsEnd,
               borderWidth: 1,
               marginVertical: 4,
-              borderColor: color.blue.light,
-              backgroundColor: color.blue.light,
+              borderColor: color.blue.bold,
+              backgroundColor: color.blue.bold,
               padding: 8,
               borderRadius: 12,
+              alignSelf: 'flex-end',
+              marginTop: 4,
             }}>
+            <Text
+              style={{
+                ...TS.textSmSemiBold,
+                color: color.white,
+                textAlign: 'right',
+              }}>
+              SVDUHOC.VN
+            </Text>
             <FlatList
               data={item.answers}
               renderItem={({item: it, index: id}) => {
                 return (
                   <View key={id}>
                     <Text
-                      style={{...TS.textSmSemiBold, color: color.blue.bold}}>
-                      SVDUHOC.VN:
-                    </Text>
-                    <Text
                       style={{
                         ...TS.textSmRegular,
-                        color: color.blue.bold,
+                        color: color.white,
                         marginLeft: 4,
+                        textAlign: 'right',
                       }}>
                       {it.content}
                     </Text>
@@ -281,6 +286,6 @@ export const CommunityScreen = () => {
 const styles = StyleSheet.create({
   container: {
     ...S.flex1,
-    backgroundColor: color.blue.light,
+    backgroundColor: color.white,
   },
 });
