@@ -14,7 +14,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import * as abroadActions from '../../redux/actions';
 import {useNavigation} from '@react-navigation/native';
 import {ToastService} from '../../services/toast/toast-service';
-import {showImage} from '../../utils';
+import {showImage, Utils} from '../../utils';
 
 export const AbroadScreen = () => {
   const dispatch = useDispatch();
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.grey.light,
   },
   flatList: {
-    height: '89%',
+    height: Utils.isIOS() ? '89%' : '93%',
   },
   wrapper: {
     marginBottom: 8,
@@ -162,10 +162,10 @@ const styles = StyleSheet.create({
     backgroundColor: color.white,
   },
   image: {
-    ...S.flex1,
-    width: 120,
+    // ...S.flex1,
+    width: 160,
     height: 120,
-    borderRadius: 12,
+    borderRadius: 16,
     marginRight: 4,
     resizeMode: 'contain',
   },

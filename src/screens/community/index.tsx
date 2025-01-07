@@ -241,46 +241,50 @@ export const CommunityScreen = () => {
     }
   }, [listQuestionResult, listQuestionError]);
 
-  if (listQuestionResult && listQuestion && countQuestionResult) {
-    return (
-      <View style={styles.container}>
-        <TabHeaderCustom title="Cộng đồng" isBack />
-        <View style={{height: '82%', marginHorizontal: 12}}>
-          <Text
-            style={{...TS.textSmSemiBold, marginTop: 12, textAlign: 'center'}}>
-            Đã có {countQuestionResult} câu hỏi gửi đến cho SVDUHOC.VN
-          </Text>
-          <FlatList
-            data={listQuestion}
-            renderItem={({item, index}) => renderItem(item, index)}
-            onEndReached={onLoadMore}
-            onEndReachedThreshold={0.5}
-            ListFooterComponent={renderFooter}
-            onRefresh={onRefresh}
-            refreshing={refreshing}
-          />
+  return (
+    <View style={styles.container}>
+      <TabHeaderCustom title="Cộng đồng" isBack />
+      {listQuestionResult && listQuestion && countQuestionResult && (
+        <View>
+          <View style={{height: '82%', marginHorizontal: 12}}>
+            <Text
+              style={{
+                ...TS.textSmSemiBold,
+                marginTop: 12,
+                textAlign: 'center',
+              }}>
+              Đã có {countQuestionResult} câu hỏi gửi đến cho SVDUHOC.VN
+            </Text>
+            <FlatList
+              data={listQuestion}
+              renderItem={({item, index}) => renderItem(item, index)}
+              onEndReached={onLoadMore}
+              onEndReachedThreshold={0.5}
+              ListFooterComponent={renderFooter}
+              onRefresh={onRefresh}
+              refreshing={refreshing}
+            />
+          </View>
+          <View style={{...S.itemsCenter}}>
+            <ButtonCustom
+              title="Đặt câu hỏi cho SVDUHOC.VN"
+              action={() => setIsShowModalForm(true)}
+              colorButton={color.blue.bold}
+              colorTitle={color.white}
+              width={widthScreen * 0.6}
+            />
+          </View>
         </View>
-        <View style={{...S.itemsCenter}}>
-          <ButtonCustom
-            title="Đặt câu hỏi cho SVDUHOC.VN"
-            action={() => setIsShowModalForm(true)}
-            colorButton={color.blue.bold}
-            colorTitle={color.white}
-            width={widthScreen * 0.6}
-          />
-        </View>
-        <ModalCustom
-          isVisible={isShowModalForm}
-          title="Đặt câu hỏi"
-          children={<ModalForm />}
-          isBackground
-          onCloseModal={() => setIsShowModalForm(false)}
-        />
-      </View>
-    );
-  } else {
-    return null;
-  }
+      )}
+      <ModalCustom
+        isVisible={isShowModalForm}
+        title="Đặt câu hỏi"
+        children={<ModalForm />}
+        isBackground
+        onCloseModal={() => setIsShowModalForm(false)}
+      />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

@@ -4,3 +4,4 @@ export * from './post';
 export * from './form';
 export * from './abroad';
 export * from './question';
+export * from './menu';

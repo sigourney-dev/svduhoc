@@ -6,25 +6,36 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
 import {HeaderHome} from './header';
 import {color, S, TS} from '../../themes';
 import {images} from '../../enums/images';
 import {useNavigation, useIsFocused} from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import * as categoryActions from '../../redux/actions';
+import {showImage, widthScreen} from '../../utils';
+import {SvgUri} from 'react-native-svg';
 
 export const NewHomeScreen = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const {isLogin} = useSelector((store: any) => store.auth);
+  const {listMenuResult} = useSelector((store: any) => store.menu);
 
   const ItemHome = (props: any) => {
-    const {image, action, title} = props;
+    const {image, action, title, isDynamic} = props;
     return (
       <TouchableOpacity onPress={action} style={styles.wrapperItem}>
-        <Image style={styles.image} source={image} />
+        {isDynamic ? (
+          <View>
+            <SvgUri width={50} height={50} uri={image} />
+          </View>
+        ) : (
+          <Image style={styles.image} source={image} />
+        )}
+
         <Text
           style={{
             ...TS.textXsMedium,
@@ -40,6 +51,11 @@ export const NewHomeScreen = () => {
 
   useEffect(() => {
     dispatch(categoryActions.removeCategoryResult());
+    dispatch(
+      categoryActions.getListMenuRequest({
+        pageSize: 100,
+      }),
+    );
   }, [isFocused]);
 
   return (
@@ -57,17 +73,17 @@ export const NewHomeScreen = () => {
             </Text>
           </TouchableOpacity>
 
-         {!isLogin && (
-           <TouchableOpacity
-           onPress={() => {
-             //@ts-ignore
-             navigation.navigate('LoginScreen');
-           }}>
-           <Text style={{...TS.textSmSemiBold, color: color.red.bold}}>
-             Đăng nhập
-           </Text>
-         </TouchableOpacity>
-         )}
+          {!isLogin && (
+            <TouchableOpacity
+              onPress={() => {
+                //@ts-ignore
+                navigation.navigate('LoginScreen');
+              }}>
+              <Text style={{...TS.textSmSemiBold, color: color.red.bold}}>
+                Đăng nhập
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
 
         <ScrollView
@@ -82,7 +98,10 @@ export const NewHomeScreen = () => {
                 title={'Sinh viên'}
                 action={() => {
                   // @ts-ignore
-                  navigation.navigate('CommonScreen', {title: 'Sinh viên', type: 'SINHVIEN'});
+                  navigation.navigate('CommonScreen', {
+                    title: 'Sinh viên',
+                    type: 'SINHVIEN',
+                  });
                 }}
               />
               <ItemHome
@@ -90,7 +109,10 @@ export const NewHomeScreen = () => {
                 title={'Lao động'}
                 action={() => {
                   // @ts-ignore
-                  navigation.navigate('CommonScreen', {title: 'Lao động', type: 'LAODONG'});
+                  navigation.navigate('CommonScreen', {
+                    title: 'Lao động',
+                    type: 'LAODONG',
+                  });
                 }}
               />
               <ItemHome
@@ -98,7 +120,10 @@ export const NewHomeScreen = () => {
                 title={'Định cư'}
                 action={() => {
                   // @ts-ignore
-                  navigation.navigate('CommonScreen', {title: 'Định cư', type: 'DINHCU'});
+                  navigation.navigate('CommonScreen', {
+                    title: 'Định cư',
+                    type: 'DINHCU',
+                  });
                 }}
               />
               <ItemHome
@@ -118,7 +143,10 @@ export const NewHomeScreen = () => {
                 title={'Hành chính'}
                 action={() => {
                   // @ts-ignore
-                  navigation.navigate('CommonScreen', {title: 'Hành chính', type: 'HANHCHINH'});
+                  navigation.navigate('CommonScreen', {
+                    title: 'Hành chính',
+                    type: 'HANHCHINH',
+                  });
                 }}
               />
               <ItemHome
@@ -150,114 +178,34 @@ export const NewHomeScreen = () => {
               Chỉ có ở SVDUHOC.VN
             </Text>
             <View
-              style={{...S.flexRow, ...S.justifyBetween, marginVertical: 12}}>
-              <ItemHome
-                image={images.checkVisa}
-                title={'Kiểm tra Visa'}
-                action={() => {
-                  //@ts-ignore
-                  navigation.navigate('IconHome', {
-                    title: 'Kiểm tra Visa',
-                    link: 'https://go-korea.com/kiem-tra-visa',
-                  });
-                }}
-              />
-              <ItemHome
-                image={images.parttime}
-                title={'Tính tiền làm thêm'}
-                action={() => {
-                  //@ts-ignore
-                  navigation.navigate('IconHome', {
-                    title: 'Tính tiền làm thêm',
-                    link: 'https://go-korea.com/luong-toi-thieu-nam-2020-cua-han-quoc/',
-                  });
-                }}
-              />
-              <ItemHome
-                image={images.layoff}
-                title={'Tính tiền nghỉ việc'}
-                action={() => {
-                  //@ts-ignore
-                  navigation.navigate('IconHome', {
-                    title: 'Tính tiền nghỉ việc',
-                    link: 'https://nghi-viec.glitch.me',
-                  });
-                }}
-              />
-              <ItemHome
-                image={images.embassy}
-                title={'Đặt hẹn ĐSQ VN tại Hàn'}
-                action={() => {
-                  //@ts-ignore
-                  navigation.navigate('IconHome', {
-                    title: 'Đặt hẹn ĐSQ VN tại Hàn',
-                    link: 'https://go-korea.com/lien-he-dsq-viet-nam-tai-han-quoc/',
-                  });
-                }}
-              />
-            </View>
-
-            <View
-              style={{...S.flexRow, ...S.justifyBetween, marginVertical: 12}}>
-              <ItemHome
-                image={images.VNfood}
-                title={'Bản đồ món Việt'}
-                action={() => {
-                  //@ts-ignore
-                  navigation.navigate('IconHome', {
-                    title: 'Bản đồ món Việt',
-                    link: 'https://dichvu.go-korea.com/ban-do-doanh-nghiep-viet/',
-                  });
-                }}
-              />
-              <ItemHome
-                image={images.mbti}
-                title={'Trắc nghiệm MBTI'}
-                action={() => {
-                  //@ts-ignore
-                  navigation.navigate('IconHome', {
-                    title: 'Trắc nghiệm MBTI',
-                    link: 'https://go-korea.com/_/mbti.htm',
-                  });
-                }}
-              />
-              <ItemHome
-                image={images.korean}
-                title={'Tên tiếng Hàn của bạn'}
-                action={() => {
-                  //@ts-ignore
-                  navigation.navigate('IconHome', {
-                    title: 'Tên tiếng Hàn của bạn',
-                    link: 'https://go-korea.com/dich-ten/',
-                  });
-                }}
-              />
-              <ItemHome
-                image={images.searchCode}
-                title={'Tra cứ mã bưu điện'}
-                action={() => {
-                  //@ts-ignore
-                  navigation.navigate('IconHome', {
-                    title: 'Tra cứ mã bưu điện',
-                    link: 'https://go-korea.com/luong-toi-thieu-nam-2020-cua-han-quoc/',
-                  });
-                }}
-              />
-            </View>
-
-            <View
-              style={{...S.flexRow, ...S.justifyBetween, marginVertical: 12}}>
-              <ItemHome
-                image={images.airplane}
-                title={'Lịch bay'}
-                action={() => {
-                  //@ts-ignore
-                  navigation.navigate('IconHome', {
-                    title: 'Lịch bay',
-                    link: 'https://go-korea.com/luong-toi-thieu-nam-2020-cua-han-quoc/',
-                  });
-                }}
-              />
+              style={{
+                marginVertical: 12,
+              }}>
+              {listMenuResult && (
+                <FlatList
+                  numColumns={4}
+                  scrollEnabled={false}
+                  data={listMenuResult.data}
+                  renderItem={({item, index}) => {
+                    return (
+                      <View key={index} style={{width: widthScreen / 4, marginVertical: 8,}}>
+                        <ItemHome
+                          isDynamic
+                          image={showImage(item.imagePath)}
+                          title={item.name}
+                          action={() => {
+                            //@ts-ignore
+                            navigation.navigate('IconHome', {
+                              title: item.name,
+                              link: item.link,
+                            });
+                          }}
+                        />
+                      </View>
+                    );
+                  }}
+                />
+              )}
             </View>
           </View>
         </ScrollView>
@@ -282,7 +230,7 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   image: {
-    resizeMode: 'cover',
+    resizeMode: 'contain',
     width: 50,
     height: 50,
   },

@@ -94,6 +94,7 @@ export const LoginScreen = () => {
           onChangeValue={(text: string) => setUsername(text)}
           keyboardType={'default'}
           iconRight={<Profile color={color.blue.bold} />}
+          width={widthScreen * 0.7}
         />
         <TextInputCustom
           placeholder="Mật khẩu"
@@ -111,6 +112,7 @@ export const LoginScreen = () => {
           }
           actionIconLeft={(isShow: boolean) => setIsShowPassword(isShow)}
           isShowActionLeft={isShowPassword}
+          width={widthScreen * 0.7}
         />
       </KeyboardAvoidingView>
 

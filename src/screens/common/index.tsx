@@ -70,13 +70,11 @@ export const CommonScreen = (props: any) => {
   } ,[isFocused]);
 
   useEffect(() => {
-    if (!categoryResult) {
       dispatch(
         categoryActions.getBannerCategoryRequest({
           type: type,
         }),
       );
-    }
   }, [type, title]);
 
   useEffect(() => {

@@ -5,6 +5,7 @@ import postSaga from './post';
 import formSaga from './form';
 import abroadSaga from './abroad';
 import questionSaga from './question';
+import menuSaga from './menu';
 
 function* rootSaga() {
   yield all([
@@ -14,6 +15,7 @@ function* rootSaga() {
     formSaga(),
     abroadSaga(),
     questionSaga(),
+    menuSaga(),
   ]);
 }
 

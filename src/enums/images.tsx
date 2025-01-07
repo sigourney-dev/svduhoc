@@ -46,4 +46,8 @@ export const images = {
     thinkKorea: require('../assets/images/think-korea.png'),
     pointKorea: require('../assets/images/point-korea.png'),
     delivery: require('../assets/images/delivery.png'),
+    customerService: require('../assets/images/customer-service.png'),
+    group: require('../assets/images/group.png'),
+    padlock: require('../assets/images/padlock.png'),
+    profile: require('../assets/images/profile.png'),
 };

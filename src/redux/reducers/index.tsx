@@ -8,6 +8,7 @@ import postReducers from './post';
 import formReducers from './form';
 import abroadReducers from './abroad';
 import questionReducers from './question';
+import menuReducers from './menu';
 
 const authPersistConfig = {
   key: 'auth',
@@ -29,4 +30,5 @@ export const rootReducer = combineReducers({
   form: formReducers,
   abroad: abroadReducers,
   question: questionReducers,
+  menu: menuReducers,
 });

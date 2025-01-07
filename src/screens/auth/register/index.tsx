@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import {color, S, TS} from '../../../themes';
 import {TextInputCustom} from '../../../components/text-input-custom';
-import {widthScreen} from '../../../utils';
+import {widthScreen, Utils} from '../../../utils';
 import {ButtonCustom} from '../../../components/button-custom';
 import {useNavigation} from '@react-navigation/native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -198,8 +198,8 @@ const styles = StyleSheet.create({
     backgroundColor: color.white,
   },
   wrapper: {
-    height: '90%',
-    marginTop: 50,
+    height: Utils.isIOS() ? '90%' : '95%',
+    marginTop: Utils.isIOS() ? 50 : 12,
     marginHorizontal: 12,
   },
 });
