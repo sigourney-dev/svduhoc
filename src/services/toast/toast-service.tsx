@@ -5,7 +5,7 @@ import Toast, {
   ToastConfigParams,
   ToastShowParams,
 } from 'react-native-toast-message';
-import {Notification, Info, Success, Warning, Error} from '../../assets/icons';
+import {Notification, Info, Success, Warning, Error} from '../../../assets/icons';
 import {color, ms, S, TS} from '../../themes';
 import {Utils} from '../../utils';
 

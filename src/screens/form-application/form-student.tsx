@@ -17,7 +17,7 @@ import {
   listServiceForm,
   listProvince,
 } from '../../enums/drop-down-list';
-import {Calendar} from '../../assets/icons';
+import {Calendar} from '../../../assets/icons';
 
 export const FormStudentScreen = (props: any) => {
   const {type} = props.route.params;

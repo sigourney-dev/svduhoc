@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {color, TS, S, vs, hs} from '../../../themes';
 import {Utils} from '../../../utils';
-import {Notification} from '../../../assets/icons';
+import {Notification} from '../../../../assets/icons';
 import {images} from '../../../enums/images';
 
 export const HeaderHome = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text, TextInput} from 'react-native';
 import {color, S, TS} from '../themes';
-import { Search } from '../assets/icons';
+import { Search } from '../../assets/icons';
 
 interface IProps {
     placeholder: string;

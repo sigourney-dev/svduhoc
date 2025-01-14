@@ -10,7 +10,7 @@ import {
 import {TS, S, color, vs, hs} from '../themes';
 import {ButtonCustom} from './button-custom';
 import {heightScreen, widthScreen} from '../utils';
-import {Close} from '../assets/icons';
+import {Close} from '../../assets/icons';
 
 interface IModalCustom {
   isVisible: boolean;

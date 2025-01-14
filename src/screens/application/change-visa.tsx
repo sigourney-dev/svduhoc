@@ -26,7 +26,7 @@ import {
 } from '../../enums/question-change-visa';
 import {formatDateMoment, convertDateMoment} from '../../utils';
 import * as formActions from '../../redux/actions';
-import {Calendar} from '../../assets/icons';
+import {Calendar} from '../../../assets/icons';
 
 export const ChangeVisaScreen = () => {
   const dispatch = useDispatch();

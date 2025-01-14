@@ -76,8 +76,8 @@ export class _AppRequest {
         params: pickBy(params, value => value !== undefined || null),
         signal,
       };
-
-      return await this.api.delete(url, config);
+      const {data} = await this.api.delete(url, config);
+      return data;
     } catch (error: any) {
       this.errorHandle(error);
       throw error;

@@ -17,7 +17,7 @@ import {
   listServiceVisaD2,
   listProvince,
 } from '../../enums/drop-down-list';
-import {Calendar} from '../../assets/icons';
+import {Calendar} from '../../../assets/icons';
 
 export const FormVisaD2Screen = (props: any) => {
   const {type} = props.route.params;

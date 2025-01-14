@@ -18,7 +18,7 @@ import {
   Hide,
   Circle,
   CircleCheckFill,
-} from '../../../assets/icons';
+} from '../../../../assets/icons';
 import {ButtonCustom} from '../../../components/button-custom';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';

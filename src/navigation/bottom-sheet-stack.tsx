@@ -9,7 +9,7 @@ import {useTranslation} from 'react-i18next';
 import {AppStackParamList, AppStackScreenProps} from './app-navigation.tsx';
 import {color, hs, ms, S, TS} from '../themes';
 import { AbroadScreen, MenuScreen, DeliveryScreen } from '../screens/index.tsx';
-import { Home, Van, Category, Global } from '../assets/icons';
+import { Home, Van, Category, Global } from '../../assets/icons';
 import { Utils, widthScreen, heightScreen } from '../utils/index.ts';
 import { useNavigation } from '@react-navigation/native';
 import { NewHomeScreen } from '../screens/home/new-home.tsx';

@@ -107,3 +107,21 @@ export const registerFailure = (payload: any) => ({
     type: types.REGISTER_FAILURE,
     payload: payload,
 });
+
+export const deleteAccountRequest = () => ({
+    type: types.DELETE_ACCOUNT_REQUEST,
+});
+
+export const deleteAccountSuccess = (payload: any) => ({
+    type: types.DELETE_ACCOUNT_SUCCESS,
+    payload: payload,
+});
+
+export const deleteAccountFailure = (payload: any) => ({
+    type: types.DELETE_ACCOUNT_FAILURE,
+    payload: payload,
+});
+
+export const removeDelete = () => ({
+    type: types.REMOVE_DELETE,
+});

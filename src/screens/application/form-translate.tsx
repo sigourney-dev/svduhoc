@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import {TabHeaderCustom, TextInputCustom, ButtonCustom, ModalLoading} from '../../components';
 import {color, S, TS} from '../../themes';
 import {widthScreen} from '../../utils';
-import {Circle, CircleCheckFill} from '../../assets/icons';
+import {Circle, CircleCheckFill} from '../../../assets/icons';
 import {useDispatch, useSelector} from 'react-redux';
 import * as formActions from '../../redux/actions';
 import {ToastService} from '../../services/toast/toast-service';

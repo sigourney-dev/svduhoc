@@ -24,3 +24,7 @@ export const confirmForgotPassword = (body: any) => {
 export const register = (body: any) => {
     return AppRequest.post(`${API_URL}/auth/register`, body);
 };
+
+export const deleteAccount = () => {
+    return AppRequest.delete(`${API_URL}/auth/delete-account`);
+}

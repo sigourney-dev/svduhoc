@@ -53,7 +53,6 @@ export const NewsScreen = (props: any) => {
 
   const onLoadMore = useCallback(() => {
     if (lastId !== '') {
-      console.log('lastId', lastId);
       dispatch(
         postActions.getListPostsRequest({
           categories: [idTitle],

@@ -3,7 +3,7 @@ import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {color, S, TS} from '../themes';
 import {Utils} from '../utils';
 import {useNavigation} from '@react-navigation/native';
-import {ArrowLeft} from '../assets/icons';
+import {ArrowLeft} from '../../assets/icons';
 
 interface IProps {
   title: string;

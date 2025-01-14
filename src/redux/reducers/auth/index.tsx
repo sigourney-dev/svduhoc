@@ -27,6 +27,9 @@ interface IAuthState {
 
   confirmForgotResult: any;
   confirmForgotError: any;
+
+  deleteResult: any;
+  deleteError: any;
 }
 
 const initialState: IAuthState = {
@@ -55,6 +58,9 @@ const initialState: IAuthState = {
 
   confirmForgotError: null,
   confirmForgotResult: null,
+
+  deleteResult: null,
+  deleteError: null,
 };
 
 const authReducers: Reducer<IAuthState, any> = (
@@ -155,6 +161,27 @@ const authReducers: Reducer<IAuthState, any> = (
         forgotPassResult: null,
         confirmForgotError: null,
         confirmForgotResult: null,
+      };
+    }
+    case types.DELETE_ACCOUNT_REQUEST: {
+      return {...state, isLoading: true, deleteError: null};
+    }
+    case types.DELETE_ACCOUNT_SUCCESS: {
+      return {...state, isLoading: false, deleteResult: action.payload};
+    }
+    case types.DELETE_ACCOUNT_FAILURE: {
+      return {...state, isLoading: false, deleteError: action.payload};
+    }
+    case types.REMOVE_DELETE: {
+      return {
+        ...state,
+        deleteError: null,
+        deleteResult: null,
+        isLogin: false,
+        isSaveLogin: false,
+        user: '',
+        pass: '',
+        profile: null,
       };
     }
     default: {

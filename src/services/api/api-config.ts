@@ -1,4 +1,4 @@
-export const API_URL = 'https://api.dummy.asia';
+export const API_URL = 'https://api.svduhoc.vn';
 
 export interface ApiConfig {
   /**
