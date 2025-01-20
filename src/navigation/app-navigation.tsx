@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   createNavigationContainerRef,
   NavigationContainer,
@@ -6,7 +7,6 @@ import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import React from 'react';
 import {BottomSheetStack} from './bottom-sheet-stack';
 import {Logger} from '../utils/logger';
 import {
@@ -32,6 +32,7 @@ import {
   FormVisaD2Screen,
   FormServiceWorker,
   ConfirmForgotScreen,
+  SplashScreen,
 } from '../screens';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -64,6 +65,7 @@ export type AppStackParamList = {
   FormVisaD2Screen: undefined;
   FormServiceWorker: undefined;
   ConfirmForgotScreen: undefined;
+  SplashScreen: undefined;
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> =
@@ -90,10 +92,11 @@ export function AppNavigation() {
 function AppStack() {
   return (
     <Stack.Navigator
+      initialRouteName="SplashScreen"
       screenOptions={{
         headerShown: false,
-      }}
-      initialRouteName="BottomSheetStack">
+      }}>
+      <Stack.Screen name="SplashScreen" component={SplashScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
       <Stack.Screen name="BottomSheetStack" component={BottomSheetStack} />

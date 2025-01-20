@@ -6,6 +6,7 @@ import {
   Image,
   KeyboardAvoidingView,
   TouchableOpacity,
+  BackHandler,
 } from 'react-native';
 import {color, S, TS} from '../../../themes';
 import {images} from '../../../enums/images';
@@ -20,7 +21,7 @@ import {
   CircleCheckFill,
 } from '../../../../assets/icons';
 import {ButtonCustom} from '../../../components/button-custom';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import * as authActions from '../../../redux/actions';
 import {ToastService} from '../../../services/toast/toast-service';
@@ -36,6 +37,17 @@ export const LoginScreen = () => {
   const [password, setPassword] = useState<string>(pass);
   const [isShowPassword, setIsShowPassword] = useState<boolean>(true);
   const [isRemember, setIsRemember] = useState<boolean>(isSaveLogin);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const backHandler = BackHandler.addEventListener(
+        'hardwareBackPress',
+        () => true // Return true to prevent default behavior
+      );
+
+      return () => backHandler.remove();
+    }, [])
+  );
 
   const onLogin = () => {
     if (username === '') {
@@ -159,9 +171,9 @@ export const LoginScreen = () => {
           colorButton={color.blue.bold}
           colorTitle={color.white}
         />
-        <TouchableOpacity style={{marginTop: 12,}} onPress={() => {navigation.goBack()}}>
+        {/* <TouchableOpacity style={{marginTop: 12,}} onPress={() => {navigation.goBack()}}>
           <Text style={{...TS.textXsSemiBold, color: color.blue.bold}}>Quay lại</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       {isLoading && <ModalLoading isVisible={isLoading}/>}
     </View>

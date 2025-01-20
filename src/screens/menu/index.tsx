@@ -249,6 +249,8 @@ export const MenuScreen = () => {
         actionRight={() => {
           setIsShowModalOut(false);
           dispatch(authActions.logoutRequest());
+          // @ts-ignore
+          navigation.navigate('LoginScreen');
           setDataStorage(KeyStores.USER_TOKEN);
           setDataStorage(KeyStores.REFRESH_TOKEN);
         }}

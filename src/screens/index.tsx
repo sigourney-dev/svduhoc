@@ -23,3 +23,4 @@ export * from './news/detail-news';
 export * from './form-application/form-visa-d2';
 export * from './form-application/form-service-worker';
 export * from './auth/confirm-forgot-pass';
+export * from './splash'

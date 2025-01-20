@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {
   Text,
   View,
@@ -7,15 +7,17 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
+  BackHandler,
 } from 'react-native';
 import {HeaderHome} from './header';
 import {color, S, TS} from '../../themes';
 import {images} from '../../enums/images';
-import {useNavigation, useIsFocused} from '@react-navigation/native';
+import {useNavigation, useIsFocused, useFocusEffect} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import * as categoryActions from '../../redux/actions';
 import {showImage, widthScreen} from '../../utils';
 import {SvgUri} from 'react-native-svg';
+import {ButtonCustom} from '../../components';
 
 export const NewHomeScreen = () => {
   const navigation = useNavigation();
@@ -23,6 +25,17 @@ export const NewHomeScreen = () => {
   const dispatch = useDispatch();
   const {isLogin} = useSelector((store: any) => store.auth);
   const {listMenuResult} = useSelector((store: any) => store.menu);
+
+  useFocusEffect(
+    useCallback(() => {
+      const backHandler = BackHandler.addEventListener(
+        'hardwareBackPress',
+        () => true // Return true to prevent default behavior
+      );
+
+      return () => backHandler.remove();
+    }, [])
+  );
 
   const ItemHome = (props: any) => {
     const {image, action, title, isDynamic} = props;
@@ -62,7 +75,7 @@ export const NewHomeScreen = () => {
     <View style={styles.container}>
       <HeaderHome />
       <View style={styles.wrapper}>
-        <View style={{...S.flexRow, ...S.justifyBetween}}>
+        {/* <View style={{...S.flexRow, ...S.justifyBetween, ...S.itemsCenter}}>
           <TouchableOpacity
             onPress={() => {
               //@ts-ignore
@@ -74,17 +87,15 @@ export const NewHomeScreen = () => {
           </TouchableOpacity>
 
           {!isLogin && (
-            <TouchableOpacity
-              onPress={() => {
-                //@ts-ignore
+            <ButtonCustom
+              title="Đăng nhập"
+              action={() => {
+                // @ts-ignore
                 navigation.navigate('LoginScreen');
-              }}>
-              <Text style={{...TS.textSmSemiBold, color: color.red.bold}}>
-                Đăng nhập
-              </Text>
-            </TouchableOpacity>
+              }}
+            />
           )}
-        </View>
+        </View> */}
 
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -188,7 +199,9 @@ export const NewHomeScreen = () => {
                   data={listMenuResult.data}
                   renderItem={({item, index}) => {
                     return (
-                      <View key={index} style={{width: widthScreen / 4, marginVertical: 8,}}>
+                      <View
+                        key={index}
+                        style={{width: widthScreen / 4, marginVertical: 8}}>
                         <ItemHome
                           isDynamic
                           image={showImage(item.imagePath)}
