@@ -51,30 +51,34 @@ export const CommonScreen = (props: any) => {
   };
 
   const renderItem = (item: any) => {
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          // @ts-ignore
-          navigation.navigate('DetailNewsScreen', {idPost: item.item.postId});
-        }}>
-        <Image
-          source={{uri: showImage(item.item.imagePath)}}
-          style={styles.image}
-        />
-      </TouchableOpacity>
-    );
+    if (item.status === 'ACTIVE') {
+      return (
+        <TouchableOpacity
+          onPress={() => {
+            // @ts-ignore
+            navigation.navigate('DetailNewsScreen', {idPost: item.item.postId});
+          }}>
+          <Image
+            source={{uri: showImage(item.item.imagePath)}}
+            style={styles.image}
+          />
+        </TouchableOpacity>
+      );
+    } else {
+      return null;
+    }
   };
 
   useEffect(() => {
     dispatch(categoryActions.removePostResult());
-  } ,[isFocused]);
+  }, [isFocused]);
 
   useEffect(() => {
-      dispatch(
-        categoryActions.getBannerCategoryRequest({
-          type: type,
-        }),
-      );
+    dispatch(
+      categoryActions.getBannerCategoryRequest({
+        type: type,
+      }),
+    );
   }, [type, title]);
 
   useEffect(() => {

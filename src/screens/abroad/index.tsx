@@ -12,13 +12,14 @@ import {TabHeaderCustom} from '../../components/tab-header-custom';
 import {S, TS, color} from '../../themes';
 import {useDispatch, useSelector} from 'react-redux';
 import * as abroadActions from '../../redux/actions';
-import {useNavigation} from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {ToastService} from '../../services/toast/toast-service';
 import {showImage, Utils} from '../../utils';
 
 export const AbroadScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
   const {listAbroadResult, listAbroadError} = useSelector(
     (store: any) => store.abroad,
   );
@@ -88,41 +89,48 @@ export const AbroadScreen = () => {
     dispatch(
       abroadActions.getListAbroadRequest({
         pageSize: 10,
-      })
+      }),
     );
     setRefreshing(false);
   };
 
   const renderItem = (item: any, index: any) => {
-    return (
-      <TouchableOpacity
-        style={styles.wrapperItem}
-        key={index}
-        onPress={() => {
-          // @ts-ignore
-          navigation.navigate('DetailNewsScreen', {
-            idPost: item.id,
-            type: 'ABROAD',
-          });
-        }}>
-        <View style={{padding: 8, flex: 2}}>
-          <Text
-            style={{
-              ...TS.textSmSemiBold,
-              textTransform: 'uppercase',
-              textAlign: 'left',
-            }}>
-            {item.title}
-          </Text>
-        </View>
-        <Image style={styles.image} source={{uri: showImage(item.imagePath)}} />
-      </TouchableOpacity>
-    );
+    if (item.status === 'ACTIVE') {
+      return (
+        <TouchableOpacity
+          style={styles.wrapperItem}
+          key={index}
+          onPress={() => {
+            // @ts-ignore
+            navigation.navigate('DetailNewsScreen', {
+              idPost: item.id,
+              type: 'ABROAD',
+            });
+          }}>
+          <View style={{padding: 8, flex: 2}}>
+            <Text
+              style={{
+                ...TS.textSmSemiBold,
+                textTransform: 'uppercase',
+                textAlign: 'left',
+              }}>
+              {item.title}
+            </Text>
+          </View>
+          <Image
+            style={styles.image}
+            source={{uri: showImage(item.imagePath)}}
+          />
+        </TouchableOpacity>
+      );
+    } else {
+      return null;
+    }
   };
 
   return (
     <View style={styles.container}>
-      <TabHeaderCustom title={'Du học'} />
+      <TabHeaderCustom title={'Tin du học'} />
       <View>
         <FlatList
           showsVerticalScrollIndicator={false}
@@ -146,7 +154,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.grey.light,
   },
   flatList: {
-    height: Utils.isIOS() ? '89%' : '93%',
+    height: Utils.isIOS() ? '89%' : '92%',
   },
   wrapper: {
     marginBottom: 8,
@@ -154,15 +162,11 @@ const styles = StyleSheet.create({
   wrapperItem: {
     ...S.flexRow,
     ...S.itemsCenter,
-    borderWidth: 1,
-    borderColor: color.white,
-    borderRadius: 12,
     marginTop: 8,
-    marginHorizontal: 12,
+    paddingHorizontal: 12,
     backgroundColor: color.white,
   },
   image: {
-    // ...S.flex1,
     width: 160,
     height: 120,
     borderRadius: 16,

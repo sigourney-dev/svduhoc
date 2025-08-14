@@ -10,7 +10,7 @@ export const InfoScreen = () => {
       <View style={styles.wrapper}>
         <Text style={styles.title}>Trụ sở chính</Text>
         <Text style={styles.content}>
-          Tầng 3 Trường Trung Cấp Nghệ Thuật Xiếc Và Tạp Kỹ Việt Nam
+          Tầng 6, Toà MD Complex, số 68 Nguyễn Cơ Thạch, Phường Từ Liêm, TP Hà Nội
         </Text>
 
         <Text style={styles.title}>Văn phòng tiếp nhận hồ sơ</Text>
@@ -25,8 +25,6 @@ export const InfoScreen = () => {
             Tầng 3 Trường Trung Cấp Nghệ Thuật Xiếc Và Tạp Kỹ Việt Nam
           </Text>
           <Text style={styles.content}>Mr Tuyển - 0969.211.556</Text>
-          <Text style={styles.content}>Mr Sơn - 0912.116.368</Text>
-          <Text style={styles.content}>Mr Dần - 0962.442.858</Text>
         </View>
 
         <View

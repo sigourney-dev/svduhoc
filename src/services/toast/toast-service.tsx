@@ -5,7 +5,13 @@ import Toast, {
   ToastConfigParams,
   ToastShowParams,
 } from 'react-native-toast-message';
-import {Notification, Info, Success, Warning, Error} from '../../../assets/icons';
+import {
+  Notification,
+  Info,
+  Success,
+  Warning,
+  Error,
+} from '../../../assets/icons';
 import {color, ms, S, TS} from '../../themes';
 import {Utils} from '../../utils';
 
@@ -66,9 +72,7 @@ function ToastComponent(props: ToastComponentProps) {
     [ToastType.NOTIFICATION]: <Notification {...iconProps} />,
     [ToastType.SUCCESS]: <Success {...iconProps} />,
     [ToastType.WARNING]: <Warning {...iconProps} />,
-    [ToastType.ERROR]: (
-      <Error {...iconProps}/>
-    ),
+    [ToastType.ERROR]: <Error {...iconProps} />,
   };
 
   const styles = StyleSheet.create({
@@ -81,7 +85,9 @@ function ToastComponent(props: ToastComponentProps) {
       padding: ms(16),
       borderRadius: ms(16),
       marginHorizontal: ms(24),
-      backgroundColor: color.grey.light,
+      backgroundColor: color.white,
+      borderColor: color.grey.light,
+      borderWidth: 1,
     },
     iconContainer: {
       ...S.itemsCenter,

@@ -109,7 +109,7 @@ export const BottomSheetStack = () => {
     },
     {
       id: 1,
-      title: 'Du học',
+      title: 'Tin tức',
       icon: 'abroad',
       name: 'AbroadScreen',
       component: AbroadScreen,
@@ -137,7 +137,7 @@ export const BottomSheetStack = () => {
           headerShown: false,
           tabBarShowLabel: false,
           tabBarStyle: {
-            height: Utils.isIOS() ? hs(heightScreen / 11) : 64,
+            height: Utils.isIOS() ? hs(heightScreen / 11) : 70,
             width: widthScreen,
             backgroundColor: color.white,
           },
@@ -151,7 +151,7 @@ export const BottomSheetStack = () => {
               tabBarIcon: ({focused}) => {
                 return (
                   <TouchableOpacity
-                    style={{paddingHorizontal: Utils.isIOS() ? 4 : 28}}
+                    style={{paddingHorizontal: Utils.isIOS() ? 4 : 28, marginTop: 12}}
                     onPress={() => {
                       handleTabChange(tab.id);
                       // @ts-ignore
@@ -168,7 +168,7 @@ export const BottomSheetStack = () => {
       <Animated.View
         style={{
           position: 'absolute',
-          bottom: Utils.isIOS() ? hs(heightScreen / 11) : 64,
+          bottom: Utils.isIOS() ? hs(heightScreen / 11) : 71,
           transform: [{translateX: translateX}],
           width: widthScreen / 4,
           height: 2,

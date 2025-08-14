@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {color, S, TS} from '../themes';
-import {Utils} from '../utils';
+import {Utils, widthScreen} from '../utils';
 import {useNavigation} from '@react-navigation/native';
 import {ArrowLeft} from '../../assets/icons';
 
@@ -19,7 +19,7 @@ export const TabHeaderCustom = (props: IProps) => {
     <View style={styles.container}>
       {isBack ? (
         <TouchableOpacity
-          style={{marginTop: Utils.isIOS() ? 40 : 0}}
+          style={{marginTop: 50}}
           onPress={() => {
             navigation.goBack();
           }}>
@@ -28,11 +28,11 @@ export const TabHeaderCustom = (props: IProps) => {
       ) : (
         <View />
       )}
-      <Text style={[styles.title, {marginRight: isBack ? 16 : 0}]}>{title}</Text>
+      <Text style={[styles.title, {marginRight: isBack ? 16 : 30, width: isBack ? widthScreen * 0.8 : '100%',}]}>{title}</Text>
       {iconRight ? (
         <TouchableOpacity
           onPress={actionRight}
-          style={{marginTop: Utils.isIOS() ? 40 : 0}}>
+          style={{marginTop: 50}}>
           {iconRight}
         </TouchableOpacity>
       ) : (
@@ -46,14 +46,18 @@ const styles = StyleSheet.create({
   container: {
     ...S.flexRow,
     paddingHorizontal: 12,
-    height: Utils.isIOS() ? 90 : 50,
+    height: 86,
     backgroundColor: color.blue.bold,
     ...S.itemsCenter,
     ...S.justifyBetween,
   },
   title: {
-    marginTop: Utils.isIOS() ? 40 : 0,
+    
+    marginTop: 50,
+    marginBottom: 8,
     ...TS.textLgMedium,
     color: color.white,
+    textTransform: 'uppercase',
+    textAlign: 'center',
   },
 });

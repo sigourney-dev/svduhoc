@@ -21,11 +21,11 @@ export const HeaderHome = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: Utils.isIOS() ? 100 : 60,
-    paddingHorizontal: hs(12),
+    height: Utils.isIOS() ? 100 : 90,
+    paddingHorizontal: 12,
     backgroundColor: color.blue.bold,
-    paddingTop: vs(Utils.isIOS() ? 50 : 12),
-    paddingBottom: vs(12),
+    paddingTop: 50,
+    paddingBottom: 12,
     ...S.flexRow,
     ...S.justifyBetween,
     ...S.itemsCenter,
