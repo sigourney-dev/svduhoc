@@ -1,5 +1,5 @@
 export const images = {
-    logoLogin: require('../../assets/images/logologin.jpg'),
+    logoLogin: require('../../assets/images/logologin.png'),
     mem1: require('../../assets/images/mem1.jpg'),
     mem2: require('../../assets/images/mem2.jpg'),
     mem3: require('../../assets/images/mem3.jpg'),

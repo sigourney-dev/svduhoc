@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
     padding: 12,
-    borderColor: color.blue.bold,
+    borderColor: color.green.bold,
     borderRadius: 12,
     ...S.flexRow,
     marginVertical: 8,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     top: -24,
-    color: color.blue.bold,
+    color: color.green.bold,
     backgroundColor: color.white,
   },
   icon: {

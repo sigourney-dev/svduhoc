@@ -11,7 +11,7 @@ const Colors = {
       light: '#99CCFF',
   },
   green: {
-      bold: '#00B300',
+      bold: '#008C45',
       light: '#90EE90',
   },
   orange: {
