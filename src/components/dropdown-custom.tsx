@@ -82,14 +82,14 @@ const styles = StyleSheet.create({
 
   dropdown: {
     borderWidth: 1,
-    borderColor: color.blue.bold,
+    borderColor: color.green.bold,
     borderRadius: 12,
     padding: 12,
     color: color.black,
   },
   dropdownWith: {
     borderWidth: 1,
-    borderColor: color.blue.bold,
+    borderColor: color.green.bold,
     borderRadius: 12,
     padding: 12,
     height: 50,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   title: {
     backgroundColor: color.white,
     ...TS.textSmSemiBold,
-    color: color.blue.bold,
+    color: color.green.bold,
     position: 'absolute',
     left: 12,
    

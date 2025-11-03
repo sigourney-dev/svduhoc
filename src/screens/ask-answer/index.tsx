@@ -31,7 +31,7 @@ export const AskAnswerScreen = () => {
                 <ButtonCustom
                     action={() => {}}
                     title='Đăng ký'
-                    colorButton={color.blue.bold}
+                    colorButton={color.green.bold}
                     colorTitle={color.white}
                 />
                 </View>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         ...TS.textXlBold,
         textTransform: 'uppercase',
         textAlign: 'center',
-        color: color.blue.bold,
+        color: color.green.bold,
       },
       content: {
         textAlign: 'center',

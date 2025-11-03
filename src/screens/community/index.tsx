@@ -16,7 +16,7 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import * as questionActions from '../../redux/actions';
 import {ToastService} from '../../services/toast/toast-service';
-import {widthScreen} from '../../utils';
+import {heightScreen, widthScreen} from '../../utils';
 
 export const CommunityScreen = () => {
   const dispatch = useDispatch();
@@ -104,7 +104,7 @@ export const CommunityScreen = () => {
           <ButtonCustom
             title="Gửi câu hỏi"
             action={onSubmit}
-            colorButton={color.blue.bold}
+            colorButton={color.green.bold}
             colorTitle={color.white}
           />
         </View>
@@ -142,16 +142,17 @@ export const CommunityScreen = () => {
         <View
           style={{
             borderWidth: 1,
-            borderColor: color.grey.bold,
-            backgroundColor: color.grey.bold,
+            borderColor: color.grey.light,
+            backgroundColor: color.grey.light,
             padding: 8,
             borderRadius: 12,
             alignSelf: 'flex-start',
+            marginBottom: 4,
           }}>
-          <Text style={{...TS.textSmSemiBold, color: color.white}}>
+          <Text style={{...TS.textSmSemiBold, color: color.black}}>
             {item.fullName}
           </Text>
-          <Text style={{...TS.textSmRegular, color: color.white}}>
+          <Text style={{...TS.textSmRegular, color: color.black}}>
             {item.content}
           </Text>
         </View>
@@ -160,8 +161,8 @@ export const CommunityScreen = () => {
             style={{
               borderWidth: 1,
               marginVertical: 4,
-              borderColor: color.blue.bold,
-              backgroundColor: color.blue.bold,
+              borderColor: color.green.bold,
+              backgroundColor: color.green.bold,
               padding: 8,
               borderRadius: 12,
               alignSelf: 'flex-end',
@@ -202,7 +203,7 @@ export const CommunityScreen = () => {
   const renderFooter = useMemo(() => {
     if (listQuestionResult) {
       if (listQuestionResult.hasNext) {
-        return <ActivityIndicator size={'small'} color={color.blue.bold} />;
+        return <ActivityIndicator size={'small'} color={color.green.bold} />;
       } else {
         return (
           <View style={{...S.itemsCenter, marginVertical: 8}}>
@@ -246,11 +247,11 @@ export const CommunityScreen = () => {
       <TabHeaderCustom title="Cộng đồng" isBack />
       {listQuestionResult && listQuestion && countQuestionResult && (
         <View>
-          <View style={{height: '82%', marginHorizontal: 12}}>
+          <View style={{marginHorizontal: 4, marginVertical: 8, height: heightScreen * 0.75}}>
             <Text
               style={{
                 ...TS.textSmSemiBold,
-                marginTop: 12,
+                marginTop: 0,
                 textAlign: 'center',
               }}>
               Đã có {countQuestionResult} câu hỏi gửi đến cho SVDUHOC.VN
@@ -269,7 +270,7 @@ export const CommunityScreen = () => {
             <ButtonCustom
               title="Đặt câu hỏi cho SVDUHOC.VN"
               action={() => setIsShowModalForm(true)}
-              colorButton={color.blue.bold}
+              colorButton={color.green.bold}
               colorTitle={color.white}
               width={widthScreen * 0.6}
             />

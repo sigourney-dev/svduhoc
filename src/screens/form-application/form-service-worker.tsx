@@ -69,7 +69,7 @@ export const FormServiceWorker = () => {
           <Text
             style={{
               ...TS.textSmSemiBold,
-              color: color.blue.bold,
+              color: color.green.bold,
               textAlign: 'center',
               marginTop: 12,
             }}>

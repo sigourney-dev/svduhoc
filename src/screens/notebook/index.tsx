@@ -51,41 +51,6 @@ export const NotebookScreen = () => {
     },
   ];
 
-  const dataContent = [
-    {
-      image: images.lb1,
-      title: 'Giới thiệu hiệp hội giao lưu văn hoá Việt - Hàn',
-    },
-    {
-      image: images.lb2,
-      title: 'Giới thiệu hiệp hội giao lưu văn hoá Việt - Hàn',
-    },
-    {
-      image: images.lb3,
-      title: 'Giới thiệu hiệp hội giao lưu văn hoá Việt - Hàn',
-    },
-    {
-      image: images.lb4,
-      title: 'Giới thiệu hiệp hội giao lưu văn hoá Việt - Hàn',
-    },
-    {
-      image: images.lb5,
-      title: 'Giới thiệu hiệp hội giao lưu văn hoá Việt - Hàn',
-    },
-    {
-      image: images.lb6,
-      title: 'Giới thiệu hiệp hội giao lưu văn hoá Việt - Hàn',
-    },
-    {
-      image: images.lb7,
-      title: 'Giới thiệu hiệp hội giao lưu văn hoá Việt - Hàn',
-    },
-    {
-      image: images.lb9,
-      title: 'Giới thiệu hiệp hội giao lưu văn hoá Việt - Hàn',
-    },
-  ];
-
   const ItemContent = (props: any) => {
     const {item} = props;
     return (
@@ -115,7 +80,7 @@ export const NotebookScreen = () => {
           ...S.itemsCenter,
           ...S.justifyCenter,
           borderWidth: 1,
-          borderColor: color.blue.bold,
+          borderColor: color.green.bold,
           borderRadius: 12,
           padding: 12,
           margin: 8,
@@ -145,7 +110,7 @@ export const NotebookScreen = () => {
           );
         }}
       />
-      <FlatList
+      {/* <FlatList
         showsVerticalScrollIndicator={false}
         data={dataContent}
         style={{marginHorizontal: 12,}}
@@ -156,7 +121,7 @@ export const NotebookScreen = () => {
             </View>
           );
         }}
-      />
+      /> */}
     </View>
   );
 };

@@ -27,6 +27,7 @@ import {
 import {formatDateMoment, convertDateMoment} from '../../utils';
 import * as formActions from '../../redux/actions';
 import {Calendar} from '../../../assets/icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const ChangeVisaScreen = () => {
   const dispatch = useDispatch();
@@ -109,7 +110,7 @@ export const ChangeVisaScreen = () => {
       <View>
         <View style={styles.wrapperModalText}>
           <Text
-            style={{...TS.text2XlBold, fontSize: 32, color: color.red.bold}}>
+            style={{...TS.text2XlBold, fontSize: 30, color: color.red.bold}}>
             {point}
           </Text>
         </View>
@@ -134,7 +135,7 @@ export const ChangeVisaScreen = () => {
             }
             keyboardType="default"
             redDot
-            iconLeft={<Calendar color={color.blue.bold} />}
+            iconLeft={<Calendar color={color.green.bold} />}
             actionIconLeft={() => setIsDateBirthDay(true)}
             notEdit
           />
@@ -272,6 +273,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: color.white,
     ...S.flex1,
+    marginBottom: 48,
   },
   wrapper: {
     marginVertical: 12,

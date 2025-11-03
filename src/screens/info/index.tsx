@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     ...TS.textXlBold,
     textTransform: 'uppercase',
     textAlign: 'center',
-    color: color.blue.bold,
+    color: color.green.bold,
   },
   point: {
     marginTop: 12,

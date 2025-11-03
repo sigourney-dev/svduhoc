@@ -3,6 +3,7 @@ import {View, StyleSheet, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {images} from '../../enums/images';
 import {color, S} from '../../themes';
+import { heightScreen, widthScreen } from '../../utils';
 
 export const SplashScreen = () => {
   const navigation = useNavigation();
@@ -19,7 +20,7 @@ export const SplashScreen = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={images.logoLogin}
+        source={images.splash}
         style={styles.logo}
         resizeMode="contain"
       />
@@ -31,11 +32,10 @@ const styles = StyleSheet.create({
   container: {
     ...S.flex1,
     backgroundColor: color.white,
-    ...S.justifyCenter,
-    ...S.itemsCenter,
   },
   logo: {
-    width: 300,
-    height: 200,
+    width: widthScreen,
+    height: heightScreen,
+    resizeMode: 'contain'
   },
 }); 

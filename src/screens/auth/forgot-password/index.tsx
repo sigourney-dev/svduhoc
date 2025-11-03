@@ -44,7 +44,7 @@ export const ForgotPasswordScreen = () => {
             style={{
               ...TS.text2XlBold,
               textTransform: 'uppercase',
-              color: color.blue.bold,
+              color: color.green.bold,
             }}>
             Quên mật khẩu
           </Text>
@@ -62,6 +62,7 @@ export const ForgotPasswordScreen = () => {
               setEmail(text)
             }
             keyboardType={'default'}
+            redDot
           />
       </View>
 
@@ -69,11 +70,11 @@ export const ForgotPasswordScreen = () => {
         <ButtonCustom
         action={onSubmit}
         title='Xác nhận'
-        colorButton={color.blue.bold}
+        colorButton={color.green.bold}
         colorTitle={color.white}
          />
           <TouchableOpacity style={{marginTop: 12,}} onPress={() => {navigation.goBack()}}>
-          <Text style={{...TS.textXsSemiBold, color: color.blue.bold}}>Quay lại</Text>
+          <Text style={{...TS.textSmSemiBold, color: color.green.bold}}>Quay lại</Text>
         </TouchableOpacity>
       </View>
      

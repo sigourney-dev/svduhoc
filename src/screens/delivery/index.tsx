@@ -126,7 +126,7 @@ export const DeliveryScreen = () => {
           <ButtonCustom
             title="Tư vấn"
             action={onSubmitDelivery}
-            colorButton={color.blue.bold}
+            colorButton={color.green.bold}
             colorTitle={color.white}
           />
         </View>

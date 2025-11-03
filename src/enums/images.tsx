@@ -35,4 +35,5 @@ export const images = {
     padlock: require('../../assets/images/padlock.png'),
     profile: require('../../assets/images/profile.png'),
     deleteAccount: require('../../assets/images/delete.png'),
+    splash: require('../../assets/images/splash.png'),
 };

@@ -32,7 +32,7 @@ export const ButtonCustom = (props: IProps) => {
         {
           width: width || hs(140),
           height: height || vs(50),
-          backgroundColor: colorButton || color.blue.bold,
+          backgroundColor: colorButton || color.green.bold,
           borderColor: color.blue.light,
           borderWidth: changeBorderColor ? 3 : 0,
         },

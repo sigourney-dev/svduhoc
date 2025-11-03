@@ -65,10 +65,10 @@ const styles = StyleSheet.create({
   },
   title: {
     ...TS.textLgSemiBold,
-    color: color.blue.bold,
+    color: color.green.bold,
   },
   content: {
     ...TS.textSmSemiBold,
-    color: color.blue.bold,
+    color: color.green.bold,
   },
 });

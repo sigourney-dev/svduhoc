@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   webview: {
     width: widthScreen * 0.95,
-    height: heightScreen * 0.86,
+    height: heightScreen * 0.82,
     ...S.flex1,
     margin: 12,
   },

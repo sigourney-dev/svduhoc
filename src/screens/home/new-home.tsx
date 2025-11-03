@@ -12,7 +12,11 @@ import {
 import {HeaderHome} from './header';
 import {color, S, TS} from '../../themes';
 import {images} from '../../enums/images';
-import {useNavigation, useIsFocused, useFocusEffect} from '@react-navigation/native';
+import {
+  useNavigation,
+  useIsFocused,
+  useFocusEffect,
+} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import * as categoryActions from '../../redux/actions';
 import {showImage, widthScreen} from '../../utils';
@@ -30,11 +34,11 @@ export const NewHomeScreen = () => {
     useCallback(() => {
       const backHandler = BackHandler.addEventListener(
         'hardwareBackPress',
-        () => true // Return true to prevent default behavior
+        () => true, // Return true to prevent default behavior
       );
 
       return () => backHandler.remove();
-    }, [])
+    }, []),
   );
 
   const ItemHome = (props: any) => {
@@ -101,7 +105,7 @@ export const NewHomeScreen = () => {
           showsVerticalScrollIndicator={false}
           style={{height: '90%'}}>
           <View>
-            <Text style={{...TS.textLgSemiBold}}>Tính năng chính</Text>
+            <Text style={{...TS.textLgSemiBold}}>Dịch vụ</Text>
             <View
               style={{...S.flexRow, ...S.justifyBetween, marginVertical: 8}}>
               <ItemHome
@@ -165,9 +169,10 @@ export const NewHomeScreen = () => {
                 title={'Sổ tay'}
                 action={() => {
                   // @ts-ignore
-                  navigation.navigate('NotebookScreen');
+                  // navigation.navigate('NotebookScreen');
                 }}
               />
+             
               <ItemHome
                 image={images.communication}
                 title={'Cộng đồng'}
@@ -184,43 +189,52 @@ export const NewHomeScreen = () => {
             </View>
           </View>
 
-          <View>
-            <Text style={{...TS.textLgSemiBold, marginTop: 12}}>
-              Chỉ có ở SVDUHOC.VN
-            </Text>
-            <View
-              style={{
-                marginVertical: 12,
-              }}>
-              {listMenuResult && (
-                <FlatList
-                  numColumns={4}
-                  scrollEnabled={false}
-                  data={listMenuResult.data}
-                  renderItem={({item, index}) => {
-                    return (
-                      <View
-                        key={index}
-                        style={{width: widthScreen / 4, marginVertical: 8}}>
-                        <ItemHome
-                          isDynamic
-                          image={showImage(item.imagePath)}
-                          title={item.name}
-                          action={() => {
-                            //@ts-ignore
-                            navigation.navigate('IconHome', {
-                              title: item.name,
-                              link: item.link,
-                            });
-                          }}
-                        />
-                      </View>
-                    );
-                  }}
-                />
-              )}
-            </View>
-          </View>
+          {listMenuResult &&
+            listMenuResult.data &&
+            listMenuResult.data.length !== 0 && (
+              <View>
+                <Text style={{...TS.textLgSemiBold, marginTop: 12}}>
+                  Chỉ có ở SVDUHOC.VN
+                </Text>
+                <View
+                  style={{
+                    marginVertical: 12,
+                  }}>
+                  {listMenuResult &&
+                    listMenuResult.data &&
+                    listMenuResult.data.length !== 0 && (
+                      <FlatList
+                        numColumns={4}
+                        scrollEnabled={false}
+                        data={listMenuResult.data}
+                        renderItem={({item, index}) => {
+                          return (
+                            <View
+                              key={index}
+                              style={{
+                                width: widthScreen / 4,
+                                marginVertical: 8,
+                              }}>
+                              <ItemHome
+                                isDynamic
+                                image={showImage(item.imagePath)}
+                                title={item.name}
+                                action={() => {
+                                  //@ts-ignore
+                                  navigation.navigate('IconHome', {
+                                    title: item.name,
+                                    link: item.link,
+                                  });
+                                }}
+                              />
+                            </View>
+                          );
+                        }}
+                      />
+                    )}
+                </View>
+              </View>
+            )}
         </ScrollView>
       </View>
     </View>

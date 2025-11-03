@@ -44,7 +44,7 @@ interface TabBarIconProps {
 
 export function TabBarIcon(props: TabBarIconProps) {
   const {focused, tab} = props;
-  const colorFocused = focused ? color.blue.bold : color.grey.bold;
+  const colorFocused = focused ? color.green.bold : color.grey.bold;
 
   const styles = StyleSheet.create({
     tabBarIconContainer: {
@@ -137,7 +137,7 @@ export const BottomSheetStack = () => {
           headerShown: false,
           tabBarShowLabel: false,
           tabBarStyle: {
-            height: Utils.isIOS() ? hs(heightScreen / 11) : 70,
+            height: Utils.isIOS() ? hs(heightScreen / 11) : 110,
             width: widthScreen,
             backgroundColor: color.white,
           },
@@ -168,11 +168,11 @@ export const BottomSheetStack = () => {
       <Animated.View
         style={{
           position: 'absolute',
-          bottom: Utils.isIOS() ? hs(heightScreen / 11) : 71,
+          bottom: Utils.isIOS() ? hs(heightScreen / 11) : 109,
           transform: [{translateX: translateX}],
           width: widthScreen / 4,
           height: 2,
-          backgroundColor: color.blue.bold,
+          backgroundColor: color.green.bold,
         }}
       />
     </>

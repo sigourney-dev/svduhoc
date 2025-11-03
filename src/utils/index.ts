@@ -133,3 +133,10 @@ export const convertProvince = (object: any) => {
   }));
   return provinces;
 };
+
+export const formatUniqueList = (items: any[], uniqueField: string) => {
+  return items.filter(
+    (item, index, self) =>
+      index === self.findIndex(t => t[uniqueField] === item[uniqueField]),
+  );
+};

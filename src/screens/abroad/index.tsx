@@ -43,7 +43,7 @@ export const AbroadScreen = () => {
   const renderFooter = useMemo(() => {
     if (listAbroadResult) {
       if (listAbroadResult.hasNext) {
-        return <ActivityIndicator size={'small'} color={color.blue.bold} />;
+        return <ActivityIndicator size={'small'} color={color.green.bold} />;
       } else {
         return (
           <View style={{...S.itemsCenter, marginVertical: 8}}>

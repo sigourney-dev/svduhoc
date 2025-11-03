@@ -100,7 +100,7 @@ export const ApplicationScreen = () => {
   return (
     <View style={styles.container}>
       <TabHeaderCustom title="Dịch vụ đăng ký" isBack />
-      <ScrollView style={styles.wrapper}>
+      <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
         <View style={styles.wrapperContent}>
           <Text style={styles.title}>Dịch vụ cộng đồng</Text>
           <ItemContent
@@ -184,6 +184,7 @@ export const ApplicationScreen = () => {
 const styles = StyleSheet.create({
   container: {
     ...S.flex1,
+    marginBottom: 48,
   },
   wrapper: {
     marginHorizontal: 12,

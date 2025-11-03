@@ -80,7 +80,7 @@ export const NewsScreen = (props: any) => {
   const renderFooter = useMemo(() => {
     if (postResult) {
       if (postResult.hasNext) {
-        return <ActivityIndicator size={'small'} color={color.blue.bold} />;
+        return <ActivityIndicator size={'small'} color={color.green.bold} />;
       } else {
         return (
           <View style={{...S.itemsCenter, marginVertical: 8}}>

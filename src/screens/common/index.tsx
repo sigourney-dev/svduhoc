@@ -12,7 +12,7 @@ import {color, S, TS} from '../../themes';
 import {TabHeaderCustom} from '../../components/tab-header-custom';
 import Carousel from 'react-native-snap-carousel';
 import {images} from '../../enums/images';
-import {widthScreen, heightScreen} from '../../utils';
+import {widthScreen, heightScreen, formatUniqueList} from '../../utils';
 import {useSelector, useDispatch} from 'react-redux';
 import * as categoryActions from '../../redux/actions';
 import {showImage} from '../../utils';
@@ -51,9 +51,10 @@ export const CommonScreen = (props: any) => {
   };
 
   const renderItem = (item: any) => {
-    if (item.status === 'ACTIVE') {
+    if (item.item.status === 'ACTIVE') {
       return (
         <TouchableOpacity
+          key={item.item.id}
           onPress={() => {
             // @ts-ignore
             navigation.navigate('DetailNewsScreen', {idPost: item.item.postId});
@@ -84,10 +85,17 @@ export const CommonScreen = (props: any) => {
   useEffect(() => {
     if (categoryResult) {
       if (categoryResult.categories) {
-        setCategoryList([...categoryList, ...categoryResult.categories]);
+        setCategoryList(
+          formatUniqueList(
+            [...categoryList, ...categoryResult.categories],
+            'id',
+          ),
+        );
       }
       if (categoryResult.banners) {
-        setBannerList([...bannerList, ...categoryResult.banners]);
+        setBannerList(
+          formatUniqueList([...bannerList, ...categoryResult.banners], 'id'),
+        );
       }
     }
   }, [categoryResult]);
@@ -96,17 +104,19 @@ export const CommonScreen = (props: any) => {
     <View style={styles.container}>
       <TabHeaderCustom title={title} isBack />
       <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
-        <Carousel
-          sliderWidth={widthScreen}
-          sliderHeight={widthScreen}
-          itemWidth={widthScreen}
-          data={bannerList}
-          renderItem={renderItem}
-          hasParallaxImages={true}
-          autoplay
-          loop
-          activeAnimationType="decay"
-        />
+        {bannerList.length !== 0 && (
+          <Carousel
+            sliderWidth={widthScreen}
+            sliderHeight={widthScreen}
+            itemWidth={widthScreen}
+            data={bannerList}
+            renderItem={renderItem}
+            hasParallaxImages={true}
+            autoplay
+            loop
+            activeAnimationType="decay"
+          />
+        )}
 
         {chooseList() && (
           <FlatList
@@ -156,7 +166,7 @@ export const CommonScreen = (props: any) => {
                   <Text
                     style={{
                       ...TS.textBaseBold,
-                      color: color.blue.bold,
+                      color: color.green.bold,
                       marginVertical: 8,
                     }}>
                     {item.name}

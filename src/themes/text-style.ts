@@ -26,7 +26,7 @@ const TextStyle = StyleSheet.create({
     fontFamily: 'Montserrat-Medium',
     fontSize: ms(12),
     lineHeight: ms(16),
-    color: color.blue.bold,
+    color: color.green.bold,
   },
   textXsMediumRed: {
     fontFamily: 'Montserrat-Medium',

@@ -151,11 +151,11 @@ export const MenuScreen = () => {
           type="HANHCHINH"
           image={images.election}
         />
-        <ItemMenu
+        {/* <ItemMenu
           title="Sổ tay"
           direction="NotebookScreen"
           image={images.notebook}
-        />
+        /> */}
         <ItemMenu
           title="Hỏi đáp"
           direction="CommunityScreen"
@@ -228,7 +228,7 @@ export const MenuScreen = () => {
                 setIsShowModalOut(true);
               }}
               title="Đăng xuất"
-              colorButton={color.blue.bold}
+              colorButton={color.green.bold}
               colorTitle={color.white}
             />
           </View>
@@ -236,7 +236,7 @@ export const MenuScreen = () => {
       </ScrollView>
       <View style={{...S.itemsCenter, ...S.justifyCenter}}>
         <Text style={{...TS.textXsSemiBold, color: color.grey.light}}>
-          Version 1.0
+          Version 2.0
         </Text>
       </View>
 

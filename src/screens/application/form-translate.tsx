@@ -143,7 +143,7 @@ export const FormTranslateScreen = () => {
             title="Gửi đơn đăng ký"
             action={onSubmitTranslate}
             width={widthScreen * 0.8}
-            colorButton={color.blue.bold}
+            colorButton={color.green.bold}
             colorTitle={color.white}
           />
         </View>

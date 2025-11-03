@@ -78,7 +78,7 @@ export const ModalCustom = (props: IModalCustom) => {
                   </View>
                 )}
                 {buttonRight && (
-                  <ButtonCustom title={buttonRight} action={actionRight} />
+                  <ButtonCustom title={buttonRight} action={actionRight} colorButton={color.green.bold}/>
                 )}
               </View>
             </View>

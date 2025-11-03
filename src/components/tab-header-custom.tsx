@@ -46,10 +46,12 @@ const styles = StyleSheet.create({
   container: {
     ...S.flexRow,
     paddingHorizontal: 12,
-    height: 86,
-    backgroundColor: color.blue.bold,
+    height: 90,
+    backgroundColor: color.green.bold,
     ...S.itemsCenter,
     ...S.justifyBetween,
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
   },
   title: {
     

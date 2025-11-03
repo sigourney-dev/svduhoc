@@ -10,7 +10,7 @@ export const ModalLoading = (props: any) => {
     <View style={styles.container}>
       <Modal animationType="slide" transparent={true} visible={isVisible}>
         <View style={styles.modalView}>
-        <ActivityIndicator size={'large'} color={color.blue.bold}/>
+        <ActivityIndicator size={'large'} color={color.green.bold}/>
         </View>
       </Modal>
     </View>

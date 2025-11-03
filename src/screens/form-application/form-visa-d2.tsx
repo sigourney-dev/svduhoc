@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View, StyleSheet, ScrollView} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  ScrollView,
+  KeyboardAvoidingView,
+} from 'react-native';
 import {ButtonCustom, ModalLoading, TabHeaderCustom} from '../../components';
 import {S, TS, color} from '../../themes';
 import {TextInputCustom, DropdownCustom, ChooseDate} from '../../components';
@@ -116,10 +122,8 @@ export const FormVisaD2Screen = (props: any) => {
   return (
     <View style={styles.container}>
       <TabHeaderCustom title="Tư vấn du học" isBack />
-      <KeyboardAwareScrollView
-        showsVerticalScrollIndicator={false}
-        extraScrollHeight={150}>
-        <View style={styles.wrapper}>
+      <KeyboardAvoidingView behavior="padding">
+        <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
           <TextInputCustom
             placeholder="Họ và tên"
             title="Họ và tên"
@@ -140,7 +144,7 @@ export const FormVisaD2Screen = (props: any) => {
             }
             keyboardType="default"
             redDot
-            iconLeft={<Calendar color={color.blue.bold} />}
+            iconLeft={<Calendar color={color.green.bold} />}
             actionIconLeft={() => setIsDateBirthDay(true)}
             notEdit
           />
@@ -235,13 +239,13 @@ export const FormVisaD2Screen = (props: any) => {
             <ButtonCustom
               title="Gửi đơn đăng ký"
               action={onSubmit}
-              colorButton={color.blue.bold}
+              colorButton={color.green.bold}
               colorTitle={color.white}
               width={160}
             />
           </View>
-        </View>
-      </KeyboardAwareScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
       <ChooseDate
         isChooseDate={isDateBirthday}
         mode="date"
@@ -252,7 +256,7 @@ export const FormVisaD2Screen = (props: any) => {
         dateSelected={convertDateMoment(data.birthday)}
         title={'Chọn ngày tháng năm sinh'}
       />
-      <ModalLoading isVisible={isLoading}/>
+      <ModalLoading isVisible={isLoading} />
     </View>
   );
 };
@@ -265,6 +269,6 @@ const styles = StyleSheet.create({
   wrapper: {
     marginHorizontal: 12,
     marginTop: 12,
-    marginBottom: 24,
+    height: '82%',
   },
 });

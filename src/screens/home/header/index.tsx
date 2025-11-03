@@ -9,28 +9,30 @@ export const HeaderHome = () => {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.title}>Hi,</Text>
+        <Text style={styles.title}>Greeting,</Text>
         <Text style={{...TS.textBaseBold, color: color.white}}>
           Welcome to SVDUHOC.VN
         </Text>
       </View>
-      {/* <Notification color={color.white} /> */}
+      <Notification color={color.white} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: Utils.isIOS() ? 100 : 90,
+    height: Utils.isIOS() ? 120 : 100,
     paddingHorizontal: 12,
-    backgroundColor: color.blue.bold,
+    backgroundColor: color.green.bold,
     paddingTop: 50,
     paddingBottom: 12,
     ...S.flexRow,
     ...S.justifyBetween,
     ...S.itemsCenter,
-    borderBottomWidth: 1,
-    borderColor: color.blue.bold,
+    borderWidth: 1,
+    borderColor: color.green.bold,
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
   },
   title: {
     ...TS.textSmMedium,

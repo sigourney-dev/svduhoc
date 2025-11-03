@@ -27,6 +27,7 @@ import * as authActions from '../../../redux/actions';
 import {ToastService} from '../../../services/toast/toast-service';
 import {ModalLoading} from '../../../components';
 import LinearGradient from 'react-native-linear-gradient';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 export const LoginScreen = () => {
   const navigation = useNavigation();
@@ -94,101 +95,120 @@ export const LoginScreen = () => {
   }, [isRemember, username, password]);
 
   return (
-    <View style={styles.container}>
-      <View style={{marginBottom: 12}}>
-        <Image
-          source={images.logoLogin}
-          style={styles.image}
-          resizeMode="cover"
-        />
-      </View>
-      <KeyboardAvoidingView behavior="padding">
-        <TextInputCustom
-          placeholder="Tài khoản"
-          title="Tài khoản"
-          value={username}
-          onChangeValue={(text: string) => setUsername(text)}
-          keyboardType={'default'}
-          iconRight={<Profile color={color.green.bold} />}
-          width={widthScreen * 0.7}
-        />
-        <TextInputCustom
-          placeholder="Mật khẩu"
-          title="Mật khẩu"
-          value={password}
-          onChangeValue={(text: string) => setPassword(text)}
-          keyboardType={'default'}
-          iconRight={<Lock color={color.green.bold} />}
-          iconLeft={
-            isShowPassword ? (
-              <Show color={color.green.bold} />
-            ) : (
-              <Hide color={color.green.bold} />
-            )
-          }
-          actionIconLeft={(isShow: boolean) => setIsShowPassword(isShow)}
-          isShowActionLeft={isShowPassword}
-          width={widthScreen * 0.7}
-        />
-      </KeyboardAvoidingView>
-
-      <View style={{...S.itemsEnd, marginBottom: 12}}>
-        <TouchableOpacity
-          style={{...S.flexRow, ...S.itemsCenter}}
-          onPress={() => {
-            setIsRemember(!isRemember);
+    <SafeAreaView style={styles.container}>
+      <LinearGradient
+        colors={[color.green.light, color.green.bold]}
+        style={{...S.flex1}}>
+        <View
+          style={{
+            marginBottom: 12,
+            ...S.itemsCenter,
+            ...S.flex1,
+            ...S.justifyCenter,
           }}>
-          {isRemember ? (
-            <CircleCheckFill color={color.green.bold} />
-          ) : (
-            <Circle color={color.grey.mediumLight} />
-          )}
-          <Text
+          <Image
+            source={images.logoLogin}
+            style={styles.image}
+            resizeMode="cover"
+          />
+        </View>
+        <KeyboardAvoidingView behavior="padding">
+          <View
             style={{
-              ...TS.textXsRegular,
-              marginLeft: 4,
-              color: color.grey.mediumLight,
+              backgroundColor: color.white,
+              borderColor: color.white,
+              borderWidth: 1,
+              borderTopLeftRadius: 24,
+              borderTopRightRadius: 24,
+              padding: 12,
             }}>
-            Nhớ mật khẩu
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <TextInputCustom
+              placeholder="Tài khoản"
+              title="Tài khoản"
+              value={username}
+              onChangeValue={(text: string) => setUsername(text)}
+              keyboardType={'default'}
+              iconRight={<Profile color={color.green.bold} />}
+              width={widthScreen * 0.7}
+            />
+            <TextInputCustom
+              placeholder="Mật khẩu"
+              title="Mật khẩu"
+              value={password}
+              onChangeValue={(text: string) => setPassword(text)}
+              keyboardType={'default'}
+              iconRight={<Lock color={color.green.bold} />}
+              iconLeft={
+                isShowPassword ? (
+                  <Show color={color.green.bold} />
+                ) : (
+                  <Hide color={color.green.bold} />
+                )
+              }
+              actionIconLeft={(isShow: boolean) => setIsShowPassword(isShow)}
+              isShowActionLeft={isShowPassword}
+              width={widthScreen * 0.7}
+            />
 
-      <View style={{...S.flexRow, ...S.justifyBetween}}>
-        <TouchableOpacity
-          onPress={() => {
-            // @ts-ignore
-            navigation.navigate('RegisterScreen');
-          }}>
-          <Text style={{...TS.textXsRegular, color: color.grey.mediumLight}}>
-            Bạn chưa có tài khoản ?{' '}
-            <Text style={{...TS.textXsRegular, color: color.green.bold}}>
-              Đăng ký
-            </Text>
-          </Text>
-        </TouchableOpacity>
+            <View style={{...S.flexRow, ...S.justifyBetween, marginVertical: 12, ...S.itemsCenter}}>
+              <TouchableOpacity
+                style={{...S.flexRow, ...S.itemsCenter}}
+                onPress={() => {
+                  setIsRemember(!isRemember);
+                }}>
+                {isRemember ? (
+                  <CircleCheckFill color={color.green.bold} />
+                ) : (
+                  <Circle color={color.grey.mediumLight} />
+                )}
+                <Text
+                  style={{
+                    ...TS.textXsRegular,
+                    marginLeft: 4,
+                    color: color.grey.mediumLight,
+                  }}>
+                  Nhớ mật khẩu
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  // @ts-ignore
+                  navigation.navigate('ForgotPasswordScreen');
+                }}>
+                <Text style={{...TS.textXsRegular, color: color.green.bold}}>
+                  Quên mật khẩu?
+                </Text>
+              </TouchableOpacity>
+            </View>
 
-        <TouchableOpacity
-          onPress={() => {
-            // @ts-ignore
-            navigation.navigate('ForgotPasswordScreen');
-          }}>
-          <Text style={{...TS.textXsRegular, color: color.green.bold}}>
-            Quên mật khẩu ?
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <View style={{...S.itemsCenter, marginTop: 24}}>
+              <ButtonCustom
+                title="Đăng nhập"
+                action={onLogin}
+                colorButton={color.green.bold}
+                colorTitle={color.white}
+              />
 
-      <View style={{...S.itemsCenter, marginTop: 24}}>
-        <ButtonCustom
-          title="Đăng nhập"
-          action={onLogin}
-          colorButton={color.green.bold}
-          colorTitle={color.white}
-        />
-      </View>
-      {isLoading && <ModalLoading isVisible={isLoading} />}
-    </View>
+              <TouchableOpacity
+                style={{marginVertical: 12}}
+                onPress={() => {
+                  // @ts-ignore
+                  navigation.navigate('RegisterScreen');
+                }}>
+                <Text
+                  style={{...TS.textXsRegular, color: color.grey.mediumLight}}>
+                  Bạn chưa có tài khoản?{' '}
+                  <Text style={{...TS.textSmRegular, color: color.green.bold}}>
+                    Đăng ký ngay
+                  </Text>
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </KeyboardAvoidingView>
+        {isLoading && <ModalLoading isVisible={isLoading} />}
+      </LinearGradient>
+    </SafeAreaView>
   );
 };
 
@@ -197,12 +217,10 @@ const styles = StyleSheet.create({
     ...S.flex1,
     backgroundColor: color.white,
     ...S.justifyCenter,
-    paddingHorizontal: 12,
   },
   image: {
     width: 300,
-    height: 200,
+    height: 300,
     resizeMode: 'contain',
-    marginLeft: 24,
   },
 });
