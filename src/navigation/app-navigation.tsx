@@ -39,7 +39,6 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 
 export type AppStackParamList = {
   BottomSheetStack: undefined;
-  HomeScreen: undefined;
   AccountScreen: undefined;
   SettingScreen: undefined;
   SearchScreen: undefined;

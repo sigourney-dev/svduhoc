@@ -97,7 +97,7 @@ export const LoginScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
-        colors={[color.green.light, color.green.bold]}
+        colors={['#00FF7F','#66CDAA', '#B0E0E6']}
         style={{...S.flex1}}>
         <View
           style={{
