@@ -8,18 +8,17 @@ import {StyleSheet, Text, View, Animated, TouchableOpacity} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {AppStackParamList, AppStackScreenProps} from './app-navigation.tsx';
 import {color, hs, ms, S, TS} from '../themes';
-import {AbroadScreen, MenuScreen, DeliveryScreen} from '../screens/index.tsx';
+import {CommunityScreen, MenuScreen, DeliveryScreen, HomeScreen} from '../screens/index.tsx';
 import {Home, Van, Category, Global} from '../../assets/icons';
 import {Utils, widthScreen, heightScreen} from '../utils/index.ts';
 import {useNavigation} from '@react-navigation/native';
-import {NewHomeScreen} from '../screens/home/new-home.tsx';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 export type TabParamList = {
-  NewHomeScreen: undefined;
+  HomeScreen: undefined;
   MenuScreen: undefined;
   DeliveryScreen: undefined;
-  AbroadScreen: undefined;
+  CommunityScreen: undefined;
 };
 
 export type TabScreenProps<T extends keyof TabParamList> = CompositeScreenProps<
@@ -104,15 +103,15 @@ export const BottomSheetStack = () => {
       id: 0,
       title: 'Trang chủ',
       icon: 'home',
-      name: 'NewHomeScreen',
-      component: NewHomeScreen,
+      name: 'HomeScreen',
+      component: HomeScreen,
     },
     {
       id: 1,
-      title: 'Tin tức',
+      title: 'Cộng đồng',
       icon: 'abroad',
-      name: 'AbroadScreen',
-      component: AbroadScreen,
+      name: 'CommunityScreen',
+      component: CommunityScreen,
     },
     {
       id: 2,

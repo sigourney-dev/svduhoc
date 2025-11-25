@@ -11,7 +11,7 @@ import {
 import {color, S, TS} from '../../../themes';
 import {images} from '../../../enums/images';
 import {TextInputCustom} from '../../../components/text-input-custom';
-import {widthScreen} from '../../../utils';
+import {heightScreen, widthScreen} from '../../../utils';
 import {
   Profile,
   Lock,
@@ -95,19 +95,19 @@ export const LoginScreen = () => {
   }, [isRemember, username, password]);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <LinearGradient
-        colors={[color.green.light, color.green.bold]}
+        colors={['#277E3A', '#277E3A']}
         style={{...S.flex1}}>
         <View
           style={{
             marginBottom: 12,
             ...S.itemsCenter,
-            ...S.flex1,
             ...S.justifyCenter,
+            ...S.flex1,
           }}>
           <Image
-            source={images.logoLogin}
+            source={images.splash}
             style={styles.image}
             resizeMode="cover"
           />
@@ -120,7 +120,8 @@ export const LoginScreen = () => {
               borderWidth: 1,
               borderTopLeftRadius: 24,
               borderTopRightRadius: 24,
-              padding: 12,
+              padding: 16,
+              height: heightScreen * 0.4,
             }}>
             <TextInputCustom
               placeholder="Tài khoản"
@@ -205,17 +206,18 @@ export const LoginScreen = () => {
               </TouchableOpacity>
             </View>
           </View>
+          {isLoading && <ModalLoading isVisible={isLoading} />}
         </KeyboardAvoidingView>
-        {isLoading && <ModalLoading isVisible={isLoading} />}
+        
       </LinearGradient>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     ...S.flex1,
-    backgroundColor: color.white,
+    backgroundColor: '#277E3A',
     ...S.justifyCenter,
   },
   image: {

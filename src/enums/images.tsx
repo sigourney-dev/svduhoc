@@ -36,4 +36,5 @@ export const images = {
     profile: require('../../assets/images/profile.png'),
     deleteAccount: require('../../assets/images/delete.png'),
     splash: require('../../assets/images/splash.png'),
+    splashColumn: require('../../assets/images/splashColumn.png'),
 };

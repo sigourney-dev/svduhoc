@@ -43,6 +43,8 @@ const refreshToken = async () => {
     return accessToken;
   } catch (error) {
     Logger.error('Fail when refresh token!!!');
+    await setDataStorage(KeyStores.USER_TOKEN);
+    await setDataStorage(KeyStores.REFRESH_TOKEN);
     throw error;
   }
 };
