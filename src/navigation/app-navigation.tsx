@@ -20,7 +20,6 @@ import {
   NotebookScreen,
   ApplicationScreen,
   FormTranslateScreen,
-  CommunityScreen,
   IconHome,
   FormStudentScreen,
   ChangePasswordScreen,
@@ -33,6 +32,7 @@ import {
   FormServiceWorker,
   ConfirmForgotScreen,
   SplashScreen,
+  FeatureScreen,
 } from '../screens';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -52,7 +52,6 @@ export type AppStackParamList = {
   NotebookScreen: undefined;
   ApplicationScreen: undefined;
   FormTranslateScreen: undefined;
-  CommunityScreen: undefined;
   IconHome: undefined;
   FormStudentScreen: undefined;
   ChangePasswordScreen: undefined;
@@ -65,6 +64,7 @@ export type AppStackParamList = {
   FormServiceWorker: undefined;
   ConfirmForgotScreen: undefined;
   SplashScreen: undefined;
+  FeatureScreen: undefined;
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> =
@@ -110,7 +110,6 @@ function AppStack() {
       <Stack.Screen name='NotebookScreen' component={NotebookScreen} />
       <Stack.Screen name='ApplicationScreen' component={ApplicationScreen} />
       <Stack.Screen name='FormTranslateScreen' component={FormTranslateScreen} />
-      <Stack.Screen name='CommunityScreen' component={CommunityScreen} />
       <Stack.Screen name='IconHome' component={IconHome} />
       <Stack.Screen name='FormStudentScreen' component={FormStudentScreen} />
       <Stack.Screen name='ChangePasswordScreen' component={ChangePasswordScreen} />
@@ -122,6 +121,7 @@ function AppStack() {
       <Stack.Screen name='FormVisaD2Screen' component={FormVisaD2Screen} /> 
       <Stack.Screen name='FormServiceWorker' component={FormServiceWorker} />
       <Stack.Screen name='ConfirmForgotScreen' component={ConfirmForgotScreen} />
+      <Stack.Screen name='FeatureScreen' component={FeatureScreen} />
     </Stack.Navigator>
   );
 }

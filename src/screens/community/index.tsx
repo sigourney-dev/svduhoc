@@ -17,6 +17,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import * as questionActions from '../../redux/actions';
 import {ToastService} from '../../services/toast/toast-service';
 import {heightScreen, widthScreen} from '../../utils';
+import {ScrollView} from 'react-native-gesture-handler';
 
 export const CommunityScreen = () => {
   const dispatch = useDispatch();
@@ -142,11 +143,10 @@ export const CommunityScreen = () => {
         <View
           style={{
             borderWidth: 1,
-            borderColor: color.grey.light,
-            backgroundColor: color.grey.light,
+            borderColor: color.green.light,
+            backgroundColor: '#D6F6D5',
             padding: 8,
             borderRadius: 12,
-            alignSelf: 'flex-start',
             marginBottom: 4,
           }}>
           <Text style={{...TS.textSmSemiBold, color: color.black}}>
@@ -155,8 +155,8 @@ export const CommunityScreen = () => {
           <Text style={{...TS.textSmRegular, color: color.black}}>
             {item.content}
           </Text>
-        </View>
-        {item.answers.length !== 0 && (
+          <View>
+          {item.answers.length !== 0 && (
           <View
             style={{
               borderWidth: 1,
@@ -165,14 +165,12 @@ export const CommunityScreen = () => {
               backgroundColor: color.green.bold,
               padding: 8,
               borderRadius: 12,
-              alignSelf: 'flex-end',
               marginTop: 4,
             }}>
             <Text
               style={{
                 ...TS.textSmSemiBold,
-                color: color.white,
-                textAlign: 'right',
+                color: '#D6F6D5',
               }}>
               SVDUHOC.VN
             </Text>
@@ -183,10 +181,9 @@ export const CommunityScreen = () => {
                   <View key={id}>
                     <Text
                       style={{
-                        ...TS.textSmRegular,
+                        ...TS.textSmSemiBold,
                         color: color.white,
                         marginLeft: 4,
-                        textAlign: 'right',
                       }}>
                       {it.content}
                     </Text>
@@ -196,6 +193,8 @@ export const CommunityScreen = () => {
             />
           </View>
         )}
+          </View>
+        </View>
       </View>
     );
   };
@@ -244,10 +243,16 @@ export const CommunityScreen = () => {
 
   return (
     <View style={styles.container}>
-      <TabHeaderCustom title="Cộng đồng" isBack />
+      <TabHeaderCustom title="Cộng đồng" />
       {listQuestionResult && listQuestion && countQuestionResult && (
         <View>
-          <View style={{marginHorizontal: 4, marginVertical: 8, height: heightScreen * 0.75}}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={{
+              marginHorizontal: 4,
+              marginVertical: 8,
+              height: heightScreen * 0.8,
+            }}>
             <Text
               style={{
                 ...TS.textSmSemiBold,
@@ -257,6 +262,7 @@ export const CommunityScreen = () => {
               Đã có {countQuestionResult} câu hỏi gửi đến cho SVDUHOC.VN
             </Text>
             <FlatList
+             showsVerticalScrollIndicator={false}
               data={listQuestion}
               renderItem={({item, index}) => renderItem(item, index)}
               onEndReached={onLoadMore}
@@ -265,16 +271,16 @@ export const CommunityScreen = () => {
               onRefresh={onRefresh}
               refreshing={refreshing}
             />
-          </View>
-          <View style={{...S.itemsCenter}}>
-            <ButtonCustom
-              title="Đặt câu hỏi cho SVDUHOC.VN"
-              action={() => setIsShowModalForm(true)}
-              colorButton={color.green.bold}
-              colorTitle={color.white}
-              width={widthScreen * 0.6}
-            />
-          </View>
+            <View style={{...S.itemsCenter}}>
+              <ButtonCustom
+                title="Đặt câu hỏi cho SVDUHOC.VN"
+                action={() => setIsShowModalForm(true)}
+                colorButton={color.green.bold}
+                colorTitle={color.white}
+                width={widthScreen * 0.6}
+              />
+            </View>
+          </ScrollView>
         </View>
       )}
       <ModalCustom

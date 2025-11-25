@@ -9,7 +9,6 @@ import {
   FlatList,
   BackHandler,
 } from 'react-native';
-import {HeaderHome} from './header';
 import {color, S, TS} from '../../themes';
 import {images} from '../../enums/images';
 import {
@@ -21,9 +20,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import * as categoryActions from '../../redux/actions';
 import {showImage, widthScreen} from '../../utils';
 import {SvgUri} from 'react-native-svg';
-import {ButtonCustom} from '../../components';
+import {TabHeaderCustom} from '../../components';
 
-export const NewHomeScreen = () => {
+export const FeatureScreen = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
@@ -77,30 +76,8 @@ export const NewHomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <HeaderHome />
+      <TabHeaderCustom title="Tính năng" isBack/>
       <View style={styles.wrapper}>
-        {/* <View style={{...S.flexRow, ...S.justifyBetween, ...S.itemsCenter}}>
-          <TouchableOpacity
-            onPress={() => {
-              //@ts-ignore
-              navigation.navigate('FormStudentScreen', {type: 'SINHVIEN'});
-            }}>
-            <Text style={{...TS.textSmSemiBold, color: color.red.bold}}>
-              Đăng ký tư vấn miễn phí
-            </Text>
-          </TouchableOpacity>
-
-          {!isLogin && (
-            <ButtonCustom
-              title="Đăng nhập"
-              action={() => {
-                // @ts-ignore
-                navigation.navigate('LoginScreen');
-              }}
-            />
-          )}
-        </View> */}
-
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{height: '90%'}}>
@@ -172,7 +149,7 @@ export const NewHomeScreen = () => {
                   // navigation.navigate('NotebookScreen');
                 }}
               />
-             
+
               <ItemHome
                 image={images.communication}
                 title={'Cộng đồng'}

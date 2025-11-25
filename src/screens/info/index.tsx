@@ -27,7 +27,7 @@ export const InfoScreen = () => {
           <Text style={styles.content}>Mr Tuyển - 0969.211.556</Text>
         </View>
 
-        <View
+        {/* <View
           style={{
             borderBottomWidth: 1,
             borderColor: color.grey.light,
@@ -51,7 +51,7 @@ export const InfoScreen = () => {
             Số 124, Nguyễn Tất Thành, Quỳnh Vinh, Thị xã Hoàng Mai, Nghệ An
           </Text>
           <Text style={styles.content}>Mr Cường - 0921.163.666</Text>
-        </View>
+        </View> */}
 
         <Text style={styles.title}>Email</Text>
         <Text style={styles.content}>admin@asecom.vn</Text>

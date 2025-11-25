@@ -6,21 +6,19 @@ import {color, S} from '../../themes';
 import { heightScreen, widthScreen } from '../../utils';
 
 export const SplashScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      // @ts-ignore
       navigation.replace('LoginScreen');
     }, 2000); // Hiển thị splash screen trong 2 giây
-
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <View style={styles.container}>
       <Image
-        source={images.splash}
+        source={images.splashColumn}
         style={styles.logo}
         resizeMode="contain"
       />
@@ -31,11 +29,10 @@ export const SplashScreen = () => {
 const styles = StyleSheet.create({
   container: {
     ...S.flex1,
-    backgroundColor: color.white,
+    backgroundColor: '#32773D',
   },
   logo: {
     width: widthScreen,
-    height: heightScreen,
     resizeMode: 'contain'
   },
 }); 

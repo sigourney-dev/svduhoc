@@ -157,11 +157,6 @@ export const MenuScreen = () => {
           image={images.notebook}
         /> */}
         <ItemMenu
-          title="Hỏi đáp"
-          direction="CommunityScreen"
-          image={images.communication}
-        />
-        <ItemMenu
           title="Doanh nghiệp"
           direction="InfoScreen"
           image={images.company}

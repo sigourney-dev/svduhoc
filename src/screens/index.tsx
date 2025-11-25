@@ -25,3 +25,4 @@ export * from './form-application/form-service-worker';
 export * from './auth/confirm-forgot-pass';
 export * from './splash'
 export * from './home/home.tsx';
+export * from './feature';

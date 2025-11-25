@@ -19,26 +19,6 @@ export const MemberScreen = () => {
             </Text>
           </View>
         </View>
-
-        <View style={styles.wrapperImage}>
-          <Image style={styles.image} source={images.mem2} />
-          <View style={{padding: 12, ...S.itemsCenter}}>
-            <Text style={styles.title}>Ông: Ngô Văn Dần</Text>
-            <Text style={styles.content}>
-              PGĐ Trung Tâm Du Học Quốc Tế SVDUHOC.VN
-            </Text>
-          </View>
-        </View>
-
-        <View style={styles.wrapperImage}>
-          <Image style={styles.image} source={images.mem3} />
-          <View style={{padding: 12, ...S.itemsCenter}}>
-            <Text style={styles.title}>Ông: Nguyễn Văn Sơn</Text>
-            <Text style={styles.content}>
-              PGĐ Trung Tâm Du Học Quốc Tế SVDUHOC.VN
-            </Text>
-          </View>
-        </View>
         </ScrollView>
       </View>
     </View>
