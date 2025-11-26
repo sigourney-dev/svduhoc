@@ -162,13 +162,13 @@ export const ApplicationScreen = () => {
           />
         </View>
 
-        <View style={styles.wrapperContent}>
+        {/* <View style={styles.wrapperContent}>
           <Text style={styles.title}>Tiện ích khác</Text>
           <ItemContent
             title="Quảng bá thông tin doanh nghiệp"
             image={images.company}
           />
-        </View>
+        </View> */}
       </ScrollView>
       <ModalCustom
         isVisible={isShowModal}

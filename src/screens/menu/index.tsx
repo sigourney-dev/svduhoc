@@ -35,7 +35,7 @@ export const MenuScreen = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
-  const {isLogin, profile, deleteError, deleteResult} = useSelector(
+  const {isLogin, profile, deleteError, deleteResult, loadingLogin} = useSelector(
     (store: any) => store.auth,
   );
   const {listMenuResult} = useSelector((store: any) => store.menu);
@@ -90,7 +90,9 @@ export const MenuScreen = () => {
         pageSize: 100,
       }),
     );
-  }, [isFocused]);
+    setIsShowModalOut(false);
+  setIsShowModalDelete(false);
+  }, [isFocused, isLogin]);
 
   useEffect(() => {
     if (deleteResult) {
@@ -231,12 +233,12 @@ export const MenuScreen = () => {
       </ScrollView>
       <View style={{...S.itemsCenter, ...S.justifyCenter}}>
         <Text style={{...TS.textXsSemiBold, color: color.grey.light}}>
-          Version 2.0
+          Version 1.0
         </Text>
       </View>
 
       <ModalCustom
-        isVisible={isShowModalOut}
+        isVisible={isShowModalOut && !loadingLogin}
         title="Bạn muốn Đăng xuất ?"
         buttonLeft="Huỷ bỏ"
         actionLeft={() => setIsShowModalOut(false)}
@@ -244,15 +246,13 @@ export const MenuScreen = () => {
         actionRight={() => {
           setIsShowModalOut(false);
           dispatch(authActions.logoutRequest());
-          // @ts-ignore
-          navigation.navigate('LoginScreen');
           setDataStorage(KeyStores.USER_TOKEN);
           setDataStorage(KeyStores.REFRESH_TOKEN);
         }}
       />
 
       <ModalCustom
-        isVisible={isShowModalDelete}
+        isVisible={isShowModalDelete && !loadingLogin}
         title="Bạn muốn Xoá tài khoản ?"
         buttonLeft="Huỷ bỏ"
         actionLeft={() => setIsShowModalDelete(false)}

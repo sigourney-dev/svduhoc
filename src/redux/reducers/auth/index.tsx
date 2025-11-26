@@ -12,6 +12,7 @@ interface IAuthState {
 
   loginResult: any;
   loginError: any;
+  loadingLogin: boolean;
 
   changePasswordResult: any;
   changePasswordError: any;
@@ -43,6 +44,7 @@ const initialState: IAuthState = {
 
   loginResult: null,
   loginError: null,
+  loadingLogin: false,
 
   changePasswordResult: null,
   changePasswordError: null,
@@ -69,19 +71,19 @@ const authReducers: Reducer<IAuthState, any> = (
 ) => {
   switch (action.type) {
     case types.LOGIN_REQUEST: {
-      return {...state, isLoading: true, loginError: null};
+      return {...state, loadingLogin: true, loginError: null, isLoading: false};
     }
     case types.LOGIN_SUCCESS: {
       return {
         ...state,
-        isLoading: false,
+        loadingLogin: false,
         loginResult: action.payload,
         isLogin: true,
         profile: action.payload.userProfile,
       };
     }
     case types.LOGIN_FAILURE: {
-      return {...state, isLoading: false, loginError: action.payload};
+      return {...state, loadingLogin: false, loginError: action.payload};
     }
     case types.SAVE_LOGIN: {
       return {
@@ -101,6 +103,8 @@ const authReducers: Reducer<IAuthState, any> = (
         loginError: null,
         loginResult: null,
         profile: null,
+        loadingLogin: false,
+        isLoading: false,
       };
     }
     case types.CHANGE_PASSWORD_REQUEST: {

@@ -29,8 +29,6 @@ export const FormServiceWorker = () => {
   const onSubmitForm = () => {
     if (data.name === '') {
       ToastService.showError('Vui lòng nhập Họ và tên');
-    } else if (data.phone === '') {
-      ToastService.showError('Vui lòng nhập Số điện thoại');
     } else if (!data.service.label) {
       ToastService.showError('Vui lòng chọn Dịch vụ mong muốn');
     } else {
@@ -111,7 +109,6 @@ export const FormServiceWorker = () => {
             onChangeValue={(phone: any) => setData({...data, phone: phone})}
             keyboardType={'numeric'}
             maxLength={10}
-            redDot
           />
 
           <DropdownCustom

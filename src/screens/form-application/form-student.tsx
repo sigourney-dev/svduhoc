@@ -61,8 +61,6 @@ export const FormStudentScreen = (props: any) => {
       ToastService.showError('Vui lòng nhập Họ và tên');
     } else if (data.birthday === '') {
       ToastService.showError('Vui lòng nhập Ngày tháng năm sinh');
-    } else if (data.phone === '') {
-      ToastService.showError('Vui lòng nhập Số điện thoại');
     } else if (data.province === '') {
       ToastService.showError('Vui lòng chọn Thành phố đang sống');
     } else if (data.average === '') {
@@ -162,7 +160,6 @@ export const FormStudentScreen = (props: any) => {
             onChangeValue={(phone: string) => setData({...data, phone: phone})}
             keyboardType="numeric"
             maxLength={10}
-            redDot
           />
 
           <DropdownCustom

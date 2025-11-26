@@ -37,7 +37,19 @@ export const RegisterScreen = () => {
   });
 
   const onSubmitRegister = () => {
-    if (formRegister) {
+    if (formRegister.userName === '') {
+      ToastService.showError('Vui lòng điền Tên đăng nhập');
+    } else if (formRegister.password === '') {
+      ToastService.showError('Vui lòng điền Mật khẩu');
+    } else if (formRegister.confirmPassword === '') {
+      ToastService.showError('Vui lòng xác nhận lại Mật khẩu');
+    } else if (formRegister.lastName === '') {
+      ToastService.showError('Vui lòng điền Họ');
+    } else if (formRegister.firstName === '') {
+      ToastService.showError('Vui lòng điền Tên');
+    } else if (formRegister.email === '') {
+      ToastService.showError('Vui lòng điền Email');
+    } else {
       dispatch(authActions.registerRequest(formRegister));
     }
   };
@@ -152,7 +164,6 @@ export const RegisterScreen = () => {
             }
             keyboardType={'numeric'}
             maxLength={10}
-            redDot
           />
           <TextInputCustom
             placeholder="Địa chỉ"
@@ -162,7 +173,6 @@ export const RegisterScreen = () => {
               setFormRegister({...formRegister, address: text})
             }
             keyboardType={'default'}
-            redDot
           />
           <View style={{...S.itemsCenter, marginTop: 12}}>
             <ButtonCustom

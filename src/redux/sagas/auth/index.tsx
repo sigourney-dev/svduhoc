@@ -20,11 +20,11 @@ function* loginSaga(body: any): any {
     if (response.success) {
       yield put(authActions.loginSuccess(response.data));
       if (response.data.accessToken) {
-        setDataStorage(KeyStores.USER_TOKEN, response.data.accessToken).then();
+        setDataStorage(KeyStores.USER_TOKEN, response.data.accessToken);
         setDataStorage(
           KeyStores.REFRESH_TOKEN,
           response.data.refreshToken,
-        ).then();
+        );
       }
     } else {
       yield put(authActions.loginFailure(response.message));

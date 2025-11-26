@@ -3,14 +3,20 @@ import {View, StyleSheet, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {images} from '../../enums/images';
 import {color, S} from '../../themes';
-import { heightScreen, widthScreen } from '../../utils';
+import {heightScreen, widthScreen} from '../../utils';
+import {useSelector} from 'react-redux';
 
 export const SplashScreen = () => {
   const navigation = useNavigation<any>();
+  const {isLogin} = useSelector((store: any) => store.auth);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('LoginScreen');
+      if (isLogin) {
+        navigation.replace('BottomSheetStack');
+      } else {
+        navigation.replace('LoginScreen');
+      }
     }, 2000); // Hiển thị splash screen trong 2 giây
     return () => clearTimeout(timer);
   }, []);
@@ -33,6 +39,6 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: widthScreen,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
-}); 
+});
