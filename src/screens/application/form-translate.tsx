@@ -41,8 +41,6 @@ export const FormTranslateScreen = () => {
   const onSubmitTranslate = () => {
     if (info.fullname === '') {
       ToastService.showError('Vui lòng nhập Họ tên');
-    } else if (info.phone === '') {
-      ToastService.showError('Vui lòng nhập Số điện thoại')
     } else if (!isSelected.title) {
       ToastService.showError('Vui lòng chọn một Dịch vụ');
     } else if (info.content === '') {
@@ -116,7 +114,6 @@ export const FormTranslateScreen = () => {
           onChangeValue={(text: string) => setInfo({...info, phone: text})}
           keyboardType={'numeric'}
           maxLength={10}
-          redDot
         />
 
         <Text style={{...TS.textSmMedium}}>Bạn cần</Text>

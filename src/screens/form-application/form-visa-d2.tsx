@@ -59,8 +59,6 @@ export const FormVisaD2Screen = (props: any) => {
       ToastService.showError('Vui lòng nhập Họ và tên');
     } else if (data.birthday === '') {
       ToastService.showError('Vui lòng nhập Ngày tháng năm sinh');
-    } else if (data.phone === '') {
-      ToastService.showError('Vui lòng nhập Số điện thoại');
     } else if (data.email === '') {
       ToastService.showError('Vui lòng nhập Email');
     } else if (data.province === '') {
@@ -156,7 +154,6 @@ export const FormVisaD2Screen = (props: any) => {
             onChangeValue={(phone: string) => setData({...data, phone: phone})}
             keyboardType="numeric"
             maxLength={10}
-            redDot
           />
 
           <TextInputCustom

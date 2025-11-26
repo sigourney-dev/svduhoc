@@ -34,6 +34,7 @@ import {
   SplashScreen,
   FeatureScreen,
 } from '../screens';
+import {useSelector} from 'react-redux';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
@@ -89,39 +90,65 @@ export function AppNavigation() {
 }
 
 function AppStack() {
-  return (
-    <Stack.Navigator
-      initialRouteName="SplashScreen"
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <Stack.Screen name="SplashScreen" component={SplashScreen} />
-      <Stack.Screen name="LoginScreen" component={LoginScreen} />
-      <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-      <Stack.Screen name="BottomSheetStack" component={BottomSheetStack} />
-      <Stack.Screen
-        name="ForgotPasswordScreen"
-        component={ForgotPasswordScreen}
-      />
-      <Stack.Screen name="InfoScreen" component={InfoScreen} />
-      <Stack.Screen name="AskAnswerScreen" component={AskAnswerScreen} />
-      <Stack.Screen name="MemberScreen" component={MemberScreen} />
-      <Stack.Screen name="AboutUsScreen" component={AboutUsScreen} />
-      <Stack.Screen name='NotebookScreen' component={NotebookScreen} />
-      <Stack.Screen name='ApplicationScreen' component={ApplicationScreen} />
-      <Stack.Screen name='FormTranslateScreen' component={FormTranslateScreen} />
-      <Stack.Screen name='IconHome' component={IconHome} />
-      <Stack.Screen name='FormStudentScreen' component={FormStudentScreen} />
-      <Stack.Screen name='ChangePasswordScreen' component={ChangePasswordScreen} />
-      <Stack.Screen name='ChangeInformationScreen' component={ChangeInformationScreen} />
-      <Stack.Screen name='NewsScreen' component={NewsScreen} />
-      <Stack.Screen name='ChangeVisaScreen' component={ChangeVisaScreen} />
-      <Stack.Screen name='CommonScreen' component={CommonScreen} />
-      <Stack.Screen name='DetailNewsScreen' component={DetailNewsScreen} />
-      <Stack.Screen name='FormVisaD2Screen' component={FormVisaD2Screen} /> 
-      <Stack.Screen name='FormServiceWorker' component={FormServiceWorker} />
-      <Stack.Screen name='ConfirmForgotScreen' component={ConfirmForgotScreen} />
-      <Stack.Screen name='FeatureScreen' component={FeatureScreen} />
-    </Stack.Navigator>
-  );
+  const {isLogin} = useSelector((store: any) => store.auth);
+
+  if (isLogin) {
+    return (
+      <Stack.Navigator
+        initialRouteName="SplashScreen"
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <Stack.Screen name="SplashScreen" component={SplashScreen} />
+        <Stack.Screen name="BottomSheetStack" component={BottomSheetStack} />
+        <Stack.Screen name="InfoScreen" component={InfoScreen} />
+        <Stack.Screen name="AskAnswerScreen" component={AskAnswerScreen} />
+        <Stack.Screen name="MemberScreen" component={MemberScreen} />
+        <Stack.Screen name="AboutUsScreen" component={AboutUsScreen} />
+        <Stack.Screen name="NotebookScreen" component={NotebookScreen} />
+        <Stack.Screen name="ApplicationScreen" component={ApplicationScreen} />
+        <Stack.Screen
+          name="FormTranslateScreen"
+          component={FormTranslateScreen}
+        />
+        <Stack.Screen name="IconHome" component={IconHome} />
+        <Stack.Screen name="FormStudentScreen" component={FormStudentScreen} />
+        <Stack.Screen
+          name="ChangePasswordScreen"
+          component={ChangePasswordScreen}
+        />
+        <Stack.Screen
+          name="ChangeInformationScreen"
+          component={ChangeInformationScreen}
+        />
+        <Stack.Screen name="NewsScreen" component={NewsScreen} />
+        <Stack.Screen name="ChangeVisaScreen" component={ChangeVisaScreen} />
+        <Stack.Screen name="CommonScreen" component={CommonScreen} />
+        <Stack.Screen name="DetailNewsScreen" component={DetailNewsScreen} />
+        <Stack.Screen name="FormVisaD2Screen" component={FormVisaD2Screen} />
+        <Stack.Screen name="FormServiceWorker" component={FormServiceWorker} />
+        <Stack.Screen
+          name="ConfirmForgotScreen"
+          component={ConfirmForgotScreen}
+        />
+        <Stack.Screen name="FeatureScreen" component={FeatureScreen} />
+      </Stack.Navigator>
+    );
+  } else {
+    return (
+      <Stack.Navigator
+        initialRouteName="SplashScreen"
+        screenOptions={{
+          headerShown: false,
+        }}>
+          <Stack.Screen name="SplashScreen" component={SplashScreen} />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+        <Stack.Screen
+          name="ForgotPasswordScreen"
+          component={ForgotPasswordScreen}
+        />
+      </Stack.Navigator>
+    );
+  }
 }

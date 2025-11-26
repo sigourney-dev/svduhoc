@@ -2,7 +2,12 @@ import React, {useState, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {TabHeaderCustom} from '../../components/tab-header-custom';
 import {S, TS, color} from '../../themes';
-import {ButtonCustom, TextInputCustom, DropdownCustom, ModalLoading} from '../../components';
+import {
+  ButtonCustom,
+  TextInputCustom,
+  DropdownCustom,
+  ModalLoading,
+} from '../../components';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch, useSelector} from 'react-redux';
 import * as formActions from '../../redux/actions';
@@ -35,12 +40,8 @@ export const DeliveryScreen = () => {
   const onSubmitDelivery = () => {
     if (data.name === '') {
       ToastService.showError('Vui lòng nhập Họ và tên');
-    } else if (data.phone === '') {
-      ToastService.showError('Vui lòng nhập Số điện thoại');
     } else if (!option.label) {
       ToastService.showError('Vui lòng chọn Dịch vụ');
-    } else if (data.address === '') {
-      ToastService.showError('Vui lòng nhập Địa chỉ');
     } else if (data.postal === '') {
       ToastService.showError('Vui lòng nhập Nội dung hàng cần gửi');
     } else {
@@ -90,7 +91,6 @@ export const DeliveryScreen = () => {
           value={data.phone}
           onChangeValue={(phone: string) => setData({...data, phone: phone})}
           keyboardType="numeric"
-          redDot
           maxLength={10}
         />
         <DropdownCustom
@@ -108,7 +108,6 @@ export const DeliveryScreen = () => {
             setData({...data, address: address})
           }
           keyboardType="default"
-          redDot
         />
 
         <TextInputCustom
@@ -131,7 +130,7 @@ export const DeliveryScreen = () => {
           />
         </View>
 
-        <ModalLoading isVisible={isLoading}/>
+        <ModalLoading isVisible={isLoading} />
       </KeyboardAwareScrollView>
     </View>
   );

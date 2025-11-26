@@ -32,7 +32,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 export const LoginScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {loginResult, loginError, isLoading, user, pass, isSaveLogin} =
+  const {loginResult, loginError, loadingLogin, user, pass, isSaveLogin} =
     useSelector((store: any) => store.auth);
   const [username, setUsername] = useState<string>(user);
   const [password, setPassword] = useState<string>(pass);
@@ -68,9 +68,6 @@ export const LoginScreen = () => {
   useEffect(() => {
     if (loginError) {
       ToastService.showError(loginError);
-    } else if (loginResult) {
-      //@ts-ignore
-      navigation.navigate('BottomSheetStack');
     }
   }, [loginError, loginResult]);
 
@@ -96,9 +93,7 @@ export const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      <LinearGradient
-        colors={['#277E3A', '#277E3A']}
-        style={{...S.flex1}}>
+      <LinearGradient colors={['#277E3A', '#277E3A']} style={{...S.flex1}}>
         <View
           style={{
             marginBottom: 12,
@@ -151,7 +146,13 @@ export const LoginScreen = () => {
               width={widthScreen * 0.7}
             />
 
-            <View style={{...S.flexRow, ...S.justifyBetween, marginVertical: 12, ...S.itemsCenter}}>
+            <View
+              style={{
+                ...S.flexRow,
+                ...S.justifyBetween,
+                marginVertical: 12,
+                ...S.itemsCenter,
+              }}>
               <TouchableOpacity
                 style={{...S.flexRow, ...S.itemsCenter}}
                 onPress={() => {
@@ -205,10 +206,9 @@ export const LoginScreen = () => {
                 </Text>
               </TouchableOpacity>
             </View>
+            {/* {loadingLogin && <ModalLoading isVisible={loadingLogin} />} */}
           </View>
-          {isLoading && <ModalLoading isVisible={isLoading} />}
         </KeyboardAvoidingView>
-        
       </LinearGradient>
     </View>
   );
