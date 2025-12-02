@@ -45,10 +45,6 @@ export const CommunityScreen = () => {
     const onSubmit = () => {
       if (info.question === '') {
         ToastService.showError('Vui lòng nhập câu hỏi của bạn');
-      } else if (info.fullname === '') {
-        ToastService.showError('Vui lòng nhập Họ tên của bạn');
-      } else if (info.email === '') {
-        ToastService.showError('Vui lòng nhập Email của bạn');
       } else {
         dispatch(
           questionActions.createQuestionRequest({
@@ -89,7 +85,6 @@ export const CommunityScreen = () => {
           value={info.fullname}
           onChangeValue={(text: string) => setInfo({...info, fullname: text})}
           keyboardType={'default'}
-          redDot
         />
 
         <TextInputCustom
@@ -98,7 +93,6 @@ export const CommunityScreen = () => {
           value={info.email}
           onChangeValue={(text: string) => setInfo({...info, email: text})}
           keyboardType={'default'}
-          redDot
         />
 
         <View style={{...S.itemsCenter}}>

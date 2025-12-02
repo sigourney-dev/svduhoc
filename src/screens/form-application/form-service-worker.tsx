@@ -27,9 +27,7 @@ export const FormServiceWorker = () => {
   });
 
   const onSubmitForm = () => {
-    if (data.name === '') {
-      ToastService.showError('Vui lòng nhập Họ và tên');
-    } else if (!data.service.label) {
+    if (!data.service.label) {
       ToastService.showError('Vui lòng chọn Dịch vụ mong muốn');
     } else {
       dispatch(
@@ -99,7 +97,6 @@ export const FormServiceWorker = () => {
             value={data.name}
             onChangeValue={(name: any) => setData({...data, name: name})}
             keyboardType={'default'}
-            redDot
           />
 
           <TextInputCustom

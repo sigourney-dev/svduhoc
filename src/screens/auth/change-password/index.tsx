@@ -55,6 +55,7 @@ export const ChangePasswordScreen = () => {
             setData({...data, oldPassword: text})
           }
           keyboardType={'default'}
+          redDot
         />
 
         <TextInputCustom
@@ -65,6 +66,7 @@ export const ChangePasswordScreen = () => {
             setData({...data, newPassword: text})
           }
           keyboardType={'default'}
+          redDot
         />
 
         <TextInputCustom
@@ -75,6 +77,7 @@ export const ChangePasswordScreen = () => {
             setData({...data, confirmPassword: text})
           }
           keyboardType={'default'}
+          redDot
         />
 
         <View style={{...S.itemsCenter, marginTop: 24}}>

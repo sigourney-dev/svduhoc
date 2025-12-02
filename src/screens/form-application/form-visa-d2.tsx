@@ -55,38 +55,22 @@ export const FormVisaD2Screen = (props: any) => {
   });
 
   const onSubmit = () => {
-    if (data.fullname === '') {
-      ToastService.showError('Vui lòng nhập Họ và tên');
-    } else if (data.birthday === '') {
-      ToastService.showError('Vui lòng nhập Ngày tháng năm sinh');
-    } else if (data.email === '') {
-      ToastService.showError('Vui lòng nhập Email');
-    } else if (data.province === '') {
-      ToastService.showError('Vui lòng chọn Thành phố đang sống');
-    } else if (!data.topik.label) {
-      ToastService.showError('Vui lòng chọn Topik');
-    } else if (data.certification === '') {
-      ToastService.showError('Vui lòng nhập Chứng chỉ ngoại ngữ');
-    } else if (!data.service.label) {
-      ToastService.showError('Vui lòng chọn Dịch vụ');
-    } else {
-      dispatch(
-        formActions.formBaseRequest({
-          fullName: data.fullName,
-          birthday: data.birthday,
-          phoneNumber: data.phone,
-          email: data.email,
-          province: data.province,
-          topik: data.topik.label,
-          service: data.service.label,
-          certification: data.certification,
-          school: data.school,
-          major: data.major,
-          otherOffer: data.otherOffer,
-          type: type,
-        }),
-      );
-    }
+    dispatch(
+      formActions.formBaseRequest({
+        fullName: data.fullName,
+        birthday: data.birthday,
+        phoneNumber: data.phone,
+        email: data.email,
+        province: data.province,
+        topik: data.topik.label,
+        service: data.service.label,
+        certification: data.certification,
+        school: data.school,
+        major: data.major,
+        otherOffer: data.otherOffer,
+        type: type,
+      }),
+    );
   };
 
   useEffect(() => {
@@ -130,7 +114,6 @@ export const FormVisaD2Screen = (props: any) => {
               setData({...data, fullname: fullname})
             }
             keyboardType="default"
-            redDot
           />
 
           <TextInputCustom
@@ -141,7 +124,6 @@ export const FormVisaD2Screen = (props: any) => {
               setData({...data, birthday: birthday})
             }
             keyboardType="default"
-            redDot
             iconLeft={<Calendar color={color.green.bold} />}
             actionIconLeft={() => setIsDateBirthDay(true)}
             notEdit
@@ -163,7 +145,6 @@ export const FormVisaD2Screen = (props: any) => {
             onChangeValue={(email: string) => setData({...data, email: email})}
             keyboardType="default"
             maxLength={10}
-            redDot
           />
 
           <DropdownCustom
@@ -173,7 +154,6 @@ export const FormVisaD2Screen = (props: any) => {
               setProvinceSelected({label: item.label, value: item.value})
             }
             selectedItem={provinceSelected}
-            redDot
             isSearch
           />
 
@@ -182,7 +162,6 @@ export const FormVisaD2Screen = (props: any) => {
             title="Bạn đang có Topik mấy"
             onChangeItem={(item: any) => setData({...data, topik: item})}
             selectedItem={data.topik}
-            redDot
           />
 
           <TextInputCustom
@@ -193,7 +172,6 @@ export const FormVisaD2Screen = (props: any) => {
               setData({...data, certification: certification})
             }
             keyboardType="default"
-            redDot
           />
 
           <DropdownCustom
@@ -201,7 +179,6 @@ export const FormVisaD2Screen = (props: any) => {
             title="Dịch vụ"
             onChangeItem={(item: any) => setData({...data, service: item})}
             selectedItem={data.service}
-            redDot
             position
           />
 

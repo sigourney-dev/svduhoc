@@ -38,9 +38,7 @@ export const DeliveryScreen = () => {
   const [option, setOption] = useState<any>({});
 
   const onSubmitDelivery = () => {
-    if (data.name === '') {
-      ToastService.showError('Vui lòng nhập Họ và tên');
-    } else if (!option.label) {
+    if (!option.label) {
       ToastService.showError('Vui lòng chọn Dịch vụ');
     } else if (data.postal === '') {
       ToastService.showError('Vui lòng nhập Nội dung hàng cần gửi');
@@ -82,7 +80,6 @@ export const DeliveryScreen = () => {
           value={data.name}
           onChangeValue={(name: string) => setData({...data, name: name})}
           keyboardType="default"
-          redDot
         />
 
         <TextInputCustom
