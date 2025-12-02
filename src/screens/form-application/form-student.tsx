@@ -57,40 +57,24 @@ export const FormStudentScreen = (props: any) => {
   });
 
   const onSubmit = () => {
-    if (data.fullname === '') {
-      ToastService.showError('Vui lòng nhập Họ và tên');
-    } else if (data.birthday === '') {
-      ToastService.showError('Vui lòng nhập Ngày tháng năm sinh');
-    } else if (data.province === '') {
-      ToastService.showError('Vui lòng chọn Thành phố đang sống');
-    } else if (data.average === '') {
-      ToastService.showError('Vui lòng nhập điểm trung bình các năm');
-    } else if (!data.degree.label) {
-      ToastService.showError('Vui lòng chọn Bằng cấp cao nhất');
-    } else if (data.graduate === '') {
-      ToastService.showError('Vui lòng nhập Năm tốt nghiệp');
-    } else if (!data.service.label) {
-      ToastService.showError('Vui lòng chọn Diện du học mong muốn');
-    } else {
-      dispatch(
-        formActions.formBaseRequest({
-          fullName: data.fullname,
-          birthday: data.birthday,
-          phoneNumber: data.phone,
-          province: data.province,
-          average: data.average,
-          degree: data.degree.label,
-          graduate: data.graduate,
-          service: data.service.label,
-          certification: data.certification,
-          referrer: data.referrer,
-          school: data.school,
-          otherOffer: data.otherOffer,
-          bhp: data.bhp,
-          type: 'SINHVIEN',
-        }),
-      );
-    }
+    dispatch(
+      formActions.formBaseRequest({
+        fullName: data.fullname,
+        birthday: data.birthday,
+        phoneNumber: data.phone,
+        province: data.province,
+        average: data.average,
+        degree: data.degree.label,
+        graduate: data.graduate,
+        service: data.service.label,
+        certification: data.certification,
+        referrer: data.referrer,
+        school: data.school,
+        otherOffer: data.otherOffer,
+        bhp: data.bhp,
+        type: 'SINHVIEN',
+      }),
+    );
   };
 
   useEffect(() => {
@@ -136,7 +120,6 @@ export const FormStudentScreen = (props: any) => {
               setData({...data, fullname: fullname})
             }
             keyboardType="default"
-            redDot
           />
 
           <TextInputCustom
@@ -147,7 +130,6 @@ export const FormStudentScreen = (props: any) => {
               setData({...data, birthday: birthday})
             }
             keyboardType="default"
-            redDot
             iconLeft={<Calendar color={color.green.bold} />}
             actionIconLeft={() => setIsDateBirthDay(true)}
             notEdit
@@ -169,7 +151,6 @@ export const FormStudentScreen = (props: any) => {
               setProvinceSelected({label: item.label, value: item.value})
             }
             selectedItem={provinceSelected}
-            redDot
             isSearch
           />
 
@@ -181,7 +162,6 @@ export const FormStudentScreen = (props: any) => {
               setData({...data, average: average})
             }
             keyboardType="default"
-            redDot
           />
 
           <DropdownCustom
@@ -189,7 +169,6 @@ export const FormStudentScreen = (props: any) => {
             title="Bằng cấp cao nhât"
             onChangeItem={(item: any) => setData({...data, degree: item})}
             selectedItem={data.degree}
-            redDot
           />
 
           <TextInputCustom
@@ -200,7 +179,6 @@ export const FormStudentScreen = (props: any) => {
               setData({...data, graduate: graduate})
             }
             keyboardType="default"
-            redDot
             iconLeft={<Calendar color={color.green.bold} />}
             actionIconLeft={() => setIsDateGraduate(true)}
             notEdit
@@ -211,7 +189,6 @@ export const FormStudentScreen = (props: any) => {
             title="Bạn muốn đi du học diện nào?"
             onChangeItem={(item: any) => setData({...data, service: item})}
             selectedItem={data.service}
-            redDot
           />
 
           <TextInputCustom

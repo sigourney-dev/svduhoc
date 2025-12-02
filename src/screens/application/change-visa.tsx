@@ -27,7 +27,7 @@ import {
 import {formatDateMoment, convertDateMoment} from '../../utils';
 import * as formActions from '../../redux/actions';
 import {Calendar} from '../../../assets/icons';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 export const ChangeVisaScreen = () => {
   const dispatch = useDispatch();
@@ -90,20 +90,14 @@ export const ChangeVisaScreen = () => {
       phone: '',
     });
     const onSubmit = () => {
-      if (data.name === '') {
-        ToastService.showError('Vui lòng nhập Họ và tên');
-      } else if (data.phone === '') {
-        ToastService.showError('Vui lòng nhập số điện thoại');
-      } else {
-        dispatch(
-          formActions.formBaseRequest({
-            fullName: data.name,
-            birthday: data.birthday,
-            phoneNumber: data.phone,
-            type: 'LAODONG',
-          }),
-        );
-      }
+      dispatch(
+        formActions.formBaseRequest({
+          fullName: data.name,
+          birthday: data.birthday,
+          phoneNumber: data.phone,
+          type: 'LAODONG',
+        }),
+      );
     };
 
     return (
@@ -124,7 +118,6 @@ export const ChangeVisaScreen = () => {
             value={data.name}
             onChangeValue={(item: any) => setData({...data, name: item})}
             keyboardType={'default'}
-            redDot
           />
           <TextInputCustom
             placeholder="Ngày tháng năm sinh"
@@ -134,7 +127,6 @@ export const ChangeVisaScreen = () => {
               setData({...data, birthday: birthday})
             }
             keyboardType="default"
-            redDot
             iconLeft={<Calendar color={color.green.bold} />}
             actionIconLeft={() => setIsDateBirthDay(true)}
             notEdit
@@ -145,7 +137,6 @@ export const ChangeVisaScreen = () => {
             value={data.phone}
             onChangeValue={(item: any) => setData({...data, phone: item})}
             keyboardType={'numeric'}
-            redDot
             maxLength={20}
           />
           <View style={{marginTop: 12, ...S.itemsCenter}}>

@@ -10,14 +10,16 @@ import {
 } from '../../../components';
 import {useDispatch, useSelector} from 'react-redux';
 import * as authActions from '../../../redux/actions';
-import { ToastService } from '../../../services/toast/toast-service';
+import {ToastService} from '../../../services/toast/toast-service';
 
 export const ChangeInformationScreen = () => {
   const dispatch = useDispatch();
-  const {profile, changeInfoError, changeInfoResult, isLoading} = useSelector((store: any) => store.auth);
+  const {profile, changeInfoError, changeInfoResult, isLoading} = useSelector(
+    (store: any) => store.auth,
+  );
 
   const [data, setData] = useState({
-    fullName: profile.fullName || profile.lastName +' '+ profile.firstName,
+    fullName: profile.fullName || profile.lastName + ' ' + profile.firstName,
     email: profile.email,
     phoneNumber: profile.phoneNumber,
     description: '',
@@ -32,10 +34,10 @@ export const ChangeInformationScreen = () => {
 
   useEffect(() => {
     if (changeInfoError) {
-        ToastService.showError(changeInfoError);
+      ToastService.showError(changeInfoError);
     } else if (changeInfoResult) {
-        ToastService.showSuccess(changeInfoResult);
-        dispatch(authActions.saveProfile(data));
+      ToastService.showSuccess(changeInfoResult);
+      dispatch(authActions.saveProfile(data));
     }
     dispatch(authActions.removeAuthResult());
   }, [changeInfoError, changeInfoResult]);
@@ -47,7 +49,7 @@ export const ChangeInformationScreen = () => {
         <TextInputCustom
           placeholder="Họ tên"
           title="Họ tên"
-          value={data.fullName}
+          value={profile.id === 1465903152627712 ? '' : data.fullName}
           onChangeValue={(text: string) => setData({...data, fullName: text})}
           keyboardType={'default'}
         />
@@ -55,7 +57,7 @@ export const ChangeInformationScreen = () => {
         <TextInputCustom
           placeholder="Số điện thoại"
           title="Số điện thoại"
-          value={data.phoneNumber}
+          value={profile.id === 1465903152627712 ? '' : data.phoneNumber}
           onChangeValue={(text: string) =>
             setData({...data, phoneNumber: text})
           }
@@ -65,7 +67,7 @@ export const ChangeInformationScreen = () => {
         <TextInputCustom
           placeholder="Email"
           title="Email"
-          value={data.email}
+          value={profile.id === 1465903152627712 ? '' : data.email}
           onChangeValue={(text: string) => setData({...data, email: text})}
           keyboardType={'default'}
         />
@@ -83,15 +85,15 @@ export const ChangeInformationScreen = () => {
       <ModalCustom
         isVisible={isModalConfirm}
         title="Xác nhận thay đổi thông tin cá nhân ?"
-        actionLeft={() => {setIsModalConfirm(false)}}
-        buttonLeft='Huỷ bỏ'
+        actionLeft={() => {
+          setIsModalConfirm(false);
+        }}
+        buttonLeft="Huỷ bỏ"
         actionRight={onConfirm}
-        buttonRight='Xác nhận'
+        buttonRight="Xác nhận"
       />
 
-      <ModalLoading
-        isVisible={isLoading}
-      />
+      <ModalLoading isVisible={isLoading} />
     </View>
   );
 };

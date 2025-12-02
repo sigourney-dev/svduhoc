@@ -25,7 +25,7 @@ import {
 import Carousel from 'react-native-snap-carousel';
 import {images} from '../../enums/images';
 import {ToastService} from '../../services/toast/toast-service';
-import { ButtonCustom, ModalCustom, TextInputCustom } from '../../components';
+import {ButtonCustom, ModalCustom, TextInputCustom} from '../../components';
 
 export const HomeScreen = () => {
   const navigation = useNavigation<any>();
@@ -35,9 +35,13 @@ export const HomeScreen = () => {
   const {listAbroadResult, listAbroadError} = useSelector(
     (store: any) => store.abroad,
   );
-  const {listQuestionResult, listQuestionError, countQuestionResult, createQuestionResult,
-    createQuestionError,} =
-    useSelector((store: any) => store.question);
+  const {
+    listQuestionResult,
+    listQuestionError,
+    countQuestionResult,
+    createQuestionResult,
+    createQuestionError,
+  } = useSelector((store: any) => store.question);
 
   const [bannerList, setBannerList] = useState<any>([]);
   const [categoryList, setCategoryList] = useState<any>([]);
@@ -170,43 +174,43 @@ export const HomeScreen = () => {
             {item.content}
           </Text>
           <View>
-          {item.answers.length !== 0 && (
-          <View
-            style={{
-              borderWidth: 1,
-              marginVertical: 4,
-              borderColor: color.green.bold,
-              backgroundColor: color.green.bold,
-              padding: 8,
-              borderRadius: 12,
-              marginTop: 4,
-            }}>
-            <Text
-              style={{
-                ...TS.textSmSemiBold,
-                color: '#D6F6D5',
-              }}>
-              SVDUHOC.VN
-            </Text>
-            <FlatList
-              data={item.answers}
-              renderItem={({item: it, index: id}) => {
-                return (
-                  <View key={id}>
-                    <Text
-                      style={{
-                        ...TS.textSmSemiBold,
-                        color: color.white,
-                        marginLeft: 4,
-                      }}>
-                      {it.content}
-                    </Text>
-                  </View>
-                );
-              }}
-            />
-          </View>
-        )}
+            {item.answers.length !== 0 && (
+              <View
+                style={{
+                  borderWidth: 1,
+                  marginVertical: 4,
+                  borderColor: color.green.bold,
+                  backgroundColor: color.green.bold,
+                  padding: 8,
+                  borderRadius: 12,
+                  marginTop: 4,
+                }}>
+                <Text
+                  style={{
+                    ...TS.textSmSemiBold,
+                    color: '#D6F6D5',
+                  }}>
+                  SVDUHOC.VN
+                </Text>
+                <FlatList
+                  data={item.answers}
+                  renderItem={({item: it, index: id}) => {
+                    return (
+                      <View key={id}>
+                        <Text
+                          style={{
+                            ...TS.textSmSemiBold,
+                            color: color.white,
+                            marginLeft: 4,
+                          }}>
+                          {it.content}
+                        </Text>
+                      </View>
+                    );
+                  }}
+                />
+              </View>
+            )}
           </View>
         </View>
       </View>
@@ -223,10 +227,6 @@ export const HomeScreen = () => {
     const onSubmit = () => {
       if (info.question === '') {
         ToastService.showError('Vui lòng nhập câu hỏi của bạn');
-      } else if (info.fullname === '') {
-        ToastService.showError('Vui lòng nhập Họ tên của bạn');
-      } else if (info.email === '') {
-        ToastService.showError('Vui lòng nhập Email của bạn');
       } else {
         dispatch(
           questionActions.createQuestionRequest({
@@ -267,7 +267,6 @@ export const HomeScreen = () => {
           value={info.fullname}
           onChangeValue={(text: string) => setInfo({...info, fullname: text})}
           keyboardType={'default'}
-          redDot
         />
 
         <TextInputCustom
@@ -276,7 +275,6 @@ export const HomeScreen = () => {
           value={info.email}
           onChangeValue={(text: string) => setInfo({...info, email: text})}
           keyboardType={'default'}
-          redDot
         />
 
         <View style={{...S.itemsCenter}}>
@@ -397,7 +395,7 @@ export const HomeScreen = () => {
               title={'Đăng ký'}
               content={'Dịch vụ SVDUHOC.VN'}
               onPress={() => {
-                navigation.navigate('ApplicationScreen')
+                navigation.navigate('ApplicationScreen');
               }}
               color={color.blue.bold}
             />
@@ -409,7 +407,7 @@ export const HomeScreen = () => {
               title={'Tính năng hay'}
               content={'của SVDUHOC.VN'}
               onPress={() => {
-                navigation.navigate('FeatureScreen')
+                navigation.navigate('FeatureScreen');
               }}
               color={color.red.light}
             />

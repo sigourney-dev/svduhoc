@@ -43,10 +43,6 @@ export const RegisterScreen = () => {
       ToastService.showError('Vui lòng điền Mật khẩu');
     } else if (formRegister.confirmPassword === '') {
       ToastService.showError('Vui lòng xác nhận lại Mật khẩu');
-    } else if (formRegister.lastName === '') {
-      ToastService.showError('Vui lòng điền Họ');
-    } else if (formRegister.firstName === '') {
-      ToastService.showError('Vui lòng điền Tên');
     } else if (formRegister.email === '') {
       ToastService.showError('Vui lòng điền Email');
     } else {
@@ -129,7 +125,6 @@ export const RegisterScreen = () => {
               }
               keyboardType={'default'}
               width={widthScreen / 2.6}
-              redDot
             />
             <View style={{marginRight: -8}}>
               <TextInputCustom
@@ -141,7 +136,6 @@ export const RegisterScreen = () => {
                 }
                 keyboardType={'default'}
                 width={widthScreen / 2.6}
-                redDot
               />
             </View>
           </View>

@@ -1,6 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
-import {TabHeaderCustom, TextInputCustom, ButtonCustom, ModalLoading} from '../../components';
+import {
+  TabHeaderCustom,
+  TextInputCustom,
+  ButtonCustom,
+  ModalLoading,
+} from '../../components';
 import {color, S, TS} from '../../themes';
 import {widthScreen} from '../../utils';
 import {Circle, CircleCheckFill} from '../../../assets/icons';
@@ -39,23 +44,22 @@ export const FormTranslateScreen = () => {
   const [isSelected, setIsSelected] = useState<any>({});
 
   const onSubmitTranslate = () => {
-    if (info.fullname === '') {
-      ToastService.showError('Vui lòng nhập Họ tên');
-    } else if (!isSelected.title) {
+    if (!isSelected.title) {
       ToastService.showError('Vui lòng chọn một Dịch vụ');
     } else if (info.content === '') {
       ToastService.showError('Vui lòng nhập Nội dung bạn muốn yêu cầu');
     } else {
-      dispatch(formActions.formBaseRequest({
-        fullName: info.fullname,
-        phoneNumber: info.phone,
-        service: isSelected.title,
-        otherOffer: info.content,
-        type: 'HANHCHINH',
-      }));
+      dispatch(
+        formActions.formBaseRequest({
+          fullName: info.fullname,
+          phoneNumber: info.phone,
+          service: isSelected.title,
+          otherOffer: info.content,
+          type: 'HANHCHINH',
+        }),
+      );
     }
   };
-  
 
   useEffect(() => {
     if (formBaseError) {
@@ -104,7 +108,6 @@ export const FormTranslateScreen = () => {
           value={info.fullname}
           onChangeValue={(text: string) => setInfo({...info, fullname: text})}
           keyboardType={'default'}
-          redDot
         />
 
         <TextInputCustom

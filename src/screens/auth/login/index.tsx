@@ -183,6 +183,24 @@ export const LoginScreen = () => {
               </TouchableOpacity>
             </View>
 
+            <View style={{...S.itemsEnd}}>
+            <TouchableOpacity
+                style={{}}
+                onPress={() => {
+                  dispatch(
+                    authActions.loginRequest({
+                      userName: 'taikhoankhach',
+                      password: '@0aP9M_C',
+                    }),
+                  );
+                }}>
+                <Text
+                  style={{...TS.textXsRegular, color: color.grey.mediumLight}}>
+                  Đăng nhập với tài khoản Khách
+                </Text>
+              </TouchableOpacity>
+            </View>
+
             <View style={{...S.itemsCenter, marginTop: 24}}>
               <ButtonCustom
                 title="Đăng nhập"

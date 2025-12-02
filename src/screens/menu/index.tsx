@@ -35,9 +35,8 @@ export const MenuScreen = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
-  const {isLogin, profile, deleteError, deleteResult, loadingLogin} = useSelector(
-    (store: any) => store.auth,
-  );
+  const {isLogin, profile, deleteError, deleteResult, loadingLogin} =
+    useSelector((store: any) => store.auth);
   const {listMenuResult} = useSelector((store: any) => store.menu);
   const [isShowModalDelete, setIsShowModalDelete] = useState<boolean>(false);
   const [isShowModalOut, setIsShowModalOut] = useState<boolean>(false);
@@ -91,7 +90,7 @@ export const MenuScreen = () => {
       }),
     );
     setIsShowModalOut(false);
-  setIsShowModalDelete(false);
+    setIsShowModalDelete(false);
   }, [isFocused, isLogin]);
 
   useEffect(() => {
@@ -199,7 +198,15 @@ export const MenuScreen = () => {
         />
         {isLogin && (
           <TouchableOpacity
-            onPress={() => setIsShowModalDelete(true)}
+            onPress={() => {
+              if (profile.id === 1465903152627712) {
+                ToastService.showError(
+                  'Đang đăng nhập với tư cách Khách. Vui lòng đăng ký tài khoản để sử dụng Tính năng này',
+                );
+              } else {
+                setIsShowModalDelete(true);
+              }
+            }}
             style={{
               ...S.flexRow,
               padding: 12,
@@ -259,9 +266,7 @@ export const MenuScreen = () => {
         buttonRight="Xác nhận"
         actionRight={() => {
           setIsShowModalDelete(false);
-          dispatch(
-            authActions.deleteAccountRequest(),
-          );
+          dispatch(authActions.deleteAccountRequest());
         }}
       />
     </View>

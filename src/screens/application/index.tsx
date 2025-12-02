@@ -8,7 +8,12 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {color, S, TS} from '../../themes';
-import {TabHeaderCustom, ModalCustom, TextInputCustom, ButtonCustom} from '../../components';
+import {
+  TabHeaderCustom,
+  ModalCustom,
+  TextInputCustom,
+  ButtonCustom,
+} from '../../components';
 import {images} from '../../enums/images';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux';
@@ -23,27 +28,21 @@ export const ApplicationScreen = () => {
   );
 
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
-  
+
   const ModalForm = () => {
     const [data, setData] = useState<any>({
       name: '',
       phone: '',
     });
-  
+
     const onSubmit = () => {
-      if (data.name === '') {
-        ToastService.showError('Vui lòng nhập Họ và tên');
-      } else if (data.phone === '') {
-        ToastService.showError('Vui lòng nhập Số điện thoại');
-      } else {
-        dispatch(
-          formActions.formBaseRequest({
-            fullName: data.name,
-            phoneNumber: data.phone,
-            type: 'HANHCHINH',
-          }),
-        );
-      }
+      dispatch(
+        formActions.formBaseRequest({
+          fullName: data.name,
+          phoneNumber: data.phone,
+          type: 'HANHCHINH',
+        }),
+      );
     };
     return (
       <View>
@@ -65,10 +64,7 @@ export const ApplicationScreen = () => {
         />
 
         <View style={{...S.itemsCenter, marginTop: 12}}>
-          <ButtonCustom
-            title='Đăng ký'
-            action={onSubmit}
-          />
+          <ButtonCustom title="Đăng ký" action={onSubmit} />
         </View>
       </View>
     );
@@ -111,13 +107,13 @@ export const ApplicationScreen = () => {
               navigation.navigate('FormTranslateScreen');
             }}
           />
-          <ItemContent 
-          title="Dịch vụ hành chính" 
-          image={images.election} 
-          action={() => {
-            // @ts-ignore
-            navigation.navigate('FormServiceWorker');
-          }}
+          <ItemContent
+            title="Dịch vụ hành chính"
+            image={images.election}
+            action={() => {
+              // @ts-ignore
+              navigation.navigate('FormServiceWorker');
+            }}
           />
         </View>
 
