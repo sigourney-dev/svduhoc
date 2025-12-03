@@ -50,7 +50,7 @@ export function TabBarIcon(props: TabBarIconProps) {
       ...S.itemsCenter,
       ...S.justifyCenter,
       ...S.flex1,
-      width: hs(widthScreen / 4),
+      width: widthScreen / 4,
     },
     tabBarTitle: {
       ...TS.textXsMedium,

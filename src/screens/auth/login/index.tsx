@@ -116,7 +116,7 @@ export const LoginScreen = () => {
               borderTopLeftRadius: 24,
               borderTopRightRadius: 24,
               padding: 16,
-              height: heightScreen * 0.4,
+              maxHeight: heightScreen * 0.5,
             }}>
             <TextInputCustom
               placeholder="Tài khoản"

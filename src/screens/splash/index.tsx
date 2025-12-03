@@ -17,7 +17,7 @@ export const SplashScreen = () => {
       } else {
         navigation.replace('LoginScreen');
       }
-    }, 2000); // Hiển thị splash screen trong 2 giây
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: widthScreen,
+    height: heightScreen,
     resizeMode: 'contain',
   },
 });
